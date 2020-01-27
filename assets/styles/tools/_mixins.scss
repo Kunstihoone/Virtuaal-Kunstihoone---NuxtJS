@@ -1,0 +1,120 @@
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+
+  @return $map;
+}
+
+@mixin breakpoint($point, $type: min) {
+  @if map_has_key($breakpoints, $point) {
+    $point: map_get($breakpoints, $point);
+
+    @if $type == max {
+      $point: $point - 1px;
+    }
+
+    @if $point == 0 {
+      @content;
+    } @else {
+      @media (#{$type}-width: $point) {
+        @content;
+      }
+    }
+  } @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+      + "Please make sure it is defined in `$breakpoints` map.";
+  }
+}
+
+@mixin font-size($type) {
+  @each $breakpoint, $header-size in $header-sizes {
+    @include breakpoint($breakpoint) {
+      font-size: rem-calc(map-deep-get($header-sizes, $breakpoint, $type));
+    }
+  }
+}
+
+@mixin get-font-size($type, $breakpoint) {
+  font-size: rem-calc(map-deep-get($header-sizes, $breakpoint, $type));
+}
+
+@mixin global-gutter($multiplier, $targets...) {
+  $multiplier: $multiplier / 2;
+
+  @each $breakpoint, $gutter in $gutters {
+    @include breakpoint($breakpoint) {
+      @each $target in $targets {
+        #{$target}: map-get($gutters, $breakpoint) * $multiplier;
+      }
+    }
+  }
+}
+
+@mixin global-map-loop($map, $targets...) {
+  @each $breakpoint, $map-keys in $map {
+    @include breakpoint($breakpoint) {
+      @each $target in $targets {
+        #{$target}: map-get($map, $breakpoint);
+      }
+    }
+  }
+}
+
+@mixin gutter {
+  @include global-gutter(1, padding-left, padding-right);
+}
+
+@mixin row() {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+@mixin grid($ratio) {
+  $ratio: $ratio * 100%;
+
+  flex: 0 0 $ratio;
+  max-width: $ratio;
+}
+
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin vertical-center {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@mixin object-fit($fit: fill, $position: null) {
+  -o-object-fit: $fit;
+  object-fit: $fit;
+
+  @if $position {
+    -o-object-position: $position;
+    object-position: $position;
+    font-family: "object-fit: #{$fit}; object-position: #{$position}";
+  } @else {
+    font-family: "object-fit: #{$fit}";
+  }
+}
+
+@mixin text-selection($color-selection, $color-selection-bg) {
+  ::-moz-selection {
+    // sass-lint:disable-line no-vendor-prefixes
+    background: $color-selection-bg;
+    color: $color-selection;
+    text-shadow: none;
+  }
+
+  ::selection {
+    background: $color-selection-bg;
+    color: $color-selection;
+    text-shadow: none;
+  }
+}
