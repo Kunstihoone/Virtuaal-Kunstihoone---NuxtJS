@@ -7,7 +7,7 @@
 
     <buttons-layer>
       <navigation-button
-        :link-to="{ name: 'vabaka-saal-2' }"
+        :link-to="{ name: 'vabaka-saal-3' }"
         :position="{ top: '94%', left: '50%' }"
         icon="down"
       />

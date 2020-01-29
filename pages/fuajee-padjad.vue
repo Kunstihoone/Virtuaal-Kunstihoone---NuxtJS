@@ -29,6 +29,15 @@ export default {
     DetailsButton,
     NavigationButton
   },
-  mixins: [MixinLeaveTransition]
+  mixins: [MixinLeaveTransition],
+  mounted() {
+    this.$store.commit(
+      'SetAudioGuideTrack',
+      'https://digigiid-admin.kunstihoone.ee/wp-content/uploads/2019/12/104-Jesse-Darling.mp3'
+    )
+  },
+  beforeDestroy() {
+    this.$store.commit('SetAudioGuideTrack', null)
+  }
 }
 </script>

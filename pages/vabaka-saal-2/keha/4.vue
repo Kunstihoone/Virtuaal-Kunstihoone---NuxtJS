@@ -1,13 +1,19 @@
-<template>
+a<template>
   <div class="container">
-    <video class="room-video" autoplay muted loop controls>
-      <source src="/videos/600_KINOSAAL.mov.mov" />
+    <video class="room-video" autoplay muted loop>
+      <source src="/videos/315_VABAKA_SAAL_KEHA_RUUT.mov" />
       Your browser does not support the video tag.
     </video>
 
     <buttons-layer>
       <navigation-button
-        :link-to="{ name: 'vabaka-saal' }"
+        :link-to="{ name: 'vabaka-saal-2-keha-3' }"
+        :position="{ top: '50%', left: '6%' }"
+        icon="left"
+      />
+
+      <navigation-button
+        :link-to="{ name: 'vabaka-saal-2' }"
         :position="{ top: '94%', left: '50%' }"
         icon="down"
       />

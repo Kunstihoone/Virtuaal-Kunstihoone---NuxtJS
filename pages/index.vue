@@ -22,7 +22,7 @@
         icon="plus"
       />
       <navigation-button
-        :link-to="{ name: 'vabaka-saal' }"
+        :link-to="{ name: 'vabaka-saal-1' }"
         :position="{ top: '94%', left: '50%' }"
         icon="down"
       />
