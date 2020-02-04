@@ -41,5 +41,11 @@ export default {
     NavigationButton
   },
   mixins: [MixinLeaveTransition]
+  // async asyncData({ $axios, route, app, store }) {
+  // const data = await $axios.$get(
+  //   `post-types/event/${encodeURIComponent(route.params.item)}`
+  // )
+  // return { data }
+  // },
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <video class="room-video" autoplay muted loop controls>
+    <video class="room-video" autoplay muted loop>
       <source src="/videos/600_KINOSAAL.mov" />
       Your browser does not support the video tag.
     </video>

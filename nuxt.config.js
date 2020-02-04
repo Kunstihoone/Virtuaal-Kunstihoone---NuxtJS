@@ -1,4 +1,4 @@
-const baseURL = 'http://kh-digigiid.test/wp-json/www-api/v1/'
+const baseURL = 'http://kunstihoone-videogiid.test/wp-json/www-api/v1/'
 
 export default {
   mode: 'universal',

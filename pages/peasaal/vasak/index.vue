@@ -8,31 +8,31 @@
     <buttons-layer>
       <navigation-button
         :link-to="{ name: 'peasaal-vasak-1' }"
-        :position="{ top: '50%', left: '6%' }"
+        :position="{ top: '48%', left: '6%' }"
         icon="plus"
       />
 
       <navigation-button
         :link-to="{ name: 'peasaal-vasak-2' }"
-        :position="{ top: '50%', left: '28%' }"
+        :position="{ top: '48%', left: '28%' }"
         icon="plus"
       />
 
       <navigation-button
         :link-to="{ name: 'peasaal-vasak-3' }"
-        :position="{ top: '50%', left: '50%' }"
+        :position="{ top: '48%', left: '50%' }"
         icon="plus"
       />
 
       <navigation-button
         :link-to="{ name: 'peasaal-vasak-4' }"
-        :position="{ top: '50%', left: '72%' }"
+        :position="{ top: '48%', left: '72%' }"
         icon="plus"
       />
 
       <navigation-button
         :link-to="{ name: 'peasaal-vasak-5' }"
-        :position="{ top: '50%', left: '94%' }"
+        :position="{ top: '48%', left: '94%' }"
         icon="plus"
       />
 

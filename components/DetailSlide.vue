@@ -4,7 +4,7 @@
       v-if="slideContent.acf_fc_layout === 'image'"
       :image-data="slideContent.image"
     />
-    <video v-else-if="slideContent.acf_fc_layout === 'video'" controls>
+    <video v-else-if="slideContent.acf_fc_layout === 'video'">
       <source
         :src="slideContent.video.url"
         :type="slideContent.video.mime_type"

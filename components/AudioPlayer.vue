@@ -3,10 +3,10 @@
     <audio
       ref="player"
       :src="activeTrack"
-      controls
       crossorigin="anonymous"
       class="audio-player__player"
       autoplay
+      controls
     />
 
     <button @click="playPauseClick" class="audio-player__control">
@@ -41,6 +41,11 @@ export default {
       playerTrackProgress: 0,
       playerState: false
     }
+  },
+  computed: {
+    // playerState() {
+    //   return this.$refs.player.paused
+    // }
   },
   mounted() {
     const tl = anime.timeline({
@@ -81,11 +86,6 @@ export default {
       this.playerState = false
     }
   },
-  computed: {
-    // playerState() {
-    //   return this.$refs.player.paused
-    // }
-  },
   methods: {
     playerCurrentProgress() {
       this.playerTrackProgress =
@@ -116,8 +116,6 @@ export default {
   align-items: center;
   overflow: hidden;
   margin-top: 0.6rem;
-  // margin-top: 1rem;
-  // transition: transform $transition-cubic-bezier;
 }
 
 .audio-player__player {
