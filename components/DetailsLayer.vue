@@ -46,7 +46,7 @@ export default {
         }
       )
 
-      console.log(modalData)
+      // console.log(modalData)
       this.modalData = modalData
     }
   }

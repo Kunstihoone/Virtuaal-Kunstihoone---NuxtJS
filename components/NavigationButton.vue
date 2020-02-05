@@ -1,28 +1,45 @@
 <template>
-  <nuxt-link :to="linkTo" :style="position" class="navigation-button">
-    <button-content :icon="icon" />
+  <nuxt-link
+    :to="buttonPath"
+    :style="{
+      top: `${buttonData.position.top}%`,
+      left: `${buttonData.position.left}%`
+    }"
+    class="navigation-button"
+  >
+    <svg-icon :name="buttonData.icon" />
   </nuxt-link>
 </template>
 
 <script>
-import ButtonContent from '~/components/ButtonContent'
-
 export default {
-  components: {
-    ButtonContent
-  },
   props: {
-    linkTo: {
-      type: [Object, String],
-      default: null
-    },
-    position: {
+    buttonData: {
       type: Object,
       default: null
-    },
-    icon: {
-      type: String,
-      default: null
+    }
+  },
+  computed: {
+    buttonPath() {
+      const slug = this.buttonData.related_item.post_name
+      const parentSlug = this.buttonData.related_item.parent_slug
+
+      if (parentSlug) {
+        return {
+          name: 'parent-child',
+          params: {
+            parent: parentSlug,
+            child: slug
+          }
+        }
+      } else {
+        return {
+          name: 'parent',
+          params: {
+            parent: slug
+          }
+        }
+      }
     }
   }
 }

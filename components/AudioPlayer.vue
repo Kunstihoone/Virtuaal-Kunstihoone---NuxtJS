@@ -68,7 +68,7 @@ export default {
 
     this.$refs.player.onloadeddata = () => {
       this.trackDuration = this.$refs.player.duration
-      console.log(this.$refs.player)
+      // console.log(this.$refs.player)
       setInterval(() => {
         this.playerCurrentProgress()
       }, 33)
