@@ -1,9 +1,24 @@
+import anime from 'animejs'
 import Player from '@vimeo/player'
 
 export default {
   data() {
     return {
       videoPaused: false
+    }
+  },
+  transition: {
+    leave(el, done) {
+      anime({
+        targets: '.ratio-container',
+        opacity: 0,
+        easing: 'easeOutExpo',
+        duration: 600,
+
+        complete(anim) {
+          done()
+        }
+      })
     }
   },
   mounted() {
@@ -20,6 +35,26 @@ export default {
       this.player = new Player('video-wrapper', videoOptions)
 
       document.addEventListener('keydown', this.addKeyEvent)
+
+      this.player.on('loaded', () => {
+        const tl = anime.timeline({
+          easing: 'easeOutExpo',
+          duration: 800
+        })
+
+        tl.add({
+          targets: ['.room-video'],
+          opacity: [0, 1],
+          easing: 'easeInOutQuad'
+        })
+
+        tl.add({
+          targets: ['.navigation-button'],
+          opacity: [0, 1],
+          delay: anime.stagger(100),
+          easing: 'easeInOutQuad'
+        })
+      })
     }
   },
   beforeDestroy() {

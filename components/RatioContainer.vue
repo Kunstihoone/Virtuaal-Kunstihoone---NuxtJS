@@ -1,16 +1,14 @@
 <template>
-  <nav
+  <div
     :style="{ width: portraitWith }"
     :class="[orientation === 'landscape' ? 'm-landscape' : 'm-portrait']"
-    class="buttons-layer"
+    class="ratio-container"
   >
     <slot />
-  </nav>
+  </div>
 </template>
 
 <script>
-import anime from 'animejs'
-
 export default {
   data() {
     return {
@@ -21,18 +19,6 @@ export default {
   mounted() {
     this.orientationListener()
     window.addEventListener('resize', this.orientationListener)
-
-    const tl = anime.timeline({
-      easing: 'easeOutExpo',
-      duration: 800
-    })
-
-    tl.add({
-      targets: ['.navigation-button'],
-      opacity: [0, 1],
-      delay: anime.stagger(100),
-      easing: 'easeInOutQuad'
-    })
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.orientationListener)
@@ -56,7 +42,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.buttons-layer {
+.ratio-container {
   position: absolute;
   top: 50%;
   left: 50%;

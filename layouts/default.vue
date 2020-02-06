@@ -1,9 +1,9 @@
 <template>
   <main :class="{ 'modal-active': activeModal }" class="main">
     <div class="main__content">
-      {{ activeModal }}
-      <audio-guide />
-      <main-navigation />
+      <audio-guide v-if="$route.name !== 'index'" />
+      <main-navigation v-if="$route.name !== 'index'" />
+
       <nuxt />
     </div>
 
@@ -64,7 +64,7 @@ html {
 
 body {
   font-family: 'Favorit';
-  background-color: black;
+  background-color: #fff7cd;
   color: white;
   overflow: hidden;
 }
@@ -75,12 +75,10 @@ body {
   }
 }
 
-.container {
-  width: 100vw;
-  height: 100vh;
-}
-
 .room-video {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: contain;

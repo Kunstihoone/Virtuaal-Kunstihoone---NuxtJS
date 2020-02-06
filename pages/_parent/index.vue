@@ -1,29 +1,28 @@
 <template>
-  <div class="container">
+  <ratio-container>
     <div id="video-wrapper" class="room-video" />
 
-    <buttons-layer v-if="data && data.acf">
+    <template v-if="data && data.acf">
       <navigation-button
         v-for="(button, index) in data.acf.buttons"
         :key="index"
         :button-data="button"
       />
-    </buttons-layer>
-  </div>
+    </template>
+  </ratio-container>
 </template>
 
 <script>
 import NavigationButton from '~/components/NavigationButton'
-import ButtonsLayer from '~/components/ButtonsLayer'
-import MixinLeaveTransition from '~/mixins/MixinLeaveTransition'
 import MixinRoom from '~/mixins/MixinRoom'
+import RatioContainer from '~/components/RatioContainer'
 
 export default {
   components: {
-    ButtonsLayer,
-    NavigationButton
+    NavigationButton,
+    RatioContainer
   },
-  mixins: [MixinLeaveTransition, MixinRoom],
+  mixins: [MixinRoom],
   async asyncData({ $axios, route }) {
     const data = await $axios.$get(
       `post-types/virtual-exhibitions/${route.params.parent}`
