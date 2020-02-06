@@ -1,10 +1,10 @@
 <template>
   <div class="details-slider">
     <button @click="navLeft" class="details-slider__button m-left">
-      <button-content icon="left" />
+      <svg-icon name="icon-arrow-left" />
     </button>
     <button @click="navRight" class="details-slider__button m-right">
-      <button-content icon="right" />
+      <svg-icon name="icon-arrow-right" />
     </button>
 
     <div
@@ -21,12 +21,10 @@
 </template>
 
 <script>
-import ButtonContent from '~/components/ButtonContent'
 import DetailSlide from '~/components/DetailSlide'
 
 export default {
   components: {
-    ButtonContent,
     DetailSlide
   },
   props: {

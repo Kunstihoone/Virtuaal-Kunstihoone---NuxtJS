@@ -2,7 +2,7 @@
   <div class="audio-guide">
     <button @click="showAudioPlayer = true" class="toggle-audio-guide button">
       Audiogiid {{ showAudioPlayer ? 'off' : 'on' }}
-      <ButtonContent icon="audio" />
+      <svg-icon name="icon-audio" />
     </button>
 
     <audio-player v-if="showAudioPlayer" :active-track="activeTrack" />
@@ -10,12 +10,10 @@
 </template>
 
 <script>
-import ButtonContent from '~/components/ButtonContent'
 import AudioPlayer from '~/components/AudioPlayer'
 
 export default {
   components: {
-    ButtonContent,
     AudioPlayer
   },
   data() {

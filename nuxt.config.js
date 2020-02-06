@@ -1,5 +1,11 @@
+import axios from 'axios'
+
 // const baseURL = 'http://kunstihoone-videogiid.test/wp-json/www-api/v1/'
 const baseURL = 'https://kh-videogiid.wwwstuudio.ee/wp-json/www-api/v1/'
+
+var request = axios.create({
+  baseURL: process.env.BASE_URL || baseURL
+})
 
 export default {
   mode: 'universal',
@@ -72,5 +78,18 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {}
+  },
+  generate: {
+    interval: 100,
+    routes: function() {
+      return request.get('post-types/virtual-exhibitions').then((res) => {
+        return res.data.map((route) => {
+          const slug = route.slug
+          const parentSlug = route.parent_slug
+
+          return parentSlug ? `${parentSlug}/${slug}` : slug
+        })
+      })
+    }
   }
 }
