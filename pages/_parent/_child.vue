@@ -23,12 +23,9 @@ export default {
     RatioContainer
   },
   mixins: [MixinRoom],
-  async asyncData({ $axios, route }) {
-    const data = await $axios.$get(
-      `post-types/virtual-exhibitions/${route.params.child}`
-    )
-
-    return { data }
+  async asyncData({ params, store, payload, route }) {
+    if (payload) return { data: payload }
+    else return { data: await store.getters.getSingleRoom(route.params.child) }
   }
 }
 </script>
