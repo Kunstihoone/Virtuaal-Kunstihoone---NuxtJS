@@ -4,7 +4,8 @@ import Player from '@vimeo/player'
 export default {
   data() {
     return {
-      videoPaused: false
+      videoPaused: false,
+      playerLoaded: false
     }
   },
   transition: {
@@ -19,6 +20,13 @@ export default {
           done()
         }
       })
+    }
+  },
+  created() {
+    if (this.data.acf.audio_guide_est) {
+      this.$store.commit('SetAudioGuideTrack', this.data.acf.audio_guide_est)
+    } else {
+      this.$store.commit('SetAudioGuideTrack', null)
     }
   },
   mounted() {
@@ -37,6 +45,8 @@ export default {
       document.addEventListener('keydown', this.addKeyEvent)
 
       this.player.on('loaded', () => {
+        this.playerLoaded = true
+
         const tl = anime.timeline({
           easing: 'easeOutExpo',
           duration: 800

@@ -1,37 +1,39 @@
 <template>
   <div v-if="activeTrack" class="audio-player">
-    <audio
-      ref="player"
-      :src="activeTrack"
-      crossorigin="anonymous"
-      class="audio-player__player"
-      autoplay
-      controls
-    />
+    <div class="audio-player__inner">
+      <audio
+        ref="player"
+        :src="activeTrack.url"
+        crossorigin="anonymous"
+        class="audio-player__player"
+        autoplay
+        controls
+      />
 
-    <button @click="playPauseClick" class="audio-player__control">
-      <svg-icon v-if="!playerState" name="icon-play" />
-      <svg-icon v-else name="icon-pause" />
-    </button>
+      <button @click="playPauseClick" class="audio-player__control">
+        <svg-icon v-if="!playerState" name="icon-play" />
+        <svg-icon v-else name="icon-pause" />
+      </button>
 
-    <h4 class="audio-player__title">
-      Sõna mõjutus kolofoon - audiogiid
-    </h4>
+      <h4 class="audio-player__title">
+        Sõna mõjutus kolofoon - audiogiid
+      </h4>
 
-    <div
-      :style="{ width: playerTrackProgress + '%' }"
-      class="audio-player__progress"
-    />
+      <div
+        :style="{ width: playerTrackProgress + '%' }"
+        class="audio-player__progress"
+      />
+    </div>
   </div>
 </template>
 
 <script>
-import anime from 'animejs'
+// import anime from 'animejs'
 
 export default {
   props: {
     activeTrack: {
-      type: String,
+      type: Object,
       default: null
     }
   },
@@ -48,28 +50,9 @@ export default {
     // }
   },
   mounted() {
-    const tl = anime.timeline({
-      easing: 'easeOutExpo',
-      duration: 400
-    })
-
-    tl.add({
-      targets: '.audio-player',
-      height: [0, '4rem'],
-      opacity: [0, 1],
-      easing: 'easeInOutQuad'
-    })
-
-    tl.add({
-      targets: '.audio-player__title',
-      opacity: [0, 1],
-      easing: 'easeInOutQuad'
-    })
-
     this.$refs.player.onloadeddata = () => {
       this.trackDuration = this.$refs.player.duration
-      // console.log(this.$refs.player)
-      setInterval(() => {
+      this.progressCounter = setInterval(() => {
         this.playerCurrentProgress()
       }, 33)
     }
@@ -85,6 +68,9 @@ export default {
     this.$refs.player.onended = () => {
       this.playerState = false
     }
+  },
+  beforeDestroy() {
+    clearInterval(this.progressCounter)
   },
   methods: {
     playerCurrentProgress() {
@@ -103,19 +89,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.audio-player {
+.audio-player__inner {
   position: relative;
   background-color: white;
   color: $black;
   padding: 0.4rem 0.8rem;
   border-radius: 0.8rem;
   z-index: 40;
-  opacity: 0;
   transform-origin: bottom right;
   display: flex;
   align-items: center;
   overflow: hidden;
+  box-shadow: $button-shadow;
   margin-top: 0.6rem;
+  height: 4rem;
 }
 
 .audio-player__player {

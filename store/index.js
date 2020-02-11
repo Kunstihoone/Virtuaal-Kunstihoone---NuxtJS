@@ -2,6 +2,7 @@ import Vue from 'vue'
 
 export const state = () => ({
   activeModal: null,
+  audioGuideState: false,
   audioGuideTrack: undefined,
   roomsData: null,
   siteData: null
@@ -19,6 +20,9 @@ export const mutations = {
   },
   SetRoomsData(state, value) {
     Vue.set(state, 'roomsData', value)
+  },
+  SetAudiGuideState(state, value) {
+    Vue.set(state, 'audioGuideState', value)
   }
 }
 
