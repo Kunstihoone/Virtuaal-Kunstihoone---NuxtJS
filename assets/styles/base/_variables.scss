@@ -3,6 +3,7 @@ $black: rgb(20, 20, 20);
 $white: #fff;
 $gray: #c0c0c0;
 $border-gray: #d4d4d4;
+$bg-color: #fff7cd;
 
 /* Base */
 $root-fonts-sizes: (
@@ -22,26 +23,26 @@ $breakpoints: (
 /* Typography */
 $header-sizes: (
   small: (
-    "h1": 32,
-    "h2": 26,
-    "h3": 24,
-    "h4": 16,
-    "h5": 16,
-    "h6": 16
+    'h1': 32,
+    'h2': 26,
+    'h3': 24,
+    'h4': 16,
+    'h5': 16,
+    'h6': 16
   ),
   medium: (
-    "h1": 44,
-    "h2": 38,
-    "h3": 18,
-    "h4": 16,
-    "h5": 16,
-    "h6": 16
+    'h1': 44,
+    'h2': 38,
+    'h3': 18,
+    'h4': 16,
+    'h5': 16,
+    'h6': 16
   )
 );
 
 /* Featured fonts */
-$body-font-family: "xxx", sans-serif;
-$heading-font-family: "xxx", serif;
+$body-font-family: 'xxx', sans-serif;
+$heading-font-family: 'xxx', serif;
 
 /* Gutters */
 $gutters: (

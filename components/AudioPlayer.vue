@@ -10,13 +10,16 @@
         controls
       />
 
-      <button @click="playPauseClick" class="audio-player__control">
+      <button
+        @click="$store.commit('SetAudioPlayerState', !playerState)"
+        class="audio-player__control"
+      >
         <svg-icon v-if="!playerState" name="icon-play" />
         <svg-icon v-else name="icon-pause" />
       </button>
 
       <h4 class="audio-player__title">
-        Sõna mõjutus kolofoon - audiogiid
+        {{ audioGuideTitle }}
       </h4>
 
       <div
@@ -28,26 +31,38 @@
 </template>
 
 <script>
-// import anime from 'animejs'
+import { mapState } from 'vuex'
 
 export default {
   props: {
     activeTrack: {
       type: Object,
       default: null
+    },
+    audioGuideTitle: {
+      type: String,
+      default: null
     }
   },
   data() {
     return {
       trackDuration: 0,
-      playerTrackProgress: 0,
-      playerState: false
+      playerTrackProgress: 0
     }
   },
   computed: {
-    // playerState() {
-    //   return this.$refs.player.paused
-    // }
+    ...mapState({
+      playerState: (state) => state.audioPlayerState
+    })
+  },
+  watch: {
+    playerState() {
+      if (this.playerState) {
+        this.$refs.player.play()
+      } else {
+        this.$refs.player.pause()
+      }
+    }
   },
   mounted() {
     this.$refs.player.onloadeddata = () => {
@@ -58,15 +73,15 @@ export default {
     }
 
     this.$refs.player.onplay = () => {
-      this.playerState = true
+      this.$store.commit('SetAudioPlayerState', true)
     }
 
     this.$refs.player.onpause = () => {
-      this.playerState = false
+      this.$store.commit('SetAudioPlayerState', false)
     }
 
     this.$refs.player.onended = () => {
-      this.playerState = false
+      this.$store.commit('SetAudioPlayerState', false)
     }
   },
   beforeDestroy() {
@@ -76,13 +91,6 @@ export default {
     playerCurrentProgress() {
       this.playerTrackProgress =
         (this.$refs.player.currentTime / this.trackDuration) * 100
-    },
-    playPauseClick() {
-      if (this.playerState) {
-        this.$refs.player.pause()
-      } else {
-        this.$refs.player.play()
-      }
     }
   }
 }
@@ -103,6 +111,7 @@ export default {
   box-shadow: $button-shadow;
   margin-top: 0.6rem;
   height: 4rem;
+  width: rem-calc(280);
 }
 
 .audio-player__player {
@@ -115,7 +124,6 @@ export default {
   height: 100%;
   left: 0;
   background-color: $gray;
-  transition: width 0.3s ease;
   z-index: -1;
 }
 

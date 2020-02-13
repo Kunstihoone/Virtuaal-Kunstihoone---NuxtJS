@@ -5,8 +5,11 @@ export const state = () => ({
   modalData: null,
   audioGuideState: false,
   audioGuideTrack: undefined,
+  audioGuideTitle: undefined,
+  audioPlayerState: false,
   roomsData: null,
-  siteData: null
+  siteData: null,
+  splashState: true
 })
 
 export const mutations = {
@@ -19,6 +22,12 @@ export const mutations = {
   SetAudioGuideTrack(state, value) {
     Vue.set(state, 'audioGuideTrack', value)
   },
+  SetAudioGuideTitle(state, value) {
+    Vue.set(state, 'audioGuideTitle', value)
+  },
+  SetAudioPlayerState(state, value) {
+    Vue.set(state, 'audioPlayerState', value)
+  },
   SetSiteData(state, value) {
     Vue.set(state, 'siteData', value)
   },
@@ -27,6 +36,9 @@ export const mutations = {
   },
   SetAudiGuideState(state, value) {
     Vue.set(state, 'audioGuideState', value)
+  },
+  SetSplashState(state, value) {
+    Vue.set(state, 'splashState', value)
   }
 }
 

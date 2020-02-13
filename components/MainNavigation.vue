@@ -1,24 +1,27 @@
 <template>
   <nav class="main-navigation">
-    <a class="main-navigation__info button">Info</a>
-
-    <audio-guide v-if="$route.name !== 'index'" />
-
-    <details-button v-if="detailsButton" :modal-data="detailsButton"
-      >Detailid</details-button
+    <button
+      @click="$store.commit('SetSplashState', true)"
+      class="main-navigation__info button"
     >
+      Info
+    </button>
+
+    <language-switcher />
+
+    <details-button v-if="detailsButton" :details-image="detailsButton" />
   </nav>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import AudioGuide from '~/components/AudioGuide'
 import DetailsButton from '~/components/DetailsButton'
+import LanguageSwitcher from '~/components/LanguageSwitcher'
 
 export default {
   components: {
-    AudioGuide,
-    DetailsButton
+    DetailsButton,
+    LanguageSwitcher
   },
   computed: {
     ...mapState({
@@ -30,6 +33,7 @@ export default {
 
 <style lang="scss" scoped>
 .main-navigation {
+  position: fixed;
   z-index: 60;
   opacity: 1;
   transition: 0.3s ease;

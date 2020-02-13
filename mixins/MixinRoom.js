@@ -25,6 +25,10 @@ export default {
   created() {
     if (this.data.acf.audio_guide_est) {
       this.$store.commit('SetAudioGuideTrack', this.data.acf.audio_guide_est)
+      this.$store.commit(
+        'SetAudioGuideTitle',
+        this.data.acf.audio_guide_title_est
+      )
     } else {
       this.$store.commit('SetAudioGuideTrack', null)
     }

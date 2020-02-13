@@ -24,8 +24,12 @@ export default {
   },
   mixins: [MixinRoom],
   async asyncData({ params, store, payload, route }) {
-    if (payload) return { data: payload }
-    else return { data: await store.getters.getSingleRoom(route.params.parent) }
+    if (payload) {
+      return { data: payload }
+    } else {
+      store.commit('SetDetailsButton', null)
+      return { data: await store.getters.getSingleRoom(route.params.parent) }
+    }
   }
 }
 </script>

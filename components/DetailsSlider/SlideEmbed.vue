@@ -26,6 +26,10 @@ export default {
     }
 
     this.player = new Player(this.$refs.vimeoSlide, videoOptions)
+
+    this.player.on('play', () => {
+      this.$store.commit('SetAudioPlayerState', false)
+    })
   }
 }
 </script>

@@ -13,6 +13,7 @@
         v-if="audioGuideState && activeTrack"
         :key="activeTrack.ID"
         :active-track="activeTrack"
+        :audio-guide-title="audioGuideTitle"
       />
     </transition>
   </div>
@@ -30,6 +31,7 @@ export default {
   computed: {
     ...mapState({
       activeTrack: (state) => state.audioGuideTrack,
+      audioGuideTitle: (state) => state.audioGuideTitle,
       audioGuideState: (state) => state.audioGuideState
     })
   },
@@ -90,7 +92,7 @@ export default {
   position: fixed;
   bottom: 1rem;
   right: 1rem;
-  z-index: 40;
+  z-index: 120;
   display: flex;
   flex-direction: column;
   align-items: flex-end;

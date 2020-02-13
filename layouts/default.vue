@@ -2,23 +2,35 @@
   <main :class="{ 'modal-active': modalData }" class="main">
     <main-navigation v-if="$route.name !== 'index'" />
     <nuxt />
+
     <details-layer v-if="modalData" :modal-data="modalData" />
+    <audio-guide v-if="$route.name !== 'index'" />
+    {{ splashState }}
+
+    <transition name="fade">
+      <splash-layer v-if="splashState" />
+    </transition>
   </main>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import AudioGuide from '~/components/AudioGuide'
 import MainNavigation from '~/components/MainNavigation'
 import DetailsLayer from '~/components/DetailsLayer'
+import SplashLayer from '~/components/SplashLayer'
 
 export default {
   components: {
+    AudioGuide,
     MainNavigation,
-    DetailsLayer
+    DetailsLayer,
+    SplashLayer
   },
   computed: {
     ...mapState({
-      modalData: (state) => state.modalData
+      modalData: (state) => state.modalData,
+      splashState: (state) => state.splashState
     })
   }
 }
@@ -57,7 +69,7 @@ html {
 
 body {
   font-family: 'Favorit';
-  background-color: #fff7cd;
+  background-color: $bg-color;
   color: white;
   overflow: hidden;
 }
@@ -89,11 +101,22 @@ body {
   font-size: 1rem;
   box-shadow: $button-shadow;
   line-height: 1;
-  transition: background-color 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
   cursor: pointer;
 
   &:hover {
     background-color: $gray;
+    box-shadow: 0px 2px 10px rgba(84, 84, 84, 0);
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
