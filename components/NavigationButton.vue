@@ -1,14 +1,30 @@
 <template>
-  <nuxt-link
-    :to="buttonPath"
-    :style="{
-      top: `${buttonData.position.top}%`,
-      left: `${buttonData.position.left}%`
-    }"
-    class="navigation-button"
-  >
-    <svg-icon :name="buttonData.icon" />
-  </nuxt-link>
+  <div>
+    <button
+      v-if="
+        buttonData.related_item.post_type === 'detail-overlays' && modalData
+      "
+      :style="{
+        top: `${buttonData.position.top}%`,
+        left: `${buttonData.position.left}%`
+      }"
+      @click="$store.commit('SetModalData', modalData)"
+      class="navigation-button"
+    >
+      <svg-icon :name="buttonData.icon" />
+    </button>
+    <nuxt-link
+      v-else
+      :to="buttonPath"
+      :style="{
+        top: `${buttonData.position.top}%`,
+        left: `${buttonData.position.left}%`
+      }"
+      class="navigation-button"
+    >
+      <svg-icon :name="buttonData.icon" />
+    </nuxt-link>
+  </div>
 </template>
 
 <script>
@@ -40,6 +56,17 @@ export default {
           }
         }
       }
+    },
+    modalData() {
+      const detailedView = this.$store.getters.getSingleRoom(
+        this.buttonData.related_item.post_name
+      )
+
+      return detailedView &&
+        detailedView.acf &&
+        detailedView.acf.detailed_view_content
+        ? detailedView.acf.detailed_view_content
+        : null
     }
   }
 }

@@ -57,5 +57,9 @@ export default {
   &.m-portrait {
     height: 100%;
   }
+
+  .modal-active & {
+    opacity: 0.2;
+  }
 }
 </style>

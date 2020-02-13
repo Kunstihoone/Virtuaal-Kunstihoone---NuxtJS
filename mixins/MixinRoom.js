@@ -35,9 +35,11 @@ export default {
         url: this.data.acf.video,
         width: 1920,
         controls: false,
-        background: true,
-        playsinline: true,
-        quality: '1080p'
+        autoplay: true,
+        quality: '1080p',
+        loop: true
+        // background: true,
+        // playsinline: true,
       }
 
       this.player = new Player('video-wrapper', videoOptions)

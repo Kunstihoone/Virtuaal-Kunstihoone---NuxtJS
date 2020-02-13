@@ -37,8 +37,20 @@ export default {
     })
   },
   async asyncData({ params, store, payload, route }) {
-    if (payload) return { data: payload }
-    else return { data: await store.getters.getSingleRoom(route.params.child) }
+    if (payload) {
+      return { data: payload }
+    } else {
+      const data = await store.getters.getSingleRoom(route.params.child)
+      if (data.acf.label) {
+        store.commit('SetDetailsButton', [
+          {
+            acf_fc_layout: 'image',
+            image: data.acf.label
+          }
+        ])
+      }
+      return { data }
+    }
   }
 }
 </script>

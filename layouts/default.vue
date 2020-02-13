@@ -1,31 +1,24 @@
 <template>
-  <main :class="{ 'modal-active': activeModal }" class="main">
-    <div class="main__content">
-      <audio-guide v-if="$route.name !== 'index'" />
-      <main-navigation v-if="$route.name !== 'index'" />
-
-      <nuxt />
-    </div>
-
-    <details-layer v-if="activeModal" :modal-name="activeModal" />
+  <main :class="{ 'modal-active': modalData }" class="main">
+    <main-navigation v-if="$route.name !== 'index'" />
+    <nuxt />
+    <details-layer v-if="modalData" :modal-data="modalData" />
   </main>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import AudioGuide from '~/components/AudioGuide'
 import MainNavigation from '~/components/MainNavigation'
 import DetailsLayer from '~/components/DetailsLayer'
 
 export default {
   components: {
-    AudioGuide,
     MainNavigation,
     DetailsLayer
   },
   computed: {
     ...mapState({
-      activeModal: (state) => state.activeModal
+      modalData: (state) => state.modalData
     })
   }
 }
@@ -69,10 +62,9 @@ body {
   overflow: hidden;
 }
 
-.main__content {
-  .modal-active & {
-    filter: blur(20px);
-  }
+.main {
+  position: relative;
+  height: 100vh;
 }
 
 .room-video {

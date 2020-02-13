@@ -1,9 +1,20 @@
 <template>
   <div class="details-slider">
-    <button @click="navLeft" class="details-slider__button m-left">
+    <button
+      v-if="flattenedSlides.length > 1 && currentSlide > 0"
+      @click="navLeft"
+      class="details-slider__button m-left"
+    >
       <svg-icon name="icon-arrow-left" />
     </button>
-    <button @click="navRight" class="details-slider__button m-right">
+
+    <button
+      v-if="
+        flattenedSlides.length > 1 && flattenedSlides.length - 1 > currentSlide
+      "
+      @click="navRight"
+      class="details-slider__button m-right"
+    >
       <svg-icon name="icon-arrow-right" />
     </button>
 
@@ -11,21 +22,38 @@
       :style="{ transform: `translateX(${-100 * currentSlide}%)` }"
       class="details-slider__slides-wrapper"
     >
-      <detail-slide
-        v-for="(slide, index) in slides"
-        :slide-content="slide"
+      <div
+        v-for="(slide, index) in flattenedSlides"
         :key="index"
-      />
+        class="details-slider__slide"
+      >
+        <slide-image
+          v-if="slide.acf_fc_layout === 'image'"
+          :image-data="slide.image"
+        />
+        <slide-video
+          v-if="slide.acf_fc_layout === 'video'"
+          :video-data="slide.video"
+        />
+        <slide-embed
+          v-if="slide.acf_fc_layout === 'embed_video'"
+          :embed-url="slide.embed_video_url"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import DetailSlide from '~/components/DetailSlide'
+import SlideEmbed from '~/components/DetailsSlider/SlideEmbed'
+import SlideImage from '~/components/DetailsSlider/SlideImage'
+import SlideVideo from '~/components/DetailsSlider/SlideVideo'
 
 export default {
   components: {
-    DetailSlide
+    SlideEmbed,
+    SlideImage,
+    SlideVideo
   },
   props: {
     slides: {
@@ -36,6 +64,26 @@ export default {
   data() {
     return {
       currentSlide: 0
+    }
+  },
+  computed: {
+    flattenedSlides() {
+      const flattenedSlides = []
+
+      this.slides.forEach((slide) => {
+        if (slide.acf_fc_layout === 'gallery_block') {
+          slide.gallery.forEach((imageObject) => {
+            flattenedSlides.push({
+              acf_fc_layout: 'image',
+              image: imageObject
+            })
+          })
+        } else {
+          flattenedSlides.push(slide)
+        }
+      })
+
+      return flattenedSlides
     }
   },
   mounted() {
@@ -52,7 +100,7 @@ export default {
     },
 
     navRight() {
-      if (this.slides.length - 1 > this.currentSlide) {
+      if (this.flattenedSlides.length - 1 > this.currentSlide) {
         this.currentSlide++
       }
     },
@@ -120,5 +168,33 @@ export default {
   position: relative;
   display: flex;
   transition: transform 0.3s ease;
+  height: 100%;
+}
+
+.details-slider__slide {
+  position: relative;
+  min-width: 100vw;
+  min-height: 100vh;
+  padding: 4rem;
+  display: block;
+}
+
+/deep/ .detail-slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+
+  img,
+  video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  h2 {
+    color: white;
+  }
 }
 </style>

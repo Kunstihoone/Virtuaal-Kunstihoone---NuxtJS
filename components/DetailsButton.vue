@@ -1,17 +1,17 @@
 <template>
   <button
-    @click="$store.commit('SetActiveModal', modalName)"
+    @click="$store.commit('SetModalData', modalData)"
     class="details-button button"
   >
-    DETAILS
+    Detailid
   </button>
 </template>
 
 <script>
 export default {
   props: {
-    modalName: {
-      type: String,
+    modalData: {
+      type: Array,
       default: null
     }
   }

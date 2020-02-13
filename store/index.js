@@ -1,7 +1,8 @@
 import Vue from 'vue'
 
 export const state = () => ({
-  activeModal: null,
+  detailsButton: null,
+  modalData: null,
   audioGuideState: false,
   audioGuideTrack: undefined,
   roomsData: null,
@@ -9,8 +10,11 @@ export const state = () => ({
 })
 
 export const mutations = {
-  SetActiveModal(state, value) {
-    Vue.set(state, 'activeModal', value)
+  SetDetailsButton(state, value) {
+    Vue.set(state, 'detailsButton', value)
+  },
+  SetModalData(state, value) {
+    Vue.set(state, 'modalData', value)
   },
   SetAudioGuideTrack(state, value) {
     Vue.set(state, 'audioGuideTrack', value)
@@ -36,9 +40,15 @@ export const actions = {
     })
     commit('SetSiteData', siteData.data)
 
-    const rooms = await app.$axios.$get(
-      'post-types/virtual-exhibitions?acf=true'
-    )
+    const params = {
+      acf: true,
+      'post_type[0]': 'virtual-exhibitions',
+      'post_type[1]': 'detail-overlays'
+    }
+
+    const rooms = await app.$axios.$get('post-types/virtual-exhibitions', {
+      params
+    })
     commit('SetRoomsData', rooms)
   }
 }
