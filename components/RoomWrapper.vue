@@ -1,26 +1,52 @@
+<template>
+  <ratio-container>
+    <div id="video-wrapper" class="room-video" />
+
+    <template v-if="data && data.acf">
+      <navigation-button
+        v-for="(button, index) in data.acf.buttons"
+        :key="index"
+        :button-data="button"
+      />
+    </template>
+
+    <piece-audio
+      v-if="data.acf.audio_track && playerLoaded && !audioGuideState"
+      :audio-data="data.acf.audio_track"
+    />
+  </ratio-container>
+</template>
+
+<script>
 import anime from 'animejs'
 import Player from '@vimeo/player'
+import { mapState } from 'vuex'
+import NavigationButton from '~/components/NavigationButton'
+import RatioContainer from '~/components/RatioContainer'
+import PieceAudio from '~/components/PieceAudio'
 
 export default {
+  components: {
+    NavigationButton,
+    RatioContainer,
+    PieceAudio
+  },
+  props: {
+    data: {
+      type: Object,
+      default: null
+    }
+  },
   data() {
     return {
       videoPaused: false,
       playerLoaded: false
     }
   },
-  transition: {
-    leave(el, done) {
-      anime({
-        targets: '.ratio-container',
-        opacity: 0,
-        easing: 'easeOutExpo',
-        duration: 600,
-
-        complete(anim) {
-          done()
-        }
-      })
-    }
+  computed: {
+    ...mapState({
+      audioGuideState: (state) => state.audioGuideState
+    })
   },
   created() {
     if (this.data.acf.audio_guide_est) {
@@ -105,3 +131,4 @@ export default {
     }
   }
 }
+</script>

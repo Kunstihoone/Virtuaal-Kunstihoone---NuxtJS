@@ -1,28 +1,16 @@
 <template>
-  <ratio-container>
-    <div id="video-wrapper" class="room-video" />
-
-    <template v-if="data && data.acf">
-      <navigation-button
-        v-for="(button, index) in data.acf.buttons"
-        :key="index"
-        :button-data="button"
-      />
-    </template>
-  </ratio-container>
+  <room-wrapper :data="data" />
 </template>
 
 <script>
-import NavigationButton from '~/components/NavigationButton'
-import MixinRoom from '~/mixins/MixinRoom'
-import RatioContainer from '~/components/RatioContainer'
+import MixinTransitionOut from '~/mixins/MixinTransitionOut'
+import RoomWrapper from '~/components/RoomWrapper'
 
 export default {
   components: {
-    NavigationButton,
-    RatioContainer
+    RoomWrapper
   },
-  mixins: [MixinRoom],
+  mixins: [MixinTransitionOut],
   async asyncData({ params, store, payload, route }) {
     if (payload) {
       return { data: payload }

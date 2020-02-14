@@ -1,41 +1,16 @@
 <template>
-  <ratio-container>
-    <div id="video-wrapper" class="room-video" />
-
-    <template v-if="data && data.acf">
-      <navigation-button
-        v-for="(button, index) in data.acf.buttons"
-        :key="index"
-        :button-data="button"
-      />
-    </template>
-
-    <piece-audio
-      v-if="data.acf.audio_track && playerLoaded && !audioGuideState"
-      :audio-data="data.acf.audio_track"
-    />
-  </ratio-container>
+  <room-wrapper :data="data" />
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import NavigationButton from '~/components/NavigationButton'
-import MixinRoom from '~/mixins/MixinRoom'
-import RatioContainer from '~/components/RatioContainer'
-import PieceAudio from '~/components/PieceAudio'
+import MixinTransitionOut from '~/mixins/MixinTransitionOut'
+import RoomWrapper from '~/components/RoomWrapper'
 
 export default {
   components: {
-    NavigationButton,
-    RatioContainer,
-    PieceAudio
+    RoomWrapper
   },
-  mixins: [MixinRoom],
-  computed: {
-    ...mapState({
-      audioGuideState: (state) => state.audioGuideState
-    })
-  },
+  mixins: [MixinTransitionOut],
   async asyncData({ params, store, payload, route }) {
     if (payload) {
       return { data: payload }
