@@ -1,11 +1,23 @@
 <template>
   <div class="splash">
     <svg-icon name="kh-logo" />
-    <button @click="$store.commit('SetSplashState', false)" class="button">
-      Sisene
+    <p>Press space to pause</p>
+    <button @click="handleClick" class="button">
+      {{ $t('enter') }}
     </button>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    handleClick() {
+      this.$store.commit('SetSplashState', false)
+      this.$store.commit('SetUserReady', true)
+    }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .splash {
@@ -24,7 +36,7 @@
   svg {
     width: 24rem;
     height: 4rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.7rem;
   }
 }
 </style>

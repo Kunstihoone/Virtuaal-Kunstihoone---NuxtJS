@@ -4,7 +4,7 @@
       @click="$store.commit('SetSplashState', true)"
       class="main-navigation__info button"
     >
-      Info
+      {{ $t('info') }}
     </button>
 
     <language-switcher />
@@ -47,7 +47,6 @@ export default {
   position: fixed;
   top: 1rem;
   right: 1rem;
-  display: flex;
   z-index: 40;
 }
 </style>

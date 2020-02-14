@@ -57,6 +57,53 @@ export default {
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
+    [
+      'nuxt-i18n',
+      {
+        locales: [
+          { code: 'en', name: 'ENG' },
+          { code: 'et', name: 'EST' },
+          { code: 'ru', name: 'RUS' }
+        ],
+        defaultLocale: 'et',
+        vueI18n: {
+          fallbackLocale: 'et',
+          messages: {
+            et: {
+              details: 'Detailid',
+              info: 'Info',
+              enter: 'Sisene',
+              audio_guide: 'Audiogiid'
+            },
+            en: {
+              details: 'Details',
+              info: 'Info',
+              enter: 'Enter',
+              audio_guide: 'Audio guide'
+            },
+            ru: {
+              details: 'Детали',
+              info: 'Информация',
+              enter: 'Войти',
+              audio_guide: 'Аудио гид'
+            }
+          }
+        },
+        parsePages: false,
+        pages: {
+          '_parent/index': {
+            et: '/:parent',
+            en: '/:parent',
+            ru: '/:parent'
+          },
+          '_parent/_child': {
+            et: '/:parent/:child',
+            en: '/:parent/:child',
+            ru: '/:parent/:child'
+          }
+        }
+      }
+    ],
     '@nuxtjs/axios',
     '@nuxtjs/style-resources',
     '@nuxtjs/svg-sprite'

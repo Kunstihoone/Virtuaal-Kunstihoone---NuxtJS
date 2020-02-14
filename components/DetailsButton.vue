@@ -1,11 +1,15 @@
 <template>
   <div class="details-corner">
     <button @click="detailsState = !detailsState" class="details-button button">
-      Detailid
+      {{ $t('details') }}
     </button>
 
     <transition name="fade">
-      <label-layer v-if="detailsState" :label-image="detailsImage" />
+      <label-layer
+        v-if="detailsState"
+        @closeLabel="detailsState = false"
+        :label-image="detailsImage"
+      />
     </transition>
   </div>
 </template>

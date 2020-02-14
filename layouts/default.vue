@@ -1,11 +1,10 @@
 <template>
   <main :class="{ 'modal-active': modalData }" class="main">
     <main-navigation v-if="$route.name !== 'index'" />
-    <nuxt />
+    <nuxt v-if="userReady" />
 
     <details-layer v-if="modalData" :modal-data="modalData" />
     <audio-guide v-if="$route.name !== 'index'" />
-    {{ splashState }}
 
     <transition name="fade">
       <splash-layer v-if="splashState" />
@@ -30,7 +29,8 @@ export default {
   computed: {
     ...mapState({
       modalData: (state) => state.modalData,
-      splashState: (state) => state.splashState
+      splashState: (state) => state.splashState,
+      userReady: (state) => state.userReady
     })
   }
 }
@@ -40,7 +40,8 @@ export default {
 @font-face {
   font-family: 'Favorit';
   font-display: auto;
-  src: url('~assets/fonts/Favorit_Regular-Tallinn.woff') format('woff');
+  src: url('~assets/fonts/FavoritPro-Book.woff2') format('woff2'),
+    url('~assets/fonts/FavoritPro-Book.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -54,15 +55,6 @@ export default {
   font-style: normal;
 }
 
-@font-face {
-  font-family: 'Favorit Mono';
-  font-display: auto;
-  src: url('~assets/fonts/FavoritMonoStd-Book.woff2') format('woff2'),
-    url('~assets/fonts/FavoritMonoStd-Book.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
 html {
   @include global-map-loop($root-fonts-sizes, font-size);
 }
@@ -70,8 +62,12 @@ html {
 body {
   font-family: 'Favorit';
   background-color: $bg-color;
-  color: white;
   overflow: hidden;
+  color: $black;
+}
+
+p {
+  margin-bottom: 1rem;
 }
 
 .main {

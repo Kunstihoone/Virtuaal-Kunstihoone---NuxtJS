@@ -24,11 +24,23 @@ export default {
   },
   created() {
     if (this.data.acf.audio_guide_est) {
-      this.$store.commit('SetAudioGuideTrack', this.data.acf.audio_guide_est)
-      this.$store.commit(
-        'SetAudioGuideTitle',
-        this.data.acf.audio_guide_title_est
-      )
+      const locale = this.$i18n.locale
+
+      let audioGuideTrack, audioGuideTitle
+
+      if (locale === 'en') {
+        audioGuideTrack = this.data.acf.audio_guide_eng
+        audioGuideTitle = this.data.acf.audio_guide_title_eng
+      } else if (locale === 'ru') {
+        audioGuideTrack = this.data.acf.audio_guide_rus
+        audioGuideTitle = this.data.acf.audio_guide_title_rus
+      } else {
+        audioGuideTrack = this.data.acf.audio_guide_est
+        audioGuideTitle = this.data.acf.audio_guide_title_est
+      }
+
+      this.$store.commit('SetAudioGuideTrack', audioGuideTrack)
+      this.$store.commit('SetAudioGuideTitle', audioGuideTitle)
     } else {
       this.$store.commit('SetAudioGuideTrack', null)
     }

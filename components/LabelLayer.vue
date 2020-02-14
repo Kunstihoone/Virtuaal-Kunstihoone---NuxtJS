@@ -1,5 +1,11 @@
 <template>
   <div class="label-layer">
+    <svg-icon
+      @click="$emit('closeLabel')"
+      class="label-layer__close"
+      name="icon-close"
+    />
+
     <responsive-image :image-data="labelImage" />
   </div>
 </template>
@@ -22,5 +28,14 @@ export default {
   box-shadow: $button-shadow;
   border-radius: 0.6rem;
   overflow: hidden;
+}
+
+.label-layer__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 1.4rem;
+  height: 1.4rem;
+  cursor: pointer;
 }
 </style>

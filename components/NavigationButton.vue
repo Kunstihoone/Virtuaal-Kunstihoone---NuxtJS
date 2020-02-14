@@ -15,7 +15,7 @@
     </button>
     <nuxt-link
       v-else
-      :to="buttonPath"
+      :to="localePath(buttonPath)"
       :style="{
         top: `${buttonData.position.top}%`,
         left: `${buttonData.position.left}%`

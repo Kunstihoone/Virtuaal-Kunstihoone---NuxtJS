@@ -7,6 +7,7 @@ export const state = () => ({
   audioGuideTrack: undefined,
   audioGuideTitle: undefined,
   audioPlayerState: false,
+  userReady: false,
   roomsData: null,
   siteData: null,
   splashState: true
@@ -30,6 +31,9 @@ export const mutations = {
   },
   SetSiteData(state, value) {
     Vue.set(state, 'siteData', value)
+  },
+  SetUserReady(state, value) {
+    Vue.set(state, 'userReady', value)
   },
   SetRoomsData(state, value) {
     Vue.set(state, 'roomsData', value)

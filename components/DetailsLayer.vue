@@ -6,7 +6,7 @@
       @click="$store.commit('SetModalData', null)"
       class="details-layer__close button"
     >
-      CLOSE
+      <svg-icon name="icon-close" />
     </button>
   </div>
 </template>
@@ -47,5 +47,15 @@ export default {
   position: absolute;
   top: 1rem;
   right: 1rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+
+  svg {
+    @include absolute-center;
+
+    width: 1.2rem;
+    height: 1.2rem;
+  }
 }
 </style>

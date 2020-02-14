@@ -1,16 +1,31 @@
 <template>
   <div class="language-switch">
-    <button class="button">EST</button>
-    <button class="button">ENG</button>
-    <button class="button">RUS</button>
+    <nuxt-link
+      v-for="locale in availableLocales"
+      :key="locale.code"
+      :to="switchLocalePath(locale.code)"
+      class="button"
+      >{{ locale.name }}</nuxt-link
+    >
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    availableLocales() {
+      return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale)
+    }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .language-switch {
   position: fixed;
   top: 1rem;
   left: 1rem;
+  display: flex;
 
   .button {
     margin-right: 0.3rem;
