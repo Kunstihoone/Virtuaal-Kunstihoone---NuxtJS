@@ -61,9 +61,9 @@ export default {
       'nuxt-i18n',
       {
         locales: [
-          { code: 'en', name: 'ENG' },
-          { code: 'et', name: 'EST' },
-          { code: 'ru', name: 'RUS' }
+          { code: 'en', name: 'EN' },
+          { code: 'et', name: 'ET' },
+          { code: 'ru', name: 'RU' }
         ],
         defaultLocale: 'et',
         vueI18n: {

@@ -29,6 +29,12 @@ export default {
 
   .button {
     margin-right: 0.3rem;
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    text-align: center;
+    border-radius: 50%;
+    padding: 0;
   }
 }
 </style>

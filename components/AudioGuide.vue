@@ -5,7 +5,6 @@
       :class="{ 'm-active': audioGuideState }"
       class="toggle-audio-guide button"
     >
-      {{ $t('audio_guide') }}
       <svg-icon :name="audioGuideState ? 'icon-audio' : 'icon-no-audio'" />
     </button>
     <transition @enter="playerEnter" @leave="playerLeave" :css="false">

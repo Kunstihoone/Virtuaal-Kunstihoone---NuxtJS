@@ -1,7 +1,7 @@
 <template>
   <div class="details-corner">
     <button @click="detailsState = !detailsState" class="details-button button">
-      {{ $t('details') }}
+      <svg-icon name="icon-info" />
     </button>
 
     <transition name="fade">
@@ -44,5 +44,18 @@ export default {
   display: flex;
   flex-direction: column-reverse;
   align-items: flex-start;
+}
+
+.details-button {
+  display: flex;
+  width: 2rem;
+  height: 2rem;
+  padding: 0.4rem;
+  border-radius: 50%;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
 }
 </style>
