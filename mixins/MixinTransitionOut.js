@@ -4,7 +4,7 @@ export default {
   transition: {
     leave(el, done) {
       anime({
-        targets: '.ratio-container',
+        targets: '.room-wrapper',
         opacity: 0,
         easing: 'easeOutExpo',
         duration: 600,

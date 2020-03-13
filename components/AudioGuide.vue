@@ -1,12 +1,5 @@
 <template>
   <div class="audio-guide">
-    <button
-      @click="$store.commit('SetAudiGuideState', !audioGuideState)"
-      :class="{ 'm-active': audioGuideState }"
-      class="toggle-audio-guide button"
-    >
-      <svg-icon :name="audioGuideState ? 'icon-audio' : 'icon-no-audio'" />
-    </button>
     <transition @enter="playerEnter" @leave="playerLeave" :css="false">
       <audio-player
         v-if="audioGuideState && activeTrack"
@@ -15,6 +8,13 @@
         :audio-guide-title="audioGuideTitle"
       />
     </transition>
+    <button
+      @click="$store.commit('SetAudiGuideState', !audioGuideState)"
+      :class="{ 'm-active': audioGuideState }"
+      class="toggle-audio-guide button"
+    >
+      <svg-icon :name="audioGuideState ? 'icon-audio' : 'icon-no-audio'" />
+    </button>
   </div>
 </template>
 
@@ -46,7 +46,7 @@ export default {
 
       tl.add({
         targets: el,
-        height: [0, '4.6rem'],
+        width: [0, '15rem'],
         opacity: [0, 1],
         easing: 'easeInOutQuad'
       })
@@ -75,7 +75,7 @@ export default {
       tl.add(
         {
           targets: el,
-          height: 0,
+          width: 0,
           opacity: 0,
           easing: 'easeInOutQuad'
         },
@@ -88,20 +88,23 @@ export default {
 
 <style lang="scss" scoped>
 .audio-guide {
-  position: fixed;
+  position: absolute;
   bottom: 1rem;
   right: 1rem;
   z-index: 120;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
 }
 
 .toggle-audio-guide {
+  width: 2rem;
+  height: 2rem;
+  padding: 0.4rem;
+  border-radius: 50%;
+  margin-left: 0.4rem;
+
   svg {
-    width: 0.82rem;
-    height: 0.82rem;
-    margin-left: 0.4rem;
+    width: 100%;
+    height: 100%;
     opacity: 0.3;
     transition: 0.3s ease;
   }

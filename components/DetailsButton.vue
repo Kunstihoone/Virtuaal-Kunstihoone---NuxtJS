@@ -37,7 +37,7 @@ export default {
 
 <style lang="scss" scoped>
 .details-corner {
-  position: fixed;
+  position: absolute;
   left: 1rem;
   bottom: 1rem;
   z-index: 40;

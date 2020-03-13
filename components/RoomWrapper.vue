@@ -1,5 +1,5 @@
 <template>
-  <ratio-container>
+  <div class="room-wrapper">
     <div id="video-wrapper" class="room-video" />
 
     <template v-if="data && data.acf">
@@ -14,7 +14,7 @@
       v-if="data.acf.audio_track && playerLoaded && !audioGuideState"
       :audio-data="data.acf.audio_track"
     />
-  </ratio-container>
+  </div>
 </template>
 
 <script>
@@ -22,13 +22,11 @@ import anime from 'animejs'
 import Player from '@vimeo/player'
 import { mapState } from 'vuex'
 import NavigationButton from '~/components/NavigationButton'
-import RatioContainer from '~/components/RatioContainer'
 import PieceAudio from '~/components/PieceAudio'
 
 export default {
   components: {
     NavigationButton,
-    RatioContainer,
     PieceAudio
   },
   props: {

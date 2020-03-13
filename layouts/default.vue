@@ -1,10 +1,12 @@
 <template>
   <main :class="{ 'modal-active': modalData }" class="main">
-    <main-navigation v-if="$route.name !== 'index'" />
-    <nuxt v-if="userReady" />
+    <ratio-container>
+      <main-navigation v-if="$route.name !== 'index'" />
+      <nuxt v-if="userReady" />
+      <audio-guide v-if="$route.name !== 'index'" />
+    </ratio-container>
 
     <details-layer v-if="modalData" :modal-data="modalData" />
-    <audio-guide v-if="$route.name !== 'index'" />
 
     <transition name="fade">
       <splash-layer v-if="splashState" />
@@ -18,13 +20,15 @@ import AudioGuide from '~/components/AudioGuide'
 import MainNavigation from '~/components/MainNavigation'
 import DetailsLayer from '~/components/DetailsLayer'
 import SplashLayer from '~/components/SplashLayer'
+import RatioContainer from '~/components/RatioContainer'
 
 export default {
   components: {
     AudioGuide,
     MainNavigation,
     DetailsLayer,
-    SplashLayer
+    SplashLayer,
+    RatioContainer
   },
   computed: {
     ...mapState({
@@ -61,7 +65,7 @@ html {
 
 body {
   font-family: 'Favorit';
-  background-color: $bg-color;
+  background-color: $black;
   overflow: hidden;
   color: $black;
 }

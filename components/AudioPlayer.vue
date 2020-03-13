@@ -109,9 +109,8 @@ export default {
   align-items: center;
   overflow: hidden;
   box-shadow: $button-shadow;
-  margin-top: 0.6rem;
-  height: 4rem;
-  width: rem-calc(280);
+  height: 2rem;
+  width: 100%;
 }
 
 .audio-player__player {
