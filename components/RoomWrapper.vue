@@ -74,6 +74,14 @@ export default {
     } else {
       this.$store.commit('SetAudioGuideTrack', null)
     }
+  },
+  mounted() {
+    if (this.data.featured_image && this.data.featured_image.sizes.medium) {
+      this.$store.commit(
+        'SetPlaceholderImage',
+        this.data.featured_image.sizes.medium
+      )
+    }
   }
 }
 </script>
