@@ -2,7 +2,7 @@
   <main :class="{ 'modal-active': modalData }" class="main">
     <ratio-container>
       <main-navigation v-if="$route.name !== 'index'" />
-      <nuxt v-if="userReady" />
+      <nuxt />
       <audio-guide v-if="$route.name !== 'index'" />
     </ratio-container>
 
@@ -33,8 +33,7 @@ export default {
   computed: {
     ...mapState({
       modalData: (state) => state.modalData,
-      splashState: (state) => state.splashState,
-      userReady: (state) => state.userReady
+      splashState: (state) => state.splashState
     })
   }
 }

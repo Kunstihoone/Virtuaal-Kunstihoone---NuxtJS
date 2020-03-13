@@ -78,8 +78,6 @@ export default {
         autoplay: true,
         quality: '1080p',
         loop: true
-        // background: true,
-        // playsinline: true,
       }
 
       this.player = new Player('video-wrapper', videoOptions)
@@ -89,22 +87,22 @@ export default {
       this.player.on('loaded', () => {
         this.playerLoaded = true
 
-        const tl = anime.timeline({
+        anime({
+          targets: '.placeholder-image',
+          opacity: 0,
           easing: 'easeOutExpo',
-          duration: 800
+          delay: 700,
+          duration: 500,
+          complete(anim) {
+            this.$emit('videoPlaying')
+          }
         })
 
-        tl.add({
-          targets: ['.room-video'],
+        anime({
+          targets: '.navigation-button',
           opacity: [0, 1],
-          easing: 'easeInOutQuad'
-        })
-
-        tl.add({
-          targets: ['.navigation-button'],
-          opacity: [0, 1],
-          delay: anime.stagger(100),
-          easing: 'easeInOutQuad'
+          easing: 'easeOutExpo',
+          duration: 500
         })
       })
     }

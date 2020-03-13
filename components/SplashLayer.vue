@@ -31,7 +31,7 @@ export default {
   flex-direction: column;
   align-items: center;
   z-index: 5000;
-  background-color: $bg-color;
+  background-color: rgba(250, 250, 250, 0.6);
 
   svg {
     width: 24rem;

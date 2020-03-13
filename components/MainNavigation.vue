@@ -33,7 +33,6 @@ export default {
 
 <style lang="scss" scoped>
 .main-navigation {
-  position: fixed;
   z-index: 60;
   opacity: 1;
   transition: 0.3s ease;
@@ -44,7 +43,7 @@ export default {
 }
 
 .main-navigation__info {
-  position: fixed;
+  position: absolute;
   top: 1rem;
   right: 1rem;
   z-index: 40;

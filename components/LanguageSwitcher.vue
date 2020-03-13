@@ -22,10 +22,11 @@ export default {
 
 <style lang="scss" scoped>
 .language-switch {
-  position: fixed;
+  position: absolute;
   top: 1rem;
   left: 1rem;
   display: flex;
+  z-index: 20;
 
   .button {
     margin-right: 0.3rem;

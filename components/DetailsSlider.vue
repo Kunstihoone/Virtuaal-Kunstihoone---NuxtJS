@@ -125,14 +125,6 @@ export default {
   height: 100%;
   overflow: hidden;
   position: relative;
-
-  h2 {
-    position: fixed;
-    top: 4rem;
-    left: 4rem;
-    color: white;
-    z-index: 50;
-  }
 }
 
 .details-slider__button {
@@ -191,10 +183,6 @@ export default {
     width: 100%;
     height: 100%;
     object-fit: contain;
-  }
-
-  h2 {
-    color: white;
   }
 }
 </style>
