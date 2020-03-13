@@ -20,6 +20,7 @@
         top: `${buttonData.position.top}%`,
         left: `${buttonData.position.left}%`
       }"
+      @click.native="showPlaceholder"
       class="navigation-button"
     >
       <svg-icon :name="buttonData.icon" />
@@ -67,6 +68,20 @@ export default {
         detailedView.acf.detailed_view_content
         ? detailedView.acf.detailed_view_content
         : null
+    }
+  },
+  methods: {
+    showPlaceholder() {
+      const room = this.$store.getters.getSingleRoom(
+        this.buttonData.related_item.post_name
+      )
+
+      if (room.featured_image && room.featured_image.sizes.medium) {
+        this.$store.commit(
+          'SetPlaceholderImage',
+          room.featured_image.sizes.medium
+        )
+      }
     }
   }
 }

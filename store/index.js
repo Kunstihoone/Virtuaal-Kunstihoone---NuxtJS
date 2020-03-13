@@ -10,7 +10,8 @@ export const state = () => ({
   userReady: false,
   roomsData: null,
   siteData: null,
-  splashState: true
+  splashState: true,
+  placeholderImage: null
 })
 
 export const mutations = {
@@ -43,6 +44,9 @@ export const mutations = {
   },
   SetSplashState(state, value) {
     Vue.set(state, 'splashState', value)
+  },
+  SetPlaceholderImage(state, value) {
+    Vue.set(state, 'placeholderImage', value)
   }
 }
 

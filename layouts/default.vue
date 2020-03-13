@@ -4,6 +4,10 @@
       <main-navigation v-if="$route.name !== 'index'" />
       <nuxt />
       <audio-guide v-if="$route.name !== 'index'" />
+      <placeholder-image
+        v-if="placeholderImage"
+        :placeholder-image="placeholderImage"
+      />
     </ratio-container>
 
     <details-layer v-if="modalData" :modal-data="modalData" />
@@ -21,6 +25,7 @@ import MainNavigation from '~/components/MainNavigation'
 import DetailsLayer from '~/components/DetailsLayer'
 import SplashLayer from '~/components/SplashLayer'
 import RatioContainer from '~/components/RatioContainer'
+import PlaceholderImage from '~/components/PlaceholderImage'
 
 export default {
   components: {
@@ -28,12 +33,14 @@ export default {
     MainNavigation,
     DetailsLayer,
     SplashLayer,
-    RatioContainer
+    RatioContainer,
+    PlaceholderImage
   },
   computed: {
     ...mapState({
       modalData: (state) => state.modalData,
-      splashState: (state) => state.splashState
+      splashState: (state) => state.splashState,
+      placeholderImage: (state) => state.placeholderImage
     })
   }
 }

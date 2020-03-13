@@ -1,6 +1,10 @@
 <template>
   <div class="room-wrapper">
-    <div id="video-wrapper" class="room-video" />
+    <video-player
+      v-if="userReady"
+      :video-src="data.acf.video"
+      @playerLoaded="playerLoaded = true"
+    />
 
     <template v-if="data && data.acf">
       <navigation-button
@@ -18,16 +22,16 @@
 </template>
 
 <script>
-import anime from 'animejs'
-import Player from '@vimeo/player'
 import { mapState } from 'vuex'
 import NavigationButton from '~/components/NavigationButton'
 import PieceAudio from '~/components/PieceAudio'
+import VideoPlayer from '~/components/VideoPlayer'
 
 export default {
   components: {
     NavigationButton,
-    PieceAudio
+    PieceAudio,
+    VideoPlayer
   },
   props: {
     data: {
@@ -38,12 +42,14 @@ export default {
   data() {
     return {
       videoPaused: false,
-      playerLoaded: false
+      playerLoaded: false,
+      showImage: true
     }
   },
   computed: {
     ...mapState({
-      audioGuideState: (state) => state.audioGuideState
+      audioGuideState: (state) => state.audioGuideState,
+      userReady: (state) => state.userReady
     })
   },
   created() {
@@ -67,63 +73,6 @@ export default {
       this.$store.commit('SetAudioGuideTitle', audioGuideTitle)
     } else {
       this.$store.commit('SetAudioGuideTrack', null)
-    }
-  },
-  mounted() {
-    if (this.data.acf.video) {
-      const videoOptions = {
-        url: this.data.acf.video,
-        width: 1920,
-        controls: false,
-        autoplay: true,
-        quality: '1080p',
-        loop: true
-      }
-
-      this.player = new Player('video-wrapper', videoOptions)
-
-      document.addEventListener('keydown', this.addKeyEvent)
-
-      this.player.on('loaded', () => {
-        this.playerLoaded = true
-
-        anime({
-          targets: '.placeholder-image',
-          opacity: 0,
-          easing: 'easeOutExpo',
-          delay: 700,
-          duration: 500,
-          complete(anim) {
-            this.$emit('videoPlaying')
-          }
-        })
-
-        anime({
-          targets: '.navigation-button',
-          opacity: [0, 1],
-          easing: 'easeOutExpo',
-          duration: 500
-        })
-      })
-    }
-  },
-  beforeDestroy() {
-    if (this.data.acf.video) {
-      document.removeEventListener('keydown', this.addKeyEvent)
-    }
-  },
-  methods: {
-    handleVideoState() {
-      if (this.videoPaused) {
-        this.player.play()
-        this.videoPaused = false
-      } else {
-        this.player.pause()
-        this.videoPaused = true
-      }
-    },
-    addKeyEvent(event) {
-      if (event.keyCode === 32) this.handleVideoState() // space
     }
   }
 }
