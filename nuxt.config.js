@@ -1,10 +1,10 @@
+require('dotenv').config()
 import axios from 'axios'
 
 // const baseURL = 'http://kunstihoone-videogiid.test/wp-json/www-api/v1/'
-const baseURL = 'https://kh-videogiid.wwwstuudio.ee/wp-json/www-api/v1/'
 
 var request = axios.create({
-  baseURL: process.env.BASE_URL || baseURL
+  baseURL: process.env.BASE_URL
 })
 
 export default {
@@ -50,7 +50,8 @@ export default {
    */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/dotenv'
   ],
   /*
    ** Nuxt.js modules
@@ -119,7 +120,7 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: process.env.BASE_URL || baseURL
+    baseURL: process.env.BASE_URL
   },
   /*
    ** Build configuration
