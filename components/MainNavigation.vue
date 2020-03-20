@@ -1,11 +1,12 @@
 <template>
   <nav class="main-navigation">
-    <button
-      @click="$store.commit('SetSplashState', true)"
+    <a
       class="main-navigation__info button"
+      href="https://digigiid.ee/naituste-arhiiv/sona-mojutus"
+      target="_blank"
     >
-      {{ $t('info') }}
-    </button>
+      {{ $t('digital_guide') }}
+    </a>
 
     <language-switcher />
 

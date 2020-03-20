@@ -1,20 +1,36 @@
 <template>
   <div class="splash">
-    <svg-icon name="kh-logo" />
-    <p>Press space to pause</p>
-    <button @click="handleClick" class="button">
-      {{ $t('enter') }}
+    <a href="https://kunstihoone.ee" target="_blank">
+      <svg-icon class="splash__logo" name="kh-logo" />
+    </a>
+
+    <button
+      @click="handleClick"
+      :class="{ 'm-ready': buttonReady }"
+      class="intro-button"
+    >
+      <svg-icon name="icon-arrow-up" />
     </button>
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      buttonReady: false
+    }
+  },
   methods: {
     handleClick() {
       this.$store.commit('SetSplashState', false)
       this.$store.commit('SetUserReady', true)
     }
+  },
+  mounted() {
+    setTimeout(() => {
+      this.buttonReady = true
+    }, 1000)
   }
 }
 </script>
@@ -32,11 +48,41 @@ export default {
   align-items: center;
   z-index: 5000;
   background-color: rgba(250, 250, 250, 0.6);
+}
+
+.splash__logo {
+  width: 24rem;
+  height: 4rem;
+  margin-bottom: 2rem;
+}
+
+.intro-button {
+  border-radius: 50%;
+  border: 0.2rem solid white;
+  width: 1rem;
+  height: 1rem;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform $transition-cubic-bezier, background-color 0.2s ease;
+  box-shadow: $button-shadow;
 
   svg {
-    width: 24rem;
-    height: 4rem;
-    margin-bottom: 0.7rem;
+    opacity: 0;
+    width: 0.6rem;
+    height: 0.6rem;
+    transition: opacity 0.4s ease;
+  }
+
+  &.m-ready {
+    transform: translate(-50%, -50%) scale(2);
+    background-color: white;
+
+    svg {
+      opacity: 1;
+    }
   }
 }
 </style>

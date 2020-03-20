@@ -73,19 +73,22 @@ export default {
               details: 'Detailid',
               info: 'Info',
               enter: 'Sisene',
-              audio_guide: 'Audiogiid'
+              audio_guide: 'Audiogiid',
+              digital_guide: 'Digigiid'
             },
             en: {
               details: 'Details',
               info: 'Info',
               enter: 'Enter',
-              audio_guide: 'Audio guide'
+              audio_guide: 'Audio guide',
+              digital_guide: 'Digital Guide'
             },
             ru: {
               details: 'Детали',
               info: 'Информация',
               enter: 'Войти',
-              audio_guide: 'Аудио гид'
+              audio_guide: 'Аудио гид',
+              digital_guide: 'Цифровой гид'
             }
           }
         },
