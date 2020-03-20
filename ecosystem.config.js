@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'videogiid-nuxt',
-      cwd: '/data01/virt80293/domeenid/www.wwwstuudio.ee/prelive',
+      cwd: '/data01/virt80293/domeenid/www.wwwstuudio.ee/videogiid-nuxt',
       exec_mode: 'cluster',
       instances: 'max',
       script:
