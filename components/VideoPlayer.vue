@@ -7,6 +7,11 @@ import anime from 'animejs'
 import Player from '@vimeo/player'
 
 export default {
+  data() {
+    return {
+      videoStarted: false
+    }
+  },
   props: {
     videoSrc: {
       type: String,
@@ -28,26 +33,29 @@ export default {
 
       document.addEventListener('keydown', this.addKeyEvent)
 
-      this.player.on('loaded', () => {
-        this.$emit('playerLoaded')
+      this.player.on('timeupdate', () => {
+        if (!this.videoStarted) {
+          this.videoStarted = true
+          this.$emit('playerLoaded')
 
-        anime({
-          targets: '.placeholder-image',
-          opacity: 0,
-          easing: 'easeOutExpo',
-          delay: 600,
-          duration: 500,
-          complete: (anim) => {
-            this.$store.commit('SetPlaceholderImage', null)
-          }
-        })
+          anime({
+            targets: '.placeholder-image',
+            opacity: 0,
+            easing: 'easeOutExpo',
+            // delay: 600,
+            duration: 500,
+            complete: (anim) => {
+              this.$store.commit('SetPlaceholderImage', null)
+            }
+          })
 
-        anime({
-          targets: '.navigation-button',
-          opacity: [0, 1],
-          easing: 'easeOutExpo',
-          duration: 500
-        })
+          anime({
+            targets: '.navigation-button',
+            opacity: [0, 1],
+            easing: 'easeOutExpo',
+            duration: 500
+          })
+        }
       })
     }
   },

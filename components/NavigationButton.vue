@@ -79,7 +79,7 @@ export default {
       if (room.featured_image && room.featured_image.sizes.medium) {
         this.$store.commit(
           'SetPlaceholderImage',
-          room.featured_image.sizes.medium
+          room.featured_image.sizes.large
         )
       }
     }
