@@ -2,11 +2,11 @@ module.exports = {
   apps: [
     {
       name: 'videogiid-nuxt',
-      cwd: '/data01/virt80293/domeenid/www.wwwstuudio.ee/videogiid-nuxt',
+      cwd: '/data01/virt15865/domeenid/www.kunstihoone.ee/videogiid-nuxt',
       exec_mode: 'cluster',
       instances: 'max',
       script:
-        '/data01/virt80293/domeenid/www.wwwstuudio.ee/videogiid-nuxt/node_modules/nuxt/bin/nuxt.js',
+        '/data01/virt15865/domeenid/www.kunstihoone.ee/videogiid-nuxt/node_modules/nuxt/bin/nuxt.js',
       args: 'start',
       env: {
         HOST: '0.0.0.0',
