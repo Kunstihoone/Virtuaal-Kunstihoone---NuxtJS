@@ -15,8 +15,14 @@ export default {
     if (payload) {
       return { data: payload }
     } else {
-      store.commit('SetDetailsButton', null)
-      return { data: await store.getters.getSingleRoom(route.params.parent) }
+      const data = await store.getters.getSingleRoom(route.params.parent)
+
+      if (data.acf.label) {
+        store.commit('SetDetailsButton', data.acf.label)
+      } else {
+        store.commit('SetDetailsButton', null)
+      }
+      return { data }
     }
   }
 }

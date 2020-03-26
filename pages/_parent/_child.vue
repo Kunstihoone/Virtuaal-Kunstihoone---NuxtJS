@@ -16,6 +16,7 @@ export default {
       return { data: payload }
     } else {
       const data = await store.getters.getSingleRoom(route.params.child)
+
       if (data.acf.label) {
         store.commit('SetDetailsButton', data.acf.label)
       } else {
