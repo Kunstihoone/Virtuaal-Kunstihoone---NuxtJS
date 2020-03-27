@@ -86,7 +86,6 @@ export default {
   },
   methods: {
     openDetail() {
-      console.log('jaja ava')
       if (this.data.acf.details_eng) {
         this.$store.commit('SetModalData', this.data.acf.details_eng)
       } else if (this.data.acf.details_rus) {
