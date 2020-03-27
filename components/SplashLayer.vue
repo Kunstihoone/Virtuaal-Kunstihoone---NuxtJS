@@ -21,16 +21,16 @@ export default {
       buttonReady: false
     }
   },
+  mounted() {
+    setTimeout(() => {
+      this.buttonReady = true
+    }, 1000)
+  },
   methods: {
     handleClick() {
       this.$store.commit('SetSplashState', false)
       this.$store.commit('SetUserReady', true)
     }
-  },
-  mounted() {
-    setTimeout(() => {
-      this.buttonReady = true
-    }, 1000)
   }
 }
 </script>

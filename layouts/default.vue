@@ -42,9 +42,6 @@ export default {
       splashState: (state) => state.splashState,
       placeholderImage: (state) => state.placeholderImage
     })
-  },
-  mounted() {
-    console.log('test log')
   }
 }
 </script>

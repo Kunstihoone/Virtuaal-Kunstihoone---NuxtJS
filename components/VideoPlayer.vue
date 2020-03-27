@@ -7,15 +7,15 @@ import anime from 'animejs'
 import Player from '@vimeo/player'
 
 export default {
-  data() {
-    return {
-      videoStarted: false
-    }
-  },
   props: {
     videoSrc: {
       type: String,
       default: null
+    }
+  },
+  data() {
+    return {
+      videoStarted: false
     }
   },
   mounted() {

@@ -1,14 +1,12 @@
 <template>
   <div>
     <button
-      v-if="
-        buttonData.related_item.post_type === 'detail-overlays' && modalData
-      "
+      v-if="buttonData.link_to_details"
       :style="{
         top: `${buttonData.position.top}%`,
         left: `${buttonData.position.left}%`
       }"
-      @click="$store.commit('SetModalData', modalData)"
+      @click="$emit('openDetail')"
       class="navigation-button"
     >
       <svg-icon :name="buttonData.icon" />
@@ -40,35 +38,38 @@ export default {
     buttonPath() {
       const slug = this.buttonData.related_item.post_name
       const parentSlug = this.buttonData.related_item.parent_slug
+      const exhibition = this.$route.params.exhibition
 
       if (parentSlug) {
         return {
-          name: 'parent-child',
+          name: 'exhibition-parent-child',
           params: {
             parent: parentSlug,
-            child: slug
+            child: slug,
+            exhibition
           }
         }
       } else {
         return {
-          name: 'parent',
+          name: 'exhibition-parent',
           params: {
-            parent: slug
+            parent: slug,
+            exhibition
           }
         }
       }
-    },
-    modalData() {
-      const detailedView = this.$store.getters.getSingleRoom(
-        this.buttonData.related_item.post_name
-      )
-
-      return detailedView &&
-        detailedView.acf &&
-        detailedView.acf.detailed_view_content
-        ? detailedView.acf.detailed_view_content
-        : null
     }
+    // modalData() {
+    //   const detailedView = this.$store.getters.getSingleRoom(
+    //     this.buttonData.related_item.post_name
+    //   )
+
+    //   return detailedView &&
+    //     detailedView.acf &&
+    //     detailedView.acf.detailed_view_content
+    //     ? detailedView.acf.detailed_view_content
+    //     : null
+    // }
   },
   methods: {
     showPlaceholder() {

@@ -11,6 +11,7 @@
         v-for="(button, index) in data.acf.buttons"
         :key="index"
         :button-data="button"
+        @openDetail="openDetail"
       />
     </template>
 
@@ -81,6 +82,18 @@ export default {
         'SetPlaceholderImage',
         this.data.featured_image.sizes.large
       )
+    }
+  },
+  methods: {
+    openDetail() {
+      console.log('jaja ava')
+      if (this.data.acf.details_eng) {
+        this.$store.commit('SetModalData', this.data.acf.details_eng)
+      } else if (this.data.acf.details_rus) {
+        this.$store.commit('SetModalData', this.data.acf.details_rus)
+      } else if (this.data.acf.details_est) {
+        this.$store.commit('SetModalData', this.data.acf.details_est)
+      }
     }
   }
 }

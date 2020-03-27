@@ -40,6 +40,7 @@ export default {
   plugins: [
     '~/plugins/components.js',
     '~/mixins/MixinMetaData.js',
+    '~/plugins/i18n',
     {
       src: '~/plugins/lazysizes.js',
       ssr: false
@@ -95,15 +96,20 @@ export default {
         },
         parsePages: false,
         pages: {
-          '_parent/index': {
-            et: '/:parent',
-            en: '/:parent',
-            ru: '/:parent'
+          '_exhibition/index': {
+            et: '/:exhibition',
+            en: '/:exhibition',
+            ru: '/:exhibition'
           },
-          '_parent/_child': {
-            et: '/:parent/:child',
-            en: '/:parent/:child',
-            ru: '/:parent/:child'
+          '_exhibition/_parent/index': {
+            et: '/:exhibition/:parent',
+            en: '/:exhibition/:parent',
+            ru: '/:exhibition/:parent'
+          },
+          '_exhibition/_parent/_child': {
+            et: '/:exhibition/:parent/:child',
+            en: '/:exhibition/:parent/:child',
+            ru: '/:exhibition/:parent/:child'
           }
         }
       }

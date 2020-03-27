@@ -1,23 +1,46 @@
 <template>
-  <room-wrapper :data="data" />
+  <div class="exhibitions">
+    <div v-for="exhibition in data" :key="exhibition.id">
+      <nuxt-link
+        :to="
+          localePath({
+            name: 'exhibition',
+            params: {
+              exhibition: exhibition.acf.post_type_slug
+            }
+          })
+        "
+      >
+        {{ exhibition.title }}
+      </nuxt-link>
+    </div>
+  </div>
 </template>
 
 <script>
-import MixinTransitionOut from '~/mixins/MixinTransitionOut'
-import RoomWrapper from '~/components/RoomWrapper'
-
 export default {
-  components: {
-    RoomWrapper
-  },
-  mixins: [MixinTransitionOut],
-  async asyncData({ params, store, payload, route }) {
-    if (payload) {
-      return { data: payload }
-    } else {
-      store.commit('SetDetailsButton', null)
-      return { data: await store.getters.getSingleRoom('fuajee') }
+  layout: 'index-page',
+  async asyncData({ store, $axios, app }) {
+    const queryParams = {
+      lang: app.i18n.locale,
+      acf: ['subtitle', 'duration', 'post_type_slug']
+    }
+
+    const data = await $axios.$get('pages', {
+      params: queryParams
+    })
+
+    store.commit('SetExhibitions', data)
+
+    return {
+      data
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.exhibitions {
+  margin-top: rem-calc(100);
+}
+</style>

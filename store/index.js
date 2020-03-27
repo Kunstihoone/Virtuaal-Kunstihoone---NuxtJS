@@ -7,6 +7,8 @@ export const state = () => ({
   audioGuideTrack: undefined,
   audioGuideTitle: undefined,
   audioPlayerState: false,
+  exhibitions: null,
+  currentExhibition: undefined,
   userReady: false,
   roomsData: null,
   siteData: null,
@@ -39,6 +41,12 @@ export const mutations = {
   SetRoomsData(state, value) {
     Vue.set(state, 'roomsData', value)
   },
+  SetExhibitions(state, value) {
+    Vue.set(state, 'exhibitions', value)
+  },
+  SetCurrentExhibition(state, value) {
+    Vue.set(state, 'currentExhibition', value)
+  },
   SetAudiGuideState(state, value) {
     Vue.set(state, 'audioGuideState', value)
   },
@@ -55,21 +63,23 @@ export const actions = {
     const siteData = await app.$axios.get('site-data', {
       params: {
         include_menus: true,
-        include_taxonomies: true
+        include_taxonomies: true,
+        lang: app.i18n.locale
       }
     })
     commit('SetSiteData', siteData.data)
+  },
 
-    const params = {
-      acf: true,
-      'post_type[0]': 'virtual-exhibitions',
-      'post_type[1]': 'detail-overlays'
-    }
-
-    const rooms = await app.$axios.$get('post-types/virtual-exhibitions', {
-      params
+  async getSiteData({ commit }, lang) {
+    const siteData = await this.$axios.get('site-data', {
+      params: {
+        include_menus: true,
+        include_taxonomies: true,
+        lang
+      }
     })
-    commit('SetRoomsData', rooms)
+
+    commit('SetSiteData', siteData.data)
   }
 }
 
@@ -77,6 +87,14 @@ export const getters = {
   getSingleRoom: (state) => (slug) => {
     return state.roomsData.find(
       (event) => decodeURIComponent(event.slug) === slug
+    )
+  },
+  getExhibitions: (state) => {
+    return state.exhibitions
+  },
+  getSingleExhibition: (state) => (slug) => {
+    return state.exhibitions.find(
+      (exhibition) => decodeURIComponent(exhibition.acf.post_type_slug) === slug
     )
   }
 }
