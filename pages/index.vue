@@ -19,7 +19,9 @@ export default {
   async asyncData({ store, $axios, app }) {
     const queryParams = {
       lang: app.i18n.locale,
-      acf: true
+      acf: true,
+      sort_order: 'DESC',
+      sort_column: 'post_date'
     }
 
     const data = await $axios.$get('pages', {

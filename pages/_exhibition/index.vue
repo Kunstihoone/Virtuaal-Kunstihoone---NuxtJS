@@ -31,7 +31,9 @@ export default {
     } else {
       const queryParams = {
         lang: app.i18n.locale,
-        acf: true
+        acf: true,
+        sort_order: 'DESC',
+        sort_column: 'post_date'
       }
 
       const data = await $axios.$get(`pages/${params.exhibition}`, {
