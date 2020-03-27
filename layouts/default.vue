@@ -100,9 +100,10 @@ p {
 }
 
 .button {
+  height: 2rem;
   background-color: white;
   color: $black;
-  padding: 0.4rem 0.8rem;
+  padding: 0.5rem 0.8rem;
   border-radius: 0.6rem;
   font-size: 1rem;
   box-shadow: $button-shadow;

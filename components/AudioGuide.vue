@@ -13,6 +13,9 @@
       :class="{ 'm-active': audioGuideState }"
       class="toggle-audio-guide button"
     >
+      <tool-tip class="toggle-audio-guide__tooltip">{{
+        $t('audio_guide')
+      }}</tool-tip>
       <svg-icon :name="audioGuideState ? 'icon-audio' : 'icon-no-audio'" />
     </button>
   </div>
@@ -22,10 +25,12 @@
 import { mapState } from 'vuex'
 import anime from 'animejs'
 import AudioPlayer from '~/components/AudioPlayer'
+import ToolTip from '~/components/ToolTip'
 
 export default {
   components: {
-    AudioPlayer
+    AudioPlayer,
+    ToolTip
   },
   computed: {
     ...mapState({
@@ -114,5 +119,24 @@ export default {
       opacity: 1;
     }
   }
+
+  &:hover {
+    .toggle-audio-guide__tooltip {
+      // transform: translate(-50%, -0.4rem);
+      transform: translateY(-0.4rem);
+
+      opacity: 1;
+    }
+  }
+}
+
+.toggle-audio-guide__tooltip {
+  position: absolute;
+  right: 0%;
+  bottom: 100%;
+  transform: translateY(-0.2rem);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.2s ease;
 }
 </style>

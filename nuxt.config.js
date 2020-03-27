@@ -62,36 +62,26 @@ export default {
     [
       'nuxt-i18n',
       {
+        detectBrowserLanguage: false,
         locales: [
-          { code: 'en', name: 'EN' },
-          { code: 'et', name: 'ET' },
-          { code: 'ru', name: 'RU' }
+          { code: 'et', name: 'ET', full_name: 'Eesti keeles' },
+          {
+            code: 'evk',
+            iso: 'evk',
+            name: 'EVK',
+            full_name: 'Eesti viipekeel'
+          },
+          { code: 'ru', name: 'RU', full_name: 'По Pусски' },
+          { code: 'en', name: 'EN', full_name: 'In English' }
         ],
         defaultLocale: 'et',
         vueI18n: {
           fallbackLocale: 'et',
           messages: {
-            et: {
-              details: 'Detailid',
-              info: 'Info',
-              enter: 'Sisene',
-              audio_guide: 'Audiogiid',
-              digital_guide: 'Digigiid'
-            },
-            en: {
-              details: 'Details',
-              info: 'Info',
-              enter: 'Enter',
-              audio_guide: 'Audio guide',
-              digital_guide: 'Digital Guide'
-            },
-            ru: {
-              details: 'Детали',
-              info: 'Информация',
-              enter: 'Войти',
-              audio_guide: 'Аудио гид',
-              digital_guide: 'Цифровой гид'
-            }
+            en: require('./static/translations/strings-en.json'),
+            et: require('./static/translations/strings-et.json'),
+            evk: require('./static/translations/strings-et.json'),
+            ru: require('./static/translations/strings-ru.json')
           }
         },
         parsePages: false,
