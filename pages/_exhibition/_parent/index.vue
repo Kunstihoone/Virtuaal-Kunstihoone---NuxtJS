@@ -33,6 +33,9 @@ export default {
       store.commit('SetDetailsButton', null)
     }
     return { data }
+  },
+  head() {
+    return this.metaData(this.data)
   }
 }
 </script>

@@ -44,6 +44,9 @@ export default {
         data
       }
     }
+  },
+  head() {
+    return this.metaData(this.data)
   }
 }
 </script>

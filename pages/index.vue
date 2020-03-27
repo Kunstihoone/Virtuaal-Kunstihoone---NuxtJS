@@ -33,6 +33,9 @@ export default {
     return {
       data
     }
+  },
+  head() {
+    return this.metaData()
   }
 }
 </script>
