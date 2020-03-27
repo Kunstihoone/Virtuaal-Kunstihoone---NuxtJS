@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="index-page">
     <main-navigation v-if="$route.name !== 'index'" />
 
     <nuxt />
@@ -15,3 +15,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.index-page {
+  background-color: #fff100;
+}
+</style>

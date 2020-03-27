@@ -72,7 +72,7 @@ html {
 body {
   font-family: 'Favorit';
   background-color: $black;
-  overflow: hidden;
+  // overflow: hidden;
   color: $black;
 }
 
