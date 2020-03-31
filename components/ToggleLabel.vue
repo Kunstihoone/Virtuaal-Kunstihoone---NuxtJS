@@ -1,25 +1,26 @@
 <template>
   <div class="details-corner">
-    <button @click="detailsState = !detailsState" class="details-button button">
-      <svg-icon name="icon-info" />
+    <button @click="detailsState = !detailsState" class="toggle-label button">
+      <tool-tip>
+        {{ $t('details_label') }}
+      </tool-tip>
+      <svg-icon :name="detailsState ? 'icon-close' : 'icon-info'" />
     </button>
 
     <transition name="fade">
-      <label-layer
-        v-if="detailsState"
-        @closeLabel="detailsState = false"
-        :label-image="detailsImage"
-      />
+      <label-layer v-if="detailsState" :label-image="detailsImage" />
     </transition>
   </div>
 </template>
 
 <script>
 import LabelLayer from '~/components/LabelLayer'
+import ToolTip from '~/components/ToolTip'
 
 export default {
   components: {
-    LabelLayer
+    LabelLayer,
+    ToolTip
   },
   props: {
     detailsImage: {
@@ -41,12 +42,9 @@ export default {
   left: 1rem;
   bottom: 1rem;
   z-index: 40;
-  display: flex;
-  flex-direction: column-reverse;
-  align-items: flex-start;
 }
 
-.details-button {
+.toggle-label {
   display: flex;
   width: 2rem;
   height: 2rem;
@@ -57,5 +55,17 @@ export default {
     width: 100%;
     height: 100%;
   }
+
+  &:hover {
+    /deep/ .tooltip {
+      transform: translateY(-0.4rem);
+      opacity: 1;
+    }
+  }
+}
+
+/deep/ .tooltip {
+  left: 0%;
+  bottom: 100%;
 }
 </style>

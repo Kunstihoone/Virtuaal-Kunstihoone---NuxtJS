@@ -52,7 +52,6 @@ export default {
   },
   methods: {
     async fetchDetails() {
-      console.log(this.detailsLayer)
       const data = await this.$axios.$get(
         `post-types/${this.$route.params.exhibition}/${this.detailsLayer}`
       )

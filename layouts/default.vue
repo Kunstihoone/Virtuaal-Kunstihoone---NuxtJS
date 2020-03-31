@@ -2,17 +2,8 @@
   <main :class="{ 'modal-active': detailsLayer }" class="main">
     <ratio-container>
       <main-navigation :current-room="currentRoom" />
+
       <nuxt />
-
-      <audio-guide
-        v-if="getRouteBaseName() !== 'index' && $i18n.locale !== 'evk'"
-        :current-room="currentRoom"
-      />
-
-      <video-guide
-        v-else-if="getRouteBaseName() !== 'index' && $i18n.locale === 'evk'"
-        :current-room="currentRoom"
-      />
 
       <placeholder-image
         v-if="placeholderImage"
@@ -40,7 +31,6 @@
 <script>
 import anime from 'animejs'
 import { mapState } from 'vuex'
-import AudioGuide from '~/components/AudioGuide'
 import MainNavigation from '~/components/MainNavigation'
 import DetailsLayer from '~/components/DetailsLayer'
 import SplashLayer from '~/components/SplashLayer'
@@ -48,19 +38,16 @@ import RatioContainer from '~/components/RatioContainer'
 import RoomNavigation from '~/components/RoomNavigation'
 import PlaceholderImage from '~/components/PlaceholderImage'
 import LoadingIndicatior from '~/components/LoadingIndicatior'
-import VideoGuide from '~/components/VideoGuide'
 
 export default {
   components: {
-    AudioGuide,
     MainNavigation,
     DetailsLayer,
     SplashLayer,
     RatioContainer,
     RoomNavigation,
     PlaceholderImage,
-    LoadingIndicatior,
-    VideoGuide
+    LoadingIndicatior
   },
   computed: {
     ...mapState({

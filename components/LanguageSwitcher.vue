@@ -1,7 +1,8 @@
 <template>
   <nav :class="{ 'm-menu-active': toggleLanguages }" class="language-switch">
-    <settings-toggle
+    <toggle-settings
       @click.native="toggleLanguages = !toggleLanguages"
+      :toggle-state="toggleLanguages"
       class="language-switch__toggle"
     />
 
@@ -18,11 +19,11 @@
 </template>
 
 <script>
-import SettingsToggle from '~/components/SettingsToggle'
+import ToggleSettings from '~/components/ToggleSettings'
 
 export default {
   components: {
-    SettingsToggle
+    ToggleSettings
   },
   data() {
     return {

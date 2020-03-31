@@ -1,0 +1,43 @@
+<template>
+  <div class="corner-info">
+    <button
+      @click="layerState = !layerState"
+      class="button corner-info__toggle"
+    >
+      Info
+    </button>
+
+    <transition name="fade">
+      <info-layer v-if="layerState" />
+    </transition>
+  </div>
+</template>
+
+<script>
+import InfoLayer from '~/components/InfoLayer'
+
+export default {
+  components: {
+    InfoLayer
+  },
+  data() {
+    return {
+      layerState: false
+    }
+  },
+  watch: {
+    $route() {
+      this.layerState = false
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.corner-info {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 40;
+}
+</style>

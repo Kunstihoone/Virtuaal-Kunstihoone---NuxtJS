@@ -1,27 +1,37 @@
 <template>
   <nav class="main-navigation">
-    <a
-      class="main-navigation__info button"
-      href="https://digigiid.ee/naituste-arhiiv/sona-mojutus"
-      target="_blank"
-    >
-      {{ $t('digital_guide') }}
-    </a>
+    <corner-info />
 
     <language-switcher />
 
-    <details-button v-if="detailsImage" :details-image="detailsImage" />
+    <toggle-label v-if="detailsImage" :details-image="detailsImage" />
+
+    <audio-guide
+      v-if="getRouteBaseName() !== 'index' && $i18n.locale !== 'evk'"
+      :current-room="currentRoom"
+    />
+
+    <video-guide
+      v-else-if="getRouteBaseName() !== 'index' && $i18n.locale === 'evk'"
+      :current-room="currentRoom"
+    />
   </nav>
 </template>
 
 <script>
-import DetailsButton from '~/components/DetailsButton'
+import AudioGuide from '~/components/AudioGuide'
+import CornerInfo from '~/components/CornerInfo'
+import ToggleLabel from '~/components/ToggleLabel'
 import LanguageSwitcher from '~/components/LanguageSwitcher'
+import VideoGuide from '~/components/VideoGuide'
 
 export default {
   components: {
-    DetailsButton,
-    LanguageSwitcher
+    AudioGuide,
+    CornerInfo,
+    ToggleLabel,
+    LanguageSwitcher,
+    VideoGuide
   },
   props: {
     currentRoom: {
@@ -62,7 +72,6 @@ export default {
 
 <style lang="scss" scoped>
 .main-navigation {
-  z-index: 60;
   opacity: 1;
   transition: 0.3s ease;
 

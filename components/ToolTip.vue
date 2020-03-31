@@ -6,6 +6,7 @@
 .tooltip {
   @include font-size(h6);
 
+  position: absolute;
   background-color: $gray;
   color: $black;
   padding: 0.2rem 0.5rem;
@@ -15,5 +16,9 @@
   white-space: nowrap;
   transition: 0.3s ease-in-out;
   cursor: pointer;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-0.2rem);
+  z-index: 6;
 }
 </style>

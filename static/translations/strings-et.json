@@ -4,5 +4,6 @@
   "enter": "Sisene",
   "video_guide": "Videogiid",
   "audio_guide": "Audiogiid",
-  "digital_guide": "Digigiid"
+  "digital_guide": "Digigiid",
+  "details_label": "Etikett"
 }

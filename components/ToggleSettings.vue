@@ -1,8 +1,20 @@
 <template>
   <button class="button">
-    <svg-icon name="icon-settings" />
+    <svg-icon :name="toggleState ? 'icon-close' : 'icon-settings'" />
   </button>
 </template>
+
+<script>
+export default {
+  props: {
+    toggleState: {
+      type: Boolean,
+      default: null
+    }
+  }
+}
+</script>
+
 <style lang="scss" scoped>
 .button {
   position: relative;
