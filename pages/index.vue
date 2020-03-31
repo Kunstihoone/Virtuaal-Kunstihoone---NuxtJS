@@ -3,13 +3,27 @@
 </template>
 
 <script>
+import anime from 'animejs'
 import ExhibitionsSlider from '~/components/ExhibitionsSlider'
 
 export default {
   components: {
     ExhibitionsSlider
   },
-  layout: 'index-page',
+  transition: {
+    leave(el, done) {
+      anime({
+        targets: '.placeholder-image',
+        scale: [0.6, 1],
+        easing: 'easeOutExpo',
+        duration: 600,
+        complete: (anim) => {
+          done()
+        }
+      })
+    }
+  },
+  // layout: 'index-page',
   async asyncData({ store, $axios, app }) {
     const queryParams = {
       lang: app.i18n.locale,
@@ -29,7 +43,12 @@ export default {
     }
   },
   head() {
-    return this.metaData()
+    return {
+      ...this.metaData(),
+      bodyAttrs: {
+        class: 'index-page'
+      }
+    }
   }
 }
 </script>

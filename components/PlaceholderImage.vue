@@ -27,6 +27,10 @@ export default {
   pointer-events: none;
   z-index: 2;
 
+  .index-page & {
+    transform: scale(0.6);
+  }
+
   &.m-visible {
     opacity: 1;
   }

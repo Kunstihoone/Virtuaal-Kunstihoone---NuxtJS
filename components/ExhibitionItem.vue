@@ -41,6 +41,12 @@ export default {
   methods: {
     enterExhibition() {
       this.$store.commit('SetUserReady', true)
+      this.$store.commit('SetSplashState', false)
+      this.$store.commit(
+        'SetPlaceholderImage',
+        this.data.featured_image.sizes.large
+      )
+      this.$store.commit('SetPlaceholderVisible', true)
 
       this.$router.push(
         this.localePath({
@@ -58,8 +64,8 @@ export default {
 
 <style lang="scss" scoped>
 .exhibition-item {
+  position: relative;
   width: 60%;
-  margin-bottom: 2 * $gutters-small;
   text-align: center;
   font-size: inherit;
   color: $black;
@@ -72,7 +78,7 @@ export default {
 
 .exhibition-item__thumbnail {
   margin: 0 auto;
-  margin-bottom: $gutters-small;
+  // margin-bottom: $gutters-small;
 
   /deep/ img {
     object-fit: cover;
@@ -80,6 +86,10 @@ export default {
 }
 
 .exhibition-item__content {
+  margin-top: 1rem;
+  position: absolute;
+  top: 100%;
+  width: 100%;
   padding: 0 $gutters-small;
 
   time {

@@ -48,6 +48,7 @@ export default {
         'SetPlaceholderImage',
         this.data.featured_image.sizes.large
       )
+      this.$store.commit('SetPlaceholderVisible', true)
     }
   },
   methods: {

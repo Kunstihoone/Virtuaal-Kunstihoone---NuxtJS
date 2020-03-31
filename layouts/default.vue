@@ -1,13 +1,13 @@
 <template>
   <main :class="{ 'modal-active': detailsLayerState }" class="main">
     <ratio-container>
-      <main-navigation
-        v-if="$route.name !== 'index'"
-        :current-room="currentRoom"
-      />
+      <main-navigation :current-room="currentRoom" />
       <nuxt />
 
-      <audio-guide v-if="$route.name !== 'index'" :current-room="currentRoom" />
+      <audio-guide
+        v-if="getRouteBaseName() !== 'index'"
+        :current-room="currentRoom"
+      />
 
       <placeholder-image
         v-if="placeholderImage"
@@ -27,7 +27,7 @@
     <details-layer v-if="detailsLayerState" :current-room="currentRoom" />
 
     <transition name="fade">
-      <splash-layer v-if="false && splashState" />
+      <splash-layer v-if="getRouteBaseName() !== 'index' && splashState" />
     </transition>
   </main>
 </template>
@@ -64,17 +64,18 @@ export default {
       navigationButtons: (state) => state.navigationButtons
     }),
     currentRoom() {
-      return this.$store.getters.getSingleRoom(
-        this.$route.params.child
-          ? this.$route.params.child
-          : this.$route.params.parent
-      )
+      if (this.$route.params.child || this.$route.params.parent) {
+        return this.$store.getters.getSingleRoom(
+          this.$route.params.child
+            ? this.$route.params.child
+            : this.$route.params.parent
+        )
+      } else {
+        return null
+      }
     }
   },
   watch: {
-    navigationButtons() {
-      console.log('yoyoyoyoyoyo')
-    },
     $route() {
       this.$store.commit('SetNavigationButtons', null)
     }
@@ -84,7 +85,6 @@ export default {
       anime({
         targets: el,
         opacity: [0, 1],
-        delay: 100,
         easing: 'easeOutExpo',
         duration: 800
       })

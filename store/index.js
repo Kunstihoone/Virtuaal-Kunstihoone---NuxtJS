@@ -12,7 +12,7 @@ export const state = () => ({
   siteData: null,
   splashState: true,
   placeholderImage: null,
-  placeholderVisible: true
+  placeholderVisible: false
 })
 
 export const mutations = {
