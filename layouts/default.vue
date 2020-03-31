@@ -5,7 +5,12 @@
       <nuxt />
 
       <audio-guide
-        v-if="getRouteBaseName() !== 'index'"
+        v-if="getRouteBaseName() !== 'index' && $i18n.locale !== 'evk'"
+        :current-room="currentRoom"
+      />
+
+      <video-guide
+        v-else-if="getRouteBaseName() !== 'index' && $i18n.locale === 'evk'"
         :current-room="currentRoom"
       />
 
@@ -43,6 +48,7 @@ import RatioContainer from '~/components/RatioContainer'
 import RoomNavigation from '~/components/RoomNavigation'
 import PlaceholderImage from '~/components/PlaceholderImage'
 import LoadingIndicatior from '~/components/LoadingIndicatior'
+import VideoGuide from '~/components/VideoGuide'
 
 export default {
   components: {
@@ -53,7 +59,8 @@ export default {
     RatioContainer,
     RoomNavigation,
     PlaceholderImage,
-    LoadingIndicatior
+    LoadingIndicatior,
+    VideoGuide
   },
   computed: {
     ...mapState({

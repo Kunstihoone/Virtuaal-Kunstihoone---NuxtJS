@@ -33,6 +33,11 @@ export default {
     availableLocales() {
       return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale)
     }
+  },
+  watch: {
+    $route() {
+      this.toggleLanguages = false
+    }
   }
 }
 </script>
@@ -73,6 +78,11 @@ export default {
     opacity: 1;
     pointer-events: auto;
     transform: translateX(0);
+  }
+
+  &.nuxt-link-active {
+    background-color: $gray;
+    box-shadow: 0px 2px 10px rgba(84, 84, 84, 0);
   }
 }
 
