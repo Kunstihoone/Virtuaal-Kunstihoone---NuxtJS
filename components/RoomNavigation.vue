@@ -13,6 +13,21 @@
       >
         <svg-icon :name="button.icon" />
       </button>
+
+      <a
+        v-else-if="button.external_link"
+        :style="{
+          top: `${button.position.top}%`,
+          left: `${button.position.left}%`
+        }"
+        :key="`nav-button-${index}`"
+        :href="button.external_link.url"
+        target="_blank"
+        class="room-navigation__link"
+      >
+        <svg-icon :name="button.icon" />
+      </a>
+
       <navigation-button
         v-else
         :style="{
