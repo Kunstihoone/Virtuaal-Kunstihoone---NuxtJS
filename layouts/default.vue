@@ -27,7 +27,7 @@
     <details-layer v-if="detailsLayerState" :current-room="currentRoom" />
 
     <transition name="fade">
-      <splash-layer v-if="splashState" />
+      <splash-layer v-if="false && splashState" />
     </transition>
   </main>
 </template>

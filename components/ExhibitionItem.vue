@@ -1,13 +1,6 @@
 <template>
-  <nuxt-link
-    :to="
-      localePath({
-        name: 'exhibition',
-        params: {
-          exhibition: data.acf.post_type_slug
-        }
-      })
-    "
+  <div
+    @click="enterExhibition"
     :class="{
       'm-disabled': $i18n.locale === 'evk' && !item.acf.in_sign_language
     }"
@@ -29,7 +22,7 @@
 
       <p v-if="data.acf.subtitle">{{ data.acf.subtitle }}</p>
     </div>
-  </nuxt-link>
+  </div>
 </template>
 
 <script>
@@ -44,18 +37,32 @@ export default {
       type: Object,
       default: null
     }
+  },
+  methods: {
+    enterExhibition() {
+      this.$store.commit('SetUserReady', true)
+
+      this.$router.push(
+        this.localePath({
+          name: 'exhibition-parent',
+          params: {
+            exhibition: this.data.acf.post_type_slug,
+            parent: 'fuajee'
+          }
+        })
+      )
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .exhibition-item {
-  width: 100%;
+  width: 60%;
   margin-bottom: 2 * $gutters-small;
   text-align: center;
   font-size: inherit;
   color: $black;
-  max-width: rem-calc(600);
 
   &.m-disabled {
     opacity: 0.6;

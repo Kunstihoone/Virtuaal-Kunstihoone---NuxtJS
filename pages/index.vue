@@ -1,19 +1,13 @@
 <template>
-  <div class="exhibitions">
-    <exhibition-item
-      v-for="exhibition in data"
-      :key="exhibition.id"
-      :data="exhibition"
-    />
-  </div>
+  <exhibitions-slider :exhibitions="data" />
 </template>
 
 <script>
-import ExhibitionItem from '~/components/ExhibitionItem'
+import ExhibitionsSlider from '~/components/ExhibitionsSlider'
 
 export default {
   components: {
-    ExhibitionItem
+    ExhibitionsSlider
   },
   layout: 'index-page',
   async asyncData({ store, $axios, app }) {
@@ -40,13 +34,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.exhibitions {
-  @include row;
-
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  padding-top: rem-calc(100);
-}
-</style>
+<style lang="scss" scoped></style>

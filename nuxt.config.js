@@ -43,6 +43,10 @@ export default {
     '~/mixins/MixinMetaData.js',
     '~/plugins/i18n',
     {
+      src: '~/plugins/vue-concise-slider',
+      ssr: false
+    },
+    {
       src: '~/plugins/lazysizes.js',
       ssr: false
     }
