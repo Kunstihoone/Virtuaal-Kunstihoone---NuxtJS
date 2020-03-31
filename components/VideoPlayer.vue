@@ -25,7 +25,7 @@ export default {
         width: 1920,
         controls: false,
         autoplay: true,
-        quality: '1080p',
+        // quality: '1080p',
         loop: true
       }
 

@@ -20,6 +20,8 @@
           :navigation-buttons="navigationButtons"
         />
       </transition>
+
+      <loading-indicatior v-if="placeholderVisible" />
     </ratio-container>
 
     <details-layer v-if="detailsLayerState" :current-room="currentRoom" />
@@ -40,6 +42,7 @@ import SplashLayer from '~/components/SplashLayer'
 import RatioContainer from '~/components/RatioContainer'
 import RoomNavigation from '~/components/RoomNavigation'
 import PlaceholderImage from '~/components/PlaceholderImage'
+import LoadingIndicatior from '~/components/LoadingIndicatior'
 
 export default {
   components: {
@@ -49,7 +52,8 @@ export default {
     SplashLayer,
     RatioContainer,
     RoomNavigation,
-    PlaceholderImage
+    PlaceholderImage,
+    LoadingIndicatior
   },
   computed: {
     ...mapState({
@@ -82,7 +86,7 @@ export default {
         opacity: [0, 1],
         delay: 100,
         easing: 'easeOutExpo',
-        duration: 1000
+        duration: 800
       })
     },
     playerLeave(el, done) {
@@ -90,7 +94,7 @@ export default {
         targets: el,
         opacity: [1, 0],
         easing: 'easeOutExpo',
-        duration: 1000
+        duration: 600
       })
     }
   }
