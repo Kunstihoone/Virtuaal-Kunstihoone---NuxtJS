@@ -23,9 +23,10 @@ export default {
       const videoOptions = {
         url: this.videoSrc,
         width: 1920,
+        dnt: true,
         controls: false,
         autoplay: true,
-        // quality: '1080p',
+        quality: '1080p',
         loop: true
       }
 

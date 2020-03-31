@@ -113,6 +113,12 @@ export default {
   width: 100%;
 }
 
+.audio-player__title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .audio-player__player {
   display: none;
 }
