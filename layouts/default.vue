@@ -1,16 +1,28 @@
 <template>
-  <main :class="{ 'modal-active': modalData }" class="main">
+  <main :class="{ 'modal-active': detailsLayerState }" class="main">
     <ratio-container>
-      <main-navigation v-if="$route.name !== 'index'" />
+      <main-navigation
+        v-if="$route.name !== 'index'"
+        :current-room="currentRoom"
+      />
       <nuxt />
-      <audio-guide v-if="$route.name !== 'index'" />
+
+      <audio-guide v-if="$route.name !== 'index'" :current-room="currentRoom" />
+
       <placeholder-image
         v-if="placeholderImage"
         :placeholder-image="placeholderImage"
       />
+
+      <transition @enter="playerEnter" @leave="playerLeave" :css="false">
+        <room-navigation
+          v-if="navigationButtons"
+          :navigation-buttons="navigationButtons"
+        />
+      </transition>
     </ratio-container>
 
-    <details-layer v-if="modalData" :modal-data="modalData" />
+    <details-layer v-if="detailsLayerState" :current-room="currentRoom" />
 
     <transition name="fade">
       <splash-layer v-if="splashState" />
@@ -19,12 +31,14 @@
 </template>
 
 <script>
+import anime from 'animejs'
 import { mapState } from 'vuex'
 import AudioGuide from '~/components/AudioGuide'
 import MainNavigation from '~/components/MainNavigation'
 import DetailsLayer from '~/components/DetailsLayer'
 import SplashLayer from '~/components/SplashLayer'
 import RatioContainer from '~/components/RatioContainer'
+import RoomNavigation from '~/components/RoomNavigation'
 import PlaceholderImage from '~/components/PlaceholderImage'
 
 export default {
@@ -34,14 +48,51 @@ export default {
     DetailsLayer,
     SplashLayer,
     RatioContainer,
+    RoomNavigation,
     PlaceholderImage
   },
   computed: {
     ...mapState({
-      modalData: (state) => state.modalData,
       splashState: (state) => state.splashState,
-      placeholderImage: (state) => state.placeholderImage
-    })
+      placeholderImage: (state) => state.placeholderImage,
+      placeholderVisible: (state) => state.placeholderVisible,
+      detailsLayerState: (state) => state.detailsLayerState,
+      navigationButtons: (state) => state.navigationButtons
+    }),
+    currentRoom() {
+      return this.$store.getters.getSingleRoom(
+        this.$route.params.child
+          ? this.$route.params.child
+          : this.$route.params.parent
+      )
+    }
+  },
+  watch: {
+    navigationButtons() {
+      console.log('yoyoyoyoyoyo')
+    },
+    $route() {
+      this.$store.commit('SetNavigationButtons', null)
+    }
+  },
+  methods: {
+    playerEnter(el, done) {
+      anime({
+        targets: el,
+        opacity: [0, 1],
+        delay: 100,
+        easing: 'easeOutExpo',
+        duration: 1000
+      })
+    },
+    playerLeave(el, done) {
+      anime({
+        targets: el,
+        opacity: [1, 0],
+        easing: 'easeOutExpo',
+        duration: 1000
+      })
+    }
   }
 }
 </script>
@@ -83,20 +134,6 @@ p {
 .main {
   position: relative;
   height: 100vh;
-}
-
-.room-video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-
-  iframe {
-    width: 100%;
-    height: 100%;
-  }
 }
 
 .button {

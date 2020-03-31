@@ -1,5 +1,9 @@
 <template>
-  <img :src="placeholderImage" class="placeholder-image" />
+  <img
+    :src="placeholderImage"
+    :class="{ 'm-visible': $store.state.placeholderVisible }"
+    class="placeholder-image"
+  />
 </template>
 <script>
 export default {
@@ -19,5 +23,12 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+
+  &.m-visible {
+    opacity: 1;
+  }
 }
 </style>

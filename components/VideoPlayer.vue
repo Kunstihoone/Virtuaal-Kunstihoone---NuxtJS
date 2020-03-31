@@ -36,24 +36,17 @@ export default {
       this.player.on('timeupdate', () => {
         if (!this.videoStarted) {
           this.videoStarted = true
-          this.$emit('playerLoaded')
 
           anime({
             targets: '.placeholder-image',
             opacity: 0,
             easing: 'easeOutExpo',
-            // delay: 600,
             duration: 500,
             complete: (anim) => {
+              this.$emit('playerLoaded')
+              this.$store.commit('SetPlaceholderVisible', false)
               this.$store.commit('SetPlaceholderImage', null)
             }
-          })
-
-          anime({
-            targets: '.navigation-button',
-            opacity: [0, 1],
-            easing: 'easeOutExpo',
-            duration: 500
           })
         }
       })
@@ -80,3 +73,20 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.room-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 1;
+
+  /deep/ iframe {
+    width: 100%;
+    height: 100%;
+  }
+}
+</style>

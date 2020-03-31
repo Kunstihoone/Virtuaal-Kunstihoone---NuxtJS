@@ -24,7 +24,8 @@ export default {
       },
       { name: 'robots', content: 'noindex' }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [{ rel: 'manifest', href: 'manifest.json' }]
   },
   /*
    ** Customize the progress-bar color
@@ -64,15 +65,15 @@ export default {
       {
         detectBrowserLanguage: false,
         locales: [
-          { code: 'et', name: 'ET', full_name: 'Eesti keeles' },
+          { code: 'et', iso: 'eng', name: 'ET', full_name: 'Eesti keeles' },
           {
             code: 'evk',
             iso: 'evk',
             name: 'EVK',
             full_name: 'Eesti viipekeel'
           },
-          { code: 'ru', name: 'RU', full_name: 'По Pусски' },
-          { code: 'en', name: 'EN', full_name: 'In English' }
+          { code: 'ru', iso: 'rus', name: 'RU', full_name: 'По Pусски' },
+          { code: 'en', iso: 'est', name: 'EN', full_name: 'In English' }
         ],
         defaultLocale: 'et',
         vueI18n: {

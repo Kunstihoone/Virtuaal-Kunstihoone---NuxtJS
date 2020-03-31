@@ -3,7 +3,7 @@
     <details-slider :slides="modalData" />
 
     <button
-      @click="$store.commit('SetModalData', null)"
+      @click="$store.commit('SetDetailsLayerState', null)"
       class="details-layer__close button"
     >
       <svg-icon name="icon-close" />
@@ -19,9 +19,27 @@ export default {
     DetailsSlider
   },
   props: {
-    modalData: {
-      type: Array,
+    currentRoom: {
+      type: Object,
       default: null
+    }
+  },
+  computed: {
+    modalData() {
+      if (this.currentRoom && this.currentRoom.acf) {
+        if (this.$i18n.locale === 'en' && this.currentRoom.acf.details_eng) {
+          return this.currentRoom.acf.details_eng
+        } else if (
+          this.$i18n.locale === 'ru' &&
+          this.currentRoom.acf.details_rus
+        ) {
+          return this.currentRoom.acf.details_rus
+        } else {
+          return this.currentRoom.acf.details_est
+        }
+      } else {
+        return null
+      }
     }
   }
 }

@@ -3,14 +3,12 @@
 </template>
 
 <script>
-import MixinTransitionOut from '~/mixins/MixinTransitionOut'
 import RoomWrapper from '~/components/RoomWrapper'
 
 export default {
   components: {
     RoomWrapper
   },
-  mixins: [MixinTransitionOut],
   async asyncData({ $axios, params, store }) {
     if (
       !store.state.roomsData ||
@@ -27,11 +25,6 @@ export default {
 
     const data = await store.getters.getSingleRoom(params.child)
 
-    if (data.acf.label) {
-      store.commit('SetDetailsButton', data.acf.label)
-    } else {
-      store.commit('SetDetailsButton', null)
-    }
     return { data }
   },
   head() {

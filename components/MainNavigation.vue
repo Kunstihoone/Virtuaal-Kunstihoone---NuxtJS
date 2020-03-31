@@ -10,12 +10,11 @@
 
     <language-switcher />
 
-    <details-button v-if="detailsButton" :details-image="detailsButton" />
+    <details-button v-if="detailsImage" :details-image="detailsImage" />
   </nav>
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import DetailsButton from '~/components/DetailsButton'
 import LanguageSwitcher from '~/components/LanguageSwitcher'
 
@@ -24,10 +23,39 @@ export default {
     DetailsButton,
     LanguageSwitcher
   },
-  computed: {
-    ...mapState({
-      detailsButton: (state) => state.detailsButton
-    })
+  props: {
+    currentRoom: {
+      type: Object,
+      default: null
+    }
+  },
+  data() {
+    return {
+      detailsImage: null
+    }
+  },
+  watch: {
+    $route() {
+      this.changeDetailsImage()
+    }
+  },
+  mounted() {
+    this.changeDetailsImage()
+  },
+  methods: {
+    changeDetailsImage() {
+      if (this.$route.params.parent || this.$route.params.child) {
+        if (
+          this.currentRoom &&
+          this.currentRoom.acf &&
+          this.currentRoom.acf.label
+        ) {
+          this.detailsImage = this.currentRoom.acf.label
+        } else {
+          this.detailsImage = null
+        }
+      }
+    }
   }
 }
 </script>

@@ -2,12 +2,13 @@ import anime from 'animejs'
 
 export default {
   transition: {
+    mode: 'out-in',
     leave(el, done) {
       anime({
-        targets: '.room-wrapper',
+        targets: '.room-navigation__link',
         opacity: 0,
         easing: 'easeOutExpo',
-        duration: 600,
+        duration: 4000,
 
         complete(anim) {
           done()

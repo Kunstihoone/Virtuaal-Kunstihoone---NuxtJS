@@ -1,36 +1,29 @@
 import Vue from 'vue'
 
 export const state = () => ({
-  detailsButton: null,
-  modalData: null,
   audioGuideState: false,
-  audioGuideTrack: undefined,
-  audioGuideTitle: undefined,
   audioPlayerState: false,
-  exhibitions: null,
+  navigationButtons: null,
   currentExhibition: undefined,
+  detailsLayerState: false,
+  exhibitions: null,
   userReady: false,
   roomsData: null,
   siteData: null,
   splashState: true,
-  placeholderImage: null
+  placeholderImage: null,
+  placeholderVisible: true
 })
 
 export const mutations = {
-  SetDetailsButton(state, value) {
-    Vue.set(state, 'detailsButton', value)
-  },
-  SetModalData(state, value) {
-    Vue.set(state, 'modalData', value)
-  },
-  SetAudioGuideTrack(state, value) {
-    Vue.set(state, 'audioGuideTrack', value)
-  },
-  SetAudioGuideTitle(state, value) {
-    Vue.set(state, 'audioGuideTitle', value)
+  SetDetailsLayerState(state, value) {
+    Vue.set(state, 'detailsLayerState', value)
   },
   SetAudioPlayerState(state, value) {
     Vue.set(state, 'audioPlayerState', value)
+  },
+  SetNavigationButtons(state, value) {
+    Vue.set(state, 'navigationButtons', value)
   },
   SetSiteData(state, value) {
     Vue.set(state, 'siteData', value)
@@ -55,6 +48,9 @@ export const mutations = {
   },
   SetPlaceholderImage(state, value) {
     Vue.set(state, 'placeholderImage', value)
+  },
+  SetPlaceholderVisible(state, value) {
+    Vue.set(state, 'placeholderVisible', value)
   }
 }
 

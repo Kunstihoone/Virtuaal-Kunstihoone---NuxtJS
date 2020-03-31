@@ -2,12 +2,13 @@
   <div class="audio-guide">
     <transition @enter="playerEnter" @leave="playerLeave" :css="false">
       <audio-player
-        v-if="audioGuideState && activeTrack"
+        v-if="!placeholderVisible && audioGuideState && activeTrack"
         :key="activeTrack.ID"
         :active-track="activeTrack"
         :audio-guide-title="audioGuideTitle"
       />
     </transition>
+
     <button
       @click="$store.commit('SetAudiGuideState', !audioGuideState)"
       :class="{ 'm-active': audioGuideState }"
@@ -32,12 +33,45 @@ export default {
     AudioPlayer,
     ToolTip
   },
+  props: {
+    currentRoom: {
+      type: Object,
+      default: null
+    }
+  },
   computed: {
     ...mapState({
-      activeTrack: (state) => state.audioGuideTrack,
-      audioGuideTitle: (state) => state.audioGuideTitle,
-      audioGuideState: (state) => state.audioGuideState
-    })
+      audioGuideState: (state) => state.audioGuideState,
+      placeholderVisible: (state) => state.placeholderVisible
+    }),
+    audioGuideTitle() {
+      if (this.currentRoom.acf.audio_guide_title_est) {
+        const locale = this.$i18n.locale
+        if (locale === 'en') {
+          return this.currentRoom.acf.audio_guide_title_eng
+        } else if (locale === 'ru') {
+          return this.currentRoom.acf.audio_guide_title_rus
+        } else {
+          return this.currentRoom.acf.audio_guide_title_est
+        }
+      } else {
+        return null
+      }
+    },
+    activeTrack() {
+      if (this.currentRoom.acf.audio_guide_est) {
+        const locale = this.$i18n.locale
+        if (locale === 'en') {
+          return this.currentRoom.acf.audio_guide_eng
+        } else if (locale === 'ru') {
+          return this.currentRoom.acf.audio_guide_rus
+        } else {
+          return this.currentRoom.acf.audio_guide_est
+        }
+      } else {
+        return null
+      }
+    }
   },
   methods: {
     playerEnter(el, done) {

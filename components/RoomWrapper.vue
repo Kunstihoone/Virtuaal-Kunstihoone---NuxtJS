@@ -3,17 +3,8 @@
     <video-player
       v-if="userReady"
       :video-src="data.acf.video"
-      @playerLoaded="playerLoaded = true"
+      @playerLoaded="onPlayerLoaded"
     />
-
-    <template v-if="data && data.acf">
-      <navigation-button
-        v-for="(button, index) in data.acf.buttons"
-        :key="index"
-        :button-data="button"
-        @openDetail="openDetail"
-      />
-    </template>
 
     <piece-audio
       v-if="data.acf.audio_track && playerLoaded && !audioGuideState"
@@ -24,13 +15,11 @@
 
 <script>
 import { mapState } from 'vuex'
-import NavigationButton from '~/components/NavigationButton'
 import PieceAudio from '~/components/PieceAudio'
 import VideoPlayer from '~/components/VideoPlayer'
 
 export default {
   components: {
-    NavigationButton,
     PieceAudio,
     VideoPlayer
   },
@@ -53,29 +42,6 @@ export default {
       userReady: (state) => state.userReady
     })
   },
-  created() {
-    if (this.data.acf.audio_guide_est) {
-      const locale = this.$i18n.locale
-
-      let audioGuideTrack, audioGuideTitle
-
-      if (locale === 'en') {
-        audioGuideTrack = this.data.acf.audio_guide_eng
-        audioGuideTitle = this.data.acf.audio_guide_title_eng
-      } else if (locale === 'ru') {
-        audioGuideTrack = this.data.acf.audio_guide_rus
-        audioGuideTitle = this.data.acf.audio_guide_title_rus
-      } else {
-        audioGuideTrack = this.data.acf.audio_guide_est
-        audioGuideTitle = this.data.acf.audio_guide_title_est
-      }
-
-      this.$store.commit('SetAudioGuideTrack', audioGuideTrack)
-      this.$store.commit('SetAudioGuideTitle', audioGuideTitle)
-    } else {
-      this.$store.commit('SetAudioGuideTrack', null)
-    }
-  },
   mounted() {
     if (this.data.featured_image && this.data.featured_image.sizes.medium) {
       this.$store.commit(
@@ -85,13 +51,11 @@ export default {
     }
   },
   methods: {
-    openDetail() {
-      if (this.data.acf.details_eng) {
-        this.$store.commit('SetModalData', this.data.acf.details_eng)
-      } else if (this.data.acf.details_rus) {
-        this.$store.commit('SetModalData', this.data.acf.details_rus)
-      } else if (this.data.acf.details_est) {
-        this.$store.commit('SetModalData', this.data.acf.details_est)
+    onPlayerLoaded() {
+      this.playerLoaded = true
+
+      if (this.data.acf.buttons) {
+        this.$store.commit('SetNavigationButtons', this.data.acf.buttons)
       }
     }
   }
