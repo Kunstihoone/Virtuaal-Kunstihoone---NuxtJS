@@ -17,7 +17,6 @@
       <transition @enter="playerEnter" @leave="playerLeave" :css="false">
         <room-navigation
           v-if="navigationButtons"
-          :key="`${$route.params.parent} – ${$route.params.child}`"
           :navigation-buttons="navigationButtons"
         />
       </transition>
@@ -95,7 +94,10 @@ export default {
         targets: el,
         opacity: [1, 0],
         easing: 'easeOutExpo',
-        duration: 600
+        duration: 600,
+        complete: (anim) => {
+          done()
+        }
       })
     }
   }
