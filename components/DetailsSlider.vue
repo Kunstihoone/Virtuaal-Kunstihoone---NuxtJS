@@ -165,8 +165,8 @@ export default {
 
 .details-slider__slide {
   position: relative;
-  min-width: 100vw;
-  min-height: 100vh;
+  min-width: 100%;
+  min-height: 100%;
   padding: 4rem;
   display: block;
 }
