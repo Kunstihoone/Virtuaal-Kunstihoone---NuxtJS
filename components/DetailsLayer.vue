@@ -1,9 +1,9 @@
 <template>
   <div v-if="modalData" class="details-layer">
-    <details-slider :slides="modalData" />
+    <details-slider :slides="slides" />
 
     <button
-      @click="$store.commit('SetDetailsLayerState', null)"
+      @click="$store.commit('SetDetailsLayer', null)"
       class="details-layer__close button"
     >
       <svg-icon name="icon-close" />
@@ -19,27 +19,44 @@ export default {
     DetailsSlider
   },
   props: {
-    currentRoom: {
-      type: Object,
+    detailsLayer: {
+      type: String,
       default: null
     }
   },
+  data() {
+    return {
+      modalData: null
+    }
+  },
   computed: {
-    modalData() {
-      if (this.currentRoom && this.currentRoom.acf) {
-        if (this.$i18n.locale === 'en' && this.currentRoom.acf.details_eng) {
-          return this.currentRoom.acf.details_eng
+    slides() {
+      if (this.modalData && this.modalData.acf) {
+        if (this.$i18n.locale === 'en' && this.modalData.acf.details_eng) {
+          return this.modalData.acf.details_eng
         } else if (
           this.$i18n.locale === 'ru' &&
-          this.currentRoom.acf.details_rus
+          this.modalData.acf.details_rus
         ) {
-          return this.currentRoom.acf.details_rus
+          return this.modalData.acf.details_rus
         } else {
-          return this.currentRoom.acf.details_est
+          return this.modalData.acf.details_est
         }
       } else {
         return null
       }
+    }
+  },
+  mounted() {
+    this.fetchDetails()
+  },
+  methods: {
+    async fetchDetails() {
+      console.log(this.detailsLayer)
+      const data = await this.$axios.$get(
+        `post-types/${this.$route.params.exhibition}/${this.detailsLayer}`
+      )
+      this.modalData = data
     }
   }
 }

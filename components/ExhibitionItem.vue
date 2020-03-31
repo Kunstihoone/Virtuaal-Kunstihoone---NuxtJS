@@ -64,8 +64,8 @@ export default {
 
 <style lang="scss" scoped>
 .exhibition-item {
-  position: relative;
   width: 60%;
+  position: relative;
   text-align: center;
   font-size: inherit;
   color: $black;

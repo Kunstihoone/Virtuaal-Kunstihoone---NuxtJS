@@ -5,7 +5,7 @@ export const state = () => ({
   audioPlayerState: false,
   navigationButtons: null,
   currentExhibition: undefined,
-  detailsLayerState: false,
+  detailsLayer: false,
   exhibitions: null,
   userReady: false,
   roomsData: null,
@@ -16,8 +16,8 @@ export const state = () => ({
 })
 
 export const mutations = {
-  SetDetailsLayerState(state, value) {
-    Vue.set(state, 'detailsLayerState', value)
+  SetDetailsLayer(state, value) {
+    Vue.set(state, 'detailsLayer', value)
   },
   SetAudioPlayerState(state, value) {
     Vue.set(state, 'audioPlayerState', value)

@@ -112,7 +112,7 @@ export default {
       } else if (key === 39) {
         this.navRight()
       } else if (key === 27) {
-        this.$store.commit('SetDetailsLayerState', null)
+        this.$store.commit('SetDetailsLayer', null)
       }
     }
   }

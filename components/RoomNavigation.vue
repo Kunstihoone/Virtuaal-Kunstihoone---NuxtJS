@@ -1,16 +1,13 @@
 <template>
   <nav class="room-navigation">
-    <template
-      v-for="(button, index) in navigationButtons"
-      :button-data="button"
-    >
+    <template v-for="(button, index) in navigationButtons">
       <button
-        v-if="button.link_to_details"
+        v-if="button.related_item.is_detail"
         :style="{
           top: `${button.position.top}%`,
           left: `${button.position.left}%`
         }"
-        @click="$store.commit('SetDetailsLayerState', true)"
+        @click="$store.commit('SetDetailsLayer', button.related_item.post_name)"
         :key="`nav-button-${index}`"
         class="room-navigation__link"
       >

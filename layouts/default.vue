@@ -1,5 +1,5 @@
 <template>
-  <main :class="{ 'modal-active': detailsLayerState }" class="main">
+  <main :class="{ 'modal-active': detailsLayer }" class="main">
     <ratio-container>
       <main-navigation :current-room="currentRoom" />
       <nuxt />
@@ -17,6 +17,7 @@
       <transition @enter="playerEnter" @leave="playerLeave" :css="false">
         <room-navigation
           v-if="navigationButtons"
+          :key="`${$route.params.parent} – ${$route.params.child}`"
           :navigation-buttons="navigationButtons"
         />
       </transition>
@@ -24,7 +25,7 @@
       <loading-indicatior v-if="placeholderVisible" />
     </ratio-container>
 
-    <details-layer v-if="detailsLayerState" :current-room="currentRoom" />
+    <details-layer v-if="detailsLayer" :details-layer="detailsLayer" />
 
     <transition name="fade">
       <splash-layer v-if="getRouteBaseName() !== 'index' && splashState" />
@@ -60,7 +61,7 @@ export default {
       splashState: (state) => state.splashState,
       placeholderImage: (state) => state.placeholderImage,
       placeholderVisible: (state) => state.placeholderVisible,
-      detailsLayerState: (state) => state.detailsLayerState,
+      detailsLayer: (state) => state.detailsLayer,
       navigationButtons: (state) => state.navigationButtons
     }),
     currentRoom() {

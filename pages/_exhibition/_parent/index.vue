@@ -14,13 +14,17 @@ export default {
       !store.state.roomsData ||
       store.state.currentExhibition !== params.exhibition
     ) {
-      const siteData = await $axios.get(`post-types/${params.exhibition}`, {
+      const getRooms = await $axios.get(`post-types/${params.exhibition}`, {
         params: {
-          acf: true
+          acf: true,
+          'tax_query[0][taxonomy]': 'type',
+          'tax_query[0][terms]': 'details-overlay',
+          'tax_query[0][field]': 'slug',
+          'tax_query[0][operator]': 'NOT IN'
         }
       })
       store.commit('SetCurrentExhibition', params.exhibition)
-      store.commit('SetRoomsData', siteData.data)
+      store.commit('SetRoomsData', getRooms.data)
     }
 
     const data = await store.getters.getSingleRoom(route.params.parent)
