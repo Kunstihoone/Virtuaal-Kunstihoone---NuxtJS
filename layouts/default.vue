@@ -18,13 +18,12 @@
       </transition>
 
       <loading-indicatior v-if="placeholderVisible" />
+
+      <details-layer v-if="detailsLayer" :details-layer="detailsLayer" />
+      <transition name="fade">
+        <splash-layer v-if="getRouteBaseName() !== 'index' && splashState" />
+      </transition>
     </ratio-container>
-
-    <details-layer v-if="detailsLayer" :details-layer="detailsLayer" />
-
-    <transition name="fade">
-      <splash-layer v-if="getRouteBaseName() !== 'index' && splashState" />
-    </transition>
   </main>
 </template>
 

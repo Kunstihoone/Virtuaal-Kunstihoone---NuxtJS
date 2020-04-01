@@ -1,7 +1,7 @@
 <template>
   <div class="nav-label">
     <menu-button
-      @click="detailsState = !detailsState"
+      @click.native="detailsState = !detailsState"
       :icon="detailsState ? 'icon-close' : 'icon-info'"
       class="nav-label__toggle"
     >
@@ -46,7 +46,7 @@ export default {
   position: absolute;
   left: 1rem;
   bottom: 1rem;
-  z-index: 40;
+  z-index: 25;
 }
 
 .nav-label__toggle {

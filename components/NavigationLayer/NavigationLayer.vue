@@ -1,19 +1,24 @@
 <template>
   <div class="navigation-layer">
-    <nav-settings />
+    <nav-settings class="navigation-layer__bottom-layer" />
 
-    <nav-info v-if="getRouteBaseName() !== 'index'" />
+    <nav-info
+      v-if="getRouteBaseName() !== 'index'"
+      class="navigation-layer__bottom-layer"
+    />
 
     <nav-label v-if="detailsImage" :details-image="detailsImage" />
 
     <audio-guide
       v-if="getRouteBaseName() !== 'index' && $i18n.locale !== 'evk'"
       :current-room="currentRoom"
+      class="navigation-layer__bottom-layer"
     />
 
     <video-guide
       v-else-if="getRouteBaseName() !== 'index' && $i18n.locale === 'evk'"
       :current-room="currentRoom"
+      class="navigation-layer__bottom-layer"
     />
   </div>
 </template>
@@ -71,19 +76,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.navigation-layer {
+.navigation-layer__bottom-layer {
   opacity: 1;
   transition: 0.3s ease;
 
   .modal-active & {
     opacity: 0;
   }
-}
-
-.navigation-layer__info {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  z-index: 40;
 }
 </style>

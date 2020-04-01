@@ -35,12 +35,11 @@ export default {
   right: 0;
   width: rem-calc(320);
   height: rem-calc(320 * (9 / 16));
-  z-index: 1;
   box-shadow: $button-shadow;
   border-radius: 0.6rem;
   overflow: hidden;
   background-color: $kh-yellow;
-  z-index: 5;
+  z-index: 15;
 
   /deep/ iframe {
     width: 100%;

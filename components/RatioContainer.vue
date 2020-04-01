@@ -48,7 +48,6 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
-  z-index: 10;
 
   &.m-landscape {
     padding-top: (9 / 16) * 100%;
@@ -56,10 +55,6 @@ export default {
 
   &.m-portrait {
     height: 100%;
-  }
-
-  .modal-active & {
-    opacity: 0.2;
   }
 }
 </style>

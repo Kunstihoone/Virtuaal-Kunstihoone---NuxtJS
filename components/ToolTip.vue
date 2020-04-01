@@ -19,6 +19,6 @@
   pointer-events: none;
   opacity: 0;
   transform: translateY(-0.2rem);
-  z-index: 6;
+  z-index: 16;
 }
 </style>

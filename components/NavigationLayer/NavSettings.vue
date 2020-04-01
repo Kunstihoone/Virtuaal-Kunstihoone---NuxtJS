@@ -58,7 +58,7 @@ export default {
   left: 1rem;
   display: flex;
   flex-direction: column;
-  z-index: 20;
+  z-index: 10;
 }
 
 .nav-settings__buttons {

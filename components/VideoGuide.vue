@@ -120,7 +120,7 @@ export default {
   position: absolute;
   bottom: 1rem;
   right: 1rem;
-  z-index: 120;
+  z-index: 15;
   display: flex;
 }
 

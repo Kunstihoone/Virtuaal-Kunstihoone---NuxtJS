@@ -68,7 +68,7 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 4;
+  z-index: 5;
 }
 
 .room-navigation__link {

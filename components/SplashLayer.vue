@@ -42,7 +42,7 @@ export default {
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  z-index: 5000;
+  z-index: 50;
   background-color: rgba(250, 250, 250, 0.6);
 }
 

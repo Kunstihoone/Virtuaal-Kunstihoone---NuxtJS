@@ -103,7 +103,7 @@ export default {
   color: $black;
   padding: 0.4rem 0.8rem;
   border-radius: 0.8rem;
-  z-index: 40;
+  z-index: 15;
   transform-origin: bottom right;
   display: flex;
   align-items: center;
