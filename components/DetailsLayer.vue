@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import DetailsSlider from '~/components/DetailsSlider'
+import DetailsSlider from '~/components/DetailsSlider/DetailsSlider'
 
 export default {
   components: {

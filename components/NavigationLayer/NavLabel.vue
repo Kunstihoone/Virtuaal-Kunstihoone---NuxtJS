@@ -1,11 +1,14 @@
 <template>
-  <div class="details-corner">
-    <button @click="detailsState = !detailsState" class="toggle-label button">
+  <div class="nav-label">
+    <menu-button
+      @click="detailsState = !detailsState"
+      :icon="detailsState ? 'icon-close' : 'icon-info'"
+      class="nav-label__toggle"
+    >
       <tool-tip>
         {{ $t('details_label') }}
       </tool-tip>
-      <svg-icon :name="detailsState ? 'icon-close' : 'icon-info'" />
-    </button>
+    </menu-button>
 
     <transition name="fade">
       <label-layer v-if="detailsState" :label-image="detailsImage" />
@@ -16,11 +19,13 @@
 <script>
 import LabelLayer from '~/components/LabelLayer'
 import ToolTip from '~/components/ToolTip'
+import MenuButton from '~/components/MenuButton'
 
 export default {
   components: {
     LabelLayer,
-    ToolTip
+    ToolTip,
+    MenuButton
   },
   props: {
     detailsImage: {
@@ -37,25 +42,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.details-corner {
+.nav-label {
   position: absolute;
   left: 1rem;
   bottom: 1rem;
   z-index: 40;
 }
 
-.toggle-label {
-  display: flex;
-  width: 2rem;
-  height: 2rem;
-  padding: 0.4rem;
-  border-radius: 50%;
-
-  svg {
-    width: 100%;
-    height: 100%;
-  }
-
+.nav-label__toggle {
   &:hover {
     /deep/ .tooltip {
       transform: translateY(-0.4rem);

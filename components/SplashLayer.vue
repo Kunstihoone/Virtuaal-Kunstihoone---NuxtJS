@@ -1,15 +1,11 @@
 <template>
   <div class="splash">
-    <a href="https://kunstihoone.ee" target="_blank">
-      <svg-icon class="splash__logo" name="kh-logo" />
-    </a>
-
     <button
       @click="handleClick"
       :class="{ 'm-ready': buttonReady }"
       class="intro-button"
     >
-      <svg-icon name="icon-arrow-up" />
+      Jätka
     </button>
   </div>
 </template>

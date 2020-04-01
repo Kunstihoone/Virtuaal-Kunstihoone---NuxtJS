@@ -1,11 +1,14 @@
 <template>
-  <button class="button">
-    <svg-icon :name="toggleState ? 'icon-close' : 'icon-settings'" />
-  </button>
+  <menu-button :icon="toggleState ? 'icon-close' : 'icon-settings'" />
 </template>
 
 <script>
+import MenuButton from '~/components/MenuButton'
+
 export default {
+  components: {
+    MenuButton
+  },
   props: {
     toggleState: {
       type: Boolean,
@@ -16,21 +19,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.button {
-  position: relative;
+/deep/ .menu-button {
   margin-right: 0.3rem;
-  width: 2rem;
-  height: 2rem;
-  line-height: 2rem;
-  text-align: center;
-  border-radius: 50%;
-  padding: 0;
-
-  svg {
-    @include absolute-center;
-
-    width: 1.4rem;
-    height: 1.4rem;
-  }
 }
 </style>

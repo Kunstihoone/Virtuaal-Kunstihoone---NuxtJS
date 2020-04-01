@@ -56,23 +56,6 @@ export default {
       type: Array,
       default: null
     }
-  },
-  methods: {
-    showPlaceholder() {
-      this.$store.commit('SetPlaceholderVisible', true)
-    },
-    preloadPlaceholder(button) {
-      const room = this.$store.getters.getSingleRoom(
-        button.related_item.post_name
-      )
-
-      if (room.featured_image && room.featured_image.sizes.medium) {
-        this.$store.commit(
-          'SetPlaceholderImage',
-          room.featured_image.sizes.medium
-        )
-      }
-    }
   }
 }
 </script>

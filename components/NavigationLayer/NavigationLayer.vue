@@ -1,10 +1,10 @@
 <template>
-  <nav class="main-navigation">
-    <corner-info />
+  <div class="navigation-layer">
+    <nav-settings />
 
-    <language-switcher />
+    <nav-info v-if="getRouteBaseName() !== 'index'" />
 
-    <toggle-label v-if="detailsImage" :details-image="detailsImage" />
+    <nav-label v-if="detailsImage" :details-image="detailsImage" />
 
     <audio-guide
       v-if="getRouteBaseName() !== 'index' && $i18n.locale !== 'evk'"
@@ -15,22 +15,22 @@
       v-else-if="getRouteBaseName() !== 'index' && $i18n.locale === 'evk'"
       :current-room="currentRoom"
     />
-  </nav>
+  </div>
 </template>
 
 <script>
 import AudioGuide from '~/components/AudioGuide'
-import CornerInfo from '~/components/CornerInfo'
-import ToggleLabel from '~/components/ToggleLabel'
-import LanguageSwitcher from '~/components/LanguageSwitcher'
+import NavInfo from '~/components/NavigationLayer/NavInfo'
+import NavLabel from '~/components/NavigationLayer/NavLabel'
+import NavSettings from '~/components/NavigationLayer/NavSettings'
 import VideoGuide from '~/components/VideoGuide'
 
 export default {
   components: {
     AudioGuide,
-    CornerInfo,
-    ToggleLabel,
-    LanguageSwitcher,
+    NavInfo,
+    NavLabel,
+    NavSettings,
     VideoGuide
   },
   props: {
@@ -71,7 +71,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.main-navigation {
+.navigation-layer {
   opacity: 1;
   transition: 0.3s ease;
 
@@ -80,7 +80,7 @@ export default {
   }
 }
 
-.main-navigation__info {
+.navigation-layer__info {
   position: absolute;
   top: 1rem;
   right: 1rem;

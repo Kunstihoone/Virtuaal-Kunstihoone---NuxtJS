@@ -64,11 +64,12 @@ export default {
 
 <style lang="scss" scoped>
 .exhibition-item {
-  width: 60%;
   position: relative;
   text-align: center;
-  font-size: inherit;
   color: $black;
+  max-width: rem-calc(600);
+  margin: 0 auto;
+  margin-bottom: 2rem;
 
   &.m-disabled {
     opacity: 0.6;
@@ -77,8 +78,8 @@ export default {
 }
 
 .exhibition-item__thumbnail {
-  margin: 0 auto;
-  // margin-bottom: $gutters-small;
+  margin-bottom: 0;
+  margin-bottom: 0.6rem;
 
   /deep/ img {
     object-fit: cover;
@@ -86,8 +87,6 @@ export default {
 }
 
 .exhibition-item__content {
-  margin-top: 1rem;
-  position: absolute;
   top: 100%;
   width: 100%;
   padding: 0 $gutters-small;
@@ -98,7 +97,6 @@ export default {
   }
 
   h2 {
-    font-weight: bold;
     line-height: 1;
     margin-bottom: 0.4rem;
   }

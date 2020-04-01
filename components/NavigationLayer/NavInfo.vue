@@ -1,9 +1,6 @@
 <template>
-  <div class="corner-info">
-    <button
-      @click="layerState = !layerState"
-      class="button corner-info__toggle"
-    >
+  <div class="nav-info">
+    <button @click="layerState = !layerState" class="button nav-info__toggle">
       Info
     </button>
 
@@ -34,7 +31,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.corner-info {
+.nav-info {
   position: absolute;
   top: 1rem;
   right: 1rem;

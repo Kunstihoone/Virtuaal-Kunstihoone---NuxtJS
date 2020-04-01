@@ -1,11 +1,9 @@
 <template>
   <client-only>
     <div class="slider-wrapper">
-      <Slider ref="slider" :options="options">
-        <SliderItem v-for="(exhibition, index) in exhibitions" :key="index">
-          <exhibition-item :data="exhibition" />
-        </SliderItem>
-      </Slider>
+      <template v-for="(exhibition, index) in exhibitions">
+        <exhibition-item :data="exhibition" :key="index" />
+      </template>
     </div>
   </client-only>
 </template>
@@ -38,11 +36,11 @@ export default {
 
 <style lang="scss" scoped>
 .slider-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: white;
+  // position: absolute;
+  // top: 0;
+  // left: 0;
+  // width: 100%;
+  // height: 100%;
+  // background-color: white;
 }
 </style>

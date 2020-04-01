@@ -25,16 +25,16 @@ $breakpoints: (
 $header-sizes: (
   small: (
     'h1': 32,
-    'h2': 26,
-    'h3': 24,
-    'h4': 16,
-    'h5': 16,
-    'h6': 14
+    'h2': 20,
+    'h3': 14,
+    'h4': 14,
+    'h5': 14,
+    'h6': 12
   ),
   medium: (
     'h1': 44,
-    'h2': 38,
-    'h3': 18,
+    'h2': 22,
+    'h3': 16,
     'h4': 16,
     'h5': 16,
     'h6': 14
@@ -42,8 +42,7 @@ $header-sizes: (
 );
 
 /* Featured fonts */
-$body-font-family: 'xxx', sans-serif;
-$heading-font-family: 'xxx', serif;
+$body-font-family: 'Favorit', sans-serif;
 
 /* Gutters */
 $gutters: (

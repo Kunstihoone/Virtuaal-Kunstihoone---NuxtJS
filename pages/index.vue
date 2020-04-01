@@ -1,13 +1,19 @@
 <template>
-  <exhibitions-slider :exhibitions="data" />
+  <div class="index-page">
+    <application-intro />
+
+    <exhibitions-slider :exhibitions="data" />
+  </div>
 </template>
 
 <script>
 import anime from 'animejs'
+import ApplicationIntro from '~/components/ApplicationIntro'
 import ExhibitionsSlider from '~/components/ExhibitionsSlider'
 
 export default {
   components: {
+    ApplicationIntro,
     ExhibitionsSlider
   },
   transition: {
@@ -23,7 +29,6 @@ export default {
       })
     }
   },
-  // layout: 'index-page',
   async asyncData({ store, $axios, app }) {
     const queryParams = {
       lang: app.i18n.locale,
@@ -41,14 +46,18 @@ export default {
     return {
       data
     }
-  },
-  head() {
-    return {
-      ...this.metaData(),
-      bodyAttrs: {
-        class: 'index-page'
-      }
-    }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.index-page {
+  background-color: $white;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  top: 0;
+  left: 0;
+}
+</style>

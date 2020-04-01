@@ -1,7 +1,7 @@
 <template>
   <main :class="{ 'modal-active': detailsLayer }" class="main">
     <ratio-container>
-      <main-navigation :current-room="currentRoom" />
+      <navigation-layer :current-room="currentRoom" />
 
       <nuxt />
 
@@ -31,7 +31,7 @@
 <script>
 import anime from 'animejs'
 import { mapState } from 'vuex'
-import MainNavigation from '~/components/MainNavigation'
+import NavigationLayer from '~/components/NavigationLayer/NavigationLayer'
 import DetailsLayer from '~/components/DetailsLayer'
 import SplashLayer from '~/components/SplashLayer'
 import RatioContainer from '~/components/RatioContainer'
@@ -41,7 +41,7 @@ import LoadingIndicatior from '~/components/LoadingIndicatior'
 
 export default {
   components: {
-    MainNavigation,
+    NavigationLayer,
     DetailsLayer,
     SplashLayer,
     RatioContainer,
@@ -72,6 +72,11 @@ export default {
   watch: {
     $route() {
       this.$store.commit('SetNavigationButtons', null)
+    }
+  },
+  mounted() {
+    window.onpopstate = (event) => {
+      this.$store.commit('SetPlaceholderImage', null)
     }
   },
   methods: {
@@ -122,9 +127,9 @@ html {
 }
 
 body {
-  font-family: 'Favorit';
+  font-family: $body-font-family;
   background-color: $black;
-  // overflow: hidden;
+  overflow: hidden;
   color: $black;
 }
 

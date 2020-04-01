@@ -20,7 +20,6 @@
 
 <script>
 export default {
-  layout: 'index-page',
   async asyncData({ store, params, $axios, app }) {
     if (store.state.exhibition) {
       const data = await store.getters.getSingleExhibition(params.exhibition)
