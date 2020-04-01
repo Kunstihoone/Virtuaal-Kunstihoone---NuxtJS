@@ -39,8 +39,8 @@ export default {
   svg {
     @include absolute-center;
 
-    width: 1.4rem;
-    height: 1.4rem;
+    width: 1.2rem;
+    height: 1.2rem;
   }
 }
 </style>

@@ -3,16 +3,16 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">
 <g>
-	<path d="M13.5,13.3h-11c-0.3,0-0.5-0.2-0.5-0.5V3.2c0-0.3,0.2-0.5,0.5-0.5h11c0.3,0,0.5,0.2,0.5,0.5v9.7
-		C14,13.1,13.8,13.3,13.5,13.3z M3,12.3h10V3.7H3V12.3z"/>
+	<path d="M14.1,14.8H1.9c-0.4,0-0.7-0.3-0.7-0.7V1.9c0-0.4,0.3-0.7,0.7-0.7h12.2c0.4,0,0.7,0.3,0.7,0.7v12.2
+		C14.8,14.5,14.5,14.8,14.1,14.8z M2.6,13.4h10.8V2.6H2.6V13.4z"/>
 </g>
 <g>
-	<rect x="4.1" y="4.7" width="7.6" height="1"/>
+	<rect x="3.7" y="3.5" width="8.5" height="1.4"/>
 </g>
 <g>
-	<rect x="4.1" y="8.4" width="4.8" height="1"/>
+	<rect x="3.7" y="8.5" width="6.1" height="1.4"/>
 </g>
 <g>
-	<rect x="4.1" y="10.3" width="4.8" height="1"/>
+	<rect x="3.7" y="10.9" width="6.1" height="1.4"/>
 </g>
 </svg>

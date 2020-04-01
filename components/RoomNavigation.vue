@@ -25,7 +25,7 @@
         target="_blank"
         class="room-navigation__link"
       >
-        <svg-icon :name="button.icon" />
+        <svg-icon name="icon-external-link" />
       </a>
 
       <navigation-button
@@ -74,22 +74,19 @@ export default {
 .room-navigation__link {
   position: absolute;
   border-radius: 50%;
-  border: 0.2rem solid white;
+  border-style: solid;
+  border-color: white;
+  border-width: 0.2rem;
   width: 1rem;
   height: 1rem;
   background: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   transform: translate(-50%, -50%) scale(1);
   transition: transform $transition-cubic-bezier, background-color 0.2s ease;
   box-shadow: $button-shadow;
 
   &:after {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    @include absolute-center;
+
     content: '';
     width: 2rem;
     height: 2rem;
@@ -97,6 +94,8 @@ export default {
   }
 
   svg {
+    @include absolute-center;
+
     opacity: 0;
     width: 0.6rem;
     height: 0.6rem;
@@ -106,6 +105,7 @@ export default {
   &:hover {
     transform: translate(-50%, -50%) scale(2);
     background-color: white;
+    border-color: transparent;
 
     svg {
       opacity: 1;

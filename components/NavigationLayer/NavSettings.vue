@@ -7,12 +7,15 @@
         class="nav-settings__button"
       />
 
-      <menu-button
-        :link-path="localePath('index')"
-        icon="icon-home"
-        component-element="nuxt-link"
-        class="nav-settings__button"
-      />
+      <transition name="fade">
+        <menu-button
+          v-if="getRouteBaseName() !== 'index'"
+          :link-path="localePath('index')"
+          icon="icon-home"
+          component-element="nuxt-link"
+          class="nav-settings__button"
+        />
+      </transition>
     </div>
 
     <language-switcher :class="{ 'm-menu-active': toggleLanguages }" />
