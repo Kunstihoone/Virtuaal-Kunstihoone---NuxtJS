@@ -84,7 +84,7 @@ export const actions = {
       sort_column: 'post_date'
     }
 
-    const exhibitions = await app.$axios.$get('pages', {
+    const exhibitions = await app.$axios.$get('post-types/exhibitions', {
       params: queryParams
     })
 
@@ -101,6 +101,19 @@ export const actions = {
     })
 
     commit('SetSiteData', siteData.data)
+
+    const queryParams = {
+      lang: this.$i18n.locale,
+      acf: true,
+      sort_order: 'DESC',
+      sort_column: 'post_date'
+    }
+
+    const exhibitions = await this.$axios.$get('post-types/exhibitions', {
+      params: queryParams
+    })
+
+    commit('SetExhibitions', exhibitions)
   }
 }
 
