@@ -18,7 +18,7 @@
   display: flex;
   max-width: rem-calc(300);
   justify-content: center;
-  z-index: 30;
+  z-index: 4;
 }
 
 @keyframes pulse {

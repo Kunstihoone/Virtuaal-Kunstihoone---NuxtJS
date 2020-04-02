@@ -10,7 +10,10 @@
         :placeholder-image="placeholderImage"
       />
 
-      <room-navigation :current-room="currentRoom" />
+      <room-navigation
+        v-if="getRouteBaseName() !== 'index'"
+        :current-room="currentRoom"
+      />
 
       <loading-indicatior v-if="placeholderVisible" />
 
