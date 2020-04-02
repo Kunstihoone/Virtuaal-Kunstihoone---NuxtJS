@@ -1,10 +1,10 @@
 <template>
   <div class="index-page">
-    <application-intro />
+    <application-intro :data="data" />
 
     <exhibitions-slider
-      v-if="$store.state.exhibitions"
-      :exhibitions="$store.state.exhibitions"
+      v-if="$store.getters.getExhibitions"
+      :exhibitions="$store.getters.getExhibitions"
     />
   </div>
 </template>
@@ -31,6 +31,33 @@ export default {
         }
       })
     }
+  },
+  async asyncData({ store, $axios, app }) {
+    const queryParams = {
+      lang: app.i18n.locale === 'evk' ? 'et' : app.i18n.locale,
+      acf: true
+    }
+
+    let frontPagePath = ''
+
+    if (app.i18n.locale === 'et' || app.i18n.locale === 'evk') {
+      frontPagePath = 'esileht'
+    } else if (app.i18n.locale === 'en') {
+      frontPagePath = 'front-page'
+    } else if (app.i18n.locale === 'ru') {
+      frontPagePath = 'esileht-rus'
+    }
+
+    const data = await $axios.$get(`pages/${frontPagePath}`, {
+      params: queryParams
+    })
+
+    return {
+      data
+    }
+  },
+  head() {
+    return this.metaData(this.data)
   }
 }
 </script>

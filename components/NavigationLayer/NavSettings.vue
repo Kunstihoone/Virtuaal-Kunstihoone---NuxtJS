@@ -190,7 +190,9 @@ $menu-items-spacing: 0.5rem;
 
   @for $i from 1 through 6 {
     &:nth-child(#{$i}) {
-      transition-delay: #{-0.1 + (0.1 * $i)}s;
+      transition: background-color 0.3s ease-in-out,
+        0.3s opacity ease-in-out #{-0.1 + (0.1 * $i)}s,
+        0.3s transform ease-in-out #{-0.1 + (0.1 * $i)}s;
     }
   }
 }

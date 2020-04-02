@@ -185,8 +185,15 @@ h6 {
 
   &.m-active,
   &:hover {
-    background-color: $gray;
     box-shadow: 0px 2px 10px rgba(84, 84, 84, 0);
+  }
+
+  &.m-active {
+    background-color: $gray;
+  }
+
+  &:hover {
+    background-color: $lighter-gray;
   }
 }
 

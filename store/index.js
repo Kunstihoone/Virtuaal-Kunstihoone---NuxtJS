@@ -68,20 +68,22 @@ export const mutations = {
 
 export const actions = {
   async nuxtServerInit({ commit }, { app }) {
+    const lang = app.i18n.locale === 'evk' ? 'et' : app.i18n.locale
+
     const siteData = await app.$axios.get('site-data', {
       params: {
         include_menus: true,
         include_taxonomies: true,
-        lang: app.i18n.locale
+        lang
       }
     })
     commit('SetSiteData', siteData.data)
 
     const queryParams = {
-      lang: app.i18n.locale,
       acf: true,
       sort_order: 'DESC',
-      sort_column: 'post_date'
+      sort_column: 'post_date',
+      lang
     }
 
     const exhibitions = await app.$axios.$get('post-types/exhibitions', {
@@ -91,7 +93,9 @@ export const actions = {
     commit('SetExhibitions', exhibitions)
   },
 
-  async getSiteData({ commit }, lang) {
+  async getSiteData({ commit }, locale) {
+    const lang = locale === 'evk' ? 'et' : locale
+
     const siteData = await this.$axios.get('site-data', {
       params: {
         include_menus: true,
@@ -103,10 +107,10 @@ export const actions = {
     commit('SetSiteData', siteData.data)
 
     const queryParams = {
-      lang: this.$i18n.locale,
       acf: true,
       sort_order: 'DESC',
-      sort_column: 'post_date'
+      sort_column: 'post_date',
+      lang
     }
 
     const exhibitions = await this.$axios.$get('post-types/exhibitions', {

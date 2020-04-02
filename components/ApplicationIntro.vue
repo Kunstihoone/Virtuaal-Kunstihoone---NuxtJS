@@ -10,17 +10,20 @@
       <svg-icon name="kh-logo" />
     </a>
 
-    <div class="application-intro__text">
-      <p>
-        Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
-        ut fermentum massa justo sit amet risus. Aenean lacinia bibendum nulla
-        sed consectetur. Etiam porta sem malesuada magna mollis euismod. Cras
-        justo odio, dapibus ac facilisis in, egestas eget quam. Etiam porta sem
-        malesuada magna mollis euismod.
-      </p>
-    </div>
+    <div class="application-intro__text" v-html="data.content" />
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    data: {
+      type: Object,
+      default: null
+    }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .application-intro {

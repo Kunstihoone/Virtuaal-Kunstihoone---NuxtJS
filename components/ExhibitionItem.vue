@@ -1,11 +1,5 @@
 <template>
-  <div
-    @click="enterExhibition"
-    :class="{
-      'm-disabled': $i18n.locale === 'evk' && !item.acf.in_sign_language
-    }"
-    class="exhibition-item"
-  >
+  <div @click="enterExhibition" class="exhibition-item">
     <responsive-image-ratio
       v-if="data.featured_image"
       :image-data="data.featured_image"
