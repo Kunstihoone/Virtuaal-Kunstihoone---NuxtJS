@@ -20,6 +20,7 @@
       </transition>
 
       <details-layer v-if="detailsLayer" :details-layer="detailsLayer" />
+
       <transition name="fade">
         <splash-layer v-if="getRouteBaseName() !== 'index' && splashState" />
       </transition>
@@ -71,6 +72,7 @@ export default {
   watch: {
     $route() {
       this.$store.commit('SetNavigationButtons', null)
+      this.$store.commit('SetDetailsLayer', null)
     }
   },
   mounted() {

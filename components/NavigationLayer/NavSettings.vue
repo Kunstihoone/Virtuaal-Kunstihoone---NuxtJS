@@ -39,8 +39,9 @@
             {{ $t('full_screen') }}
           </tool-tip>
         </menu-button>
+
         <menu-button
-          @click.native="$store.commit('SetMute', muted ? false : true)"
+          @click.native="handleMute"
           :class="{ 'm-active': muted }"
           icon="icon-mute"
           class="nav-settings__button"
@@ -95,11 +96,10 @@ export default {
   },
   methods: {
     handleFullScreen() {
-      if (document.fullscreenElement) {
-        this.$store.commit('SetFullscreen', true)
-      } else {
-        this.$store.commit('SetFullscreen', false)
-      }
+      this.$store.commit('SetFullscreen', document.fullscreenElement)
+    },
+    handleMute() {
+      this.$store.commit('SetMute', !this.muted)
     },
     toggleFullscreen() {
       if (this.fullscreen) {

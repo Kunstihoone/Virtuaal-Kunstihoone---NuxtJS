@@ -14,7 +14,8 @@ export const state = () => ({
   placeholderImage: null,
   placeholderVisible: false,
   fullscreen: false,
-  muted: false
+  muted: false,
+  mutedRoomAudio: false
 })
 
 export const mutations = {
@@ -58,7 +59,10 @@ export const mutations = {
     Vue.set(state, 'fullscreen', value)
   },
   SetMute(state, value) {
-    Vue.set(state, 'mute', value)
+    Vue.set(state, 'muted', value)
+  },
+  SetMutedRoomAudio(state, value) {
+    Vue.set(state, 'mutedRoomAudio', value)
   }
 }
 

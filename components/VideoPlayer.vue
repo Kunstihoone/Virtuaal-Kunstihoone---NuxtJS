@@ -18,6 +18,26 @@ export default {
       videoStarted: false
     }
   },
+  watch: {
+    '$store.state.muted'() {
+      this.player
+        .setMuted(this.$store.state.muted)
+        .then(function(muted) {})
+        .catch(function(error) {
+          console.log('error on muted', error)
+          // an error occurred
+        })
+    },
+    '$store.state.mutedRoomAudio'() {
+      this.player
+        .setMuted(this.$store.state.mutedRoomAudio)
+        .then(function(muted) {})
+        .catch(function(error) {
+          console.log('error on muted', error)
+          // an error occurred
+        })
+    }
+  },
   mounted() {
     if (this.videoSrc) {
       const videoOptions = {

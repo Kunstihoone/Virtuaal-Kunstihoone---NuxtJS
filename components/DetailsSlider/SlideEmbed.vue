@@ -15,14 +15,13 @@ export default {
     }
   },
   mounted() {
+    this.$store.commit('SetMutedRoomAudio', true)
+
     const videoOptions = {
       url: this.embedUrl,
       width: 1920,
       controls: false,
-      // background: true,
-      // playsinline: true,
       autoplay: true
-      // quality: '1080p'
     }
 
     this.player = new Player(this.$refs.vimeoSlide, videoOptions)
@@ -30,6 +29,17 @@ export default {
     this.player.on('play', () => {
       this.$store.commit('SetAudioPlayerState', false)
     })
+
+    this.player
+      .setMuted(this.$store.state.muted)
+      .then(function(muted) {})
+      .catch(function(error) {
+        console.log('error on muted', error)
+        // an error occurred
+      })
+  },
+  beforeDestroy() {
+    this.$store.commit('SetMutedRoomAudio', false)
   }
 }
 </script>
