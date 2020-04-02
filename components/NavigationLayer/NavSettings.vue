@@ -1,21 +1,42 @@
 <template>
   <nav :class="{ 'm-menu-active': toggleMenu }" class="nav-settings">
-    <div class="nav-settings__buttons">
+    <div class="nav-settings__top-nav">
       <toggle-settings
         @click.native="toggleMenu = !toggleMenu"
         :toggle-state="toggleMenu"
         class="nav-settings__button"
       />
 
-      <transition name="fade">
+      <div class="nav-settings__utility">
         <menu-button
-          v-if="getRouteBaseName() !== 'index'"
           :link-path="localePath('index')"
           icon="icon-home"
           component-element="nuxt-link"
           class="nav-settings__button"
         />
-      </transition>
+
+        <menu-button
+          @click.native="toggleFullscreen"
+          :class="{ 'm-active': fullscreen }"
+          icon="icon-fullscreen"
+          class="nav-settings__utility-button"
+        >
+          <tool-tip class="toggle-audio-guide__tooltip">
+            {{ $t('full_screen') }}
+          </tool-tip>
+        </menu-button>
+
+        <menu-button
+          @click.native="handleMute"
+          :class="{ 'm-active': muted }"
+          icon="icon-mute"
+          class="nav-settings__utility-button"
+        >
+          <tool-tip class="toggle-audio-guide__tooltip">
+            {{ $t('mute') }}
+          </tool-tip>
+        </menu-button>
+      </div>
     </div>
 
     <div class="nav-settings__menu-items">
@@ -28,29 +49,6 @@
       >
         {{ locale.full_name }}
       </nuxt-link>
-      <div class="nav-settings__utility">
-        <menu-button
-          @click.native="toggleFullscreen"
-          :class="{ 'm-active': fullscreen }"
-          icon="icon-fullscreen"
-          class="nav-settings__button"
-        >
-          <tool-tip class="toggle-audio-guide__tooltip">
-            {{ $t('full_screen') }}
-          </tool-tip>
-        </menu-button>
-
-        <menu-button
-          @click.native="handleMute"
-          :class="{ 'm-active': muted }"
-          icon="icon-mute"
-          class="nav-settings__button"
-        >
-          <tool-tip class="toggle-audio-guide__tooltip">
-            {{ $t('mute') }}
-          </tool-tip>
-        </menu-button>
-      </div>
     </div>
   </nav>
 </template>
@@ -155,7 +153,7 @@ $menu-items-spacing: 0.5rem;
   z-index: 10;
 }
 
-.nav-settings__buttons {
+.nav-settings__top-nav {
   margin-bottom: $menu-items-spacing;
   display: flex;
 }
@@ -169,31 +167,46 @@ $menu-items-spacing: 0.5rem;
   flex-direction: column;
 }
 
+.nav-settings__utility-button,
 .nav-settings__menu-item {
-  pointer-events: none;
-  margin-bottom: $menu-items-spacing;
-}
-
-.nav-settings__menu-item,
-.nav-settings__utility {
   opacity: 0;
   transition: 0.2s ease;
-  transform: translateY(-0.6rem);
+  pointer-events: none;
+
+  .m-menu-active & {
+    opacity: 1;
+    pointer-events: auto;
+  }
 
   @for $i from 1 through 6 {
     &:nth-child(#{$i}) {
       transition-delay: #{-0.1 + (0.1 * $i)}s;
     }
   }
+}
+
+.nav-settings__menu-item {
+  margin-bottom: $menu-items-spacing;
+  transform: translateY(-0.6rem);
 
   .m-menu-active & {
-    opacity: 1;
-    pointer-events: auto;
     transform: translateY(0);
   }
 }
 
 .nav-settings__utility {
   display: flex;
+}
+
+.nav-settings__utility-button {
+  transform: translateX(-0.6rem);
+
+  &:not(:last-child) {
+    margin-right: $menu-items-spacing;
+  }
+
+  .m-menu-active & {
+    transform: translateX(0);
+  }
 }
 </style>
