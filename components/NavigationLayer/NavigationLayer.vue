@@ -7,7 +7,10 @@
       class="navigation-layer__bottom-layer"
     />
 
-    <nav-label v-if="detailsImage" :details-image="detailsImage" />
+    <nav-label
+      v-if="getRouteBaseName() !== 'index'"
+      :current-room="currentRoom"
+    />
 
     <audio-guide
       v-if="getRouteBaseName() !== 'index' && $i18n.locale !== 'evk'"
@@ -47,29 +50,6 @@ export default {
   data() {
     return {
       detailsImage: null
-    }
-  },
-  watch: {
-    $route() {
-      this.changeDetailsImage()
-    }
-  },
-  mounted() {
-    this.changeDetailsImage()
-  },
-  methods: {
-    changeDetailsImage() {
-      if (this.$route.params.parent || this.$route.params.child) {
-        if (
-          this.currentRoom &&
-          this.currentRoom.acf &&
-          this.currentRoom.acf.label
-        ) {
-          this.detailsImage = this.currentRoom.acf.label
-        } else {
-          this.detailsImage = null
-        }
-      }
     }
   }
 }

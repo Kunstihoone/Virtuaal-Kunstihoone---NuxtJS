@@ -1,19 +1,21 @@
 <template>
-  <div class="nav-label">
-    <menu-button
-      @click.native="detailsState = !detailsState"
-      :icon="detailsState ? 'icon-close' : 'icon-info'"
-      class="nav-label__toggle"
-    >
-      <tool-tip>
-        {{ $t('details_label') }}
-      </tool-tip>
-    </menu-button>
+  <transition name="fade">
+    <div v-if="currentRoom.acf.label" class="nav-label">
+      <menu-button
+        @click.native="detailsState = !detailsState"
+        :icon="detailsState ? 'icon-close' : 'icon-info'"
+        class="nav-label__toggle"
+      >
+        <tool-tip>
+          {{ $t('details_label') }}
+        </tool-tip>
+      </menu-button>
 
-    <transition name="fade">
-      <label-layer v-if="detailsState" :label-image="detailsImage" />
-    </transition>
-  </div>
+      <transition name="fade">
+        <label-layer v-if="detailsState" :label-image="currentRoom.acf.label" />
+      </transition>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -28,7 +30,7 @@ export default {
     MenuButton
   },
   props: {
-    detailsImage: {
+    currentRoom: {
       type: Object,
       default: null
     }
