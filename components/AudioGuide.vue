@@ -2,7 +2,7 @@
   <div class="audio-guide">
     <transition @enter="playerEnter" @leave="playerLeave" :css="false">
       <audio-player
-        v-if="!placeholderVisible && audioGuideState && activeTrack"
+        v-if="audioGuideState && activeTrack"
         :key="activeTrack.ID"
         :active-track="activeTrack"
         :audio-guide-title="audioGuideTitle"
@@ -14,9 +14,10 @@
       :class="{ 'm-active': audioGuideState }"
       class="toggle-audio-guide button"
     >
-      <tool-tip class="toggle-audio-guide__tooltip">{{
-        $t('audio_guide')
-      }}</tool-tip>
+      <tool-tip class="toggle-audio-guide__tooltip">
+        {{ $t('audio_guide') }}
+      </tool-tip>
+
       <svg-icon :name="audioGuideState ? 'icon-audio' : 'icon-no-audio'" />
     </button>
   </div>

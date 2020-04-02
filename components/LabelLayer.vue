@@ -25,5 +25,6 @@ export default {
   box-shadow: $button-shadow;
   border-radius: 0.6rem;
   overflow: hidden;
+  background-color: $white;
 }
 </style>

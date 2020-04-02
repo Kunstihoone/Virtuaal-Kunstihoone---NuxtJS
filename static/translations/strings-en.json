@@ -3,5 +3,7 @@
   "info": "Info",
   "enter": "Enter",
   "audio_guide": "Audio guide",
-  "digital_guide": "Digital Guide"
+  "digital_guide": "Digital Guide",
+  "mute": "Mute",
+  "full_screen": "Fullscreen"
 }

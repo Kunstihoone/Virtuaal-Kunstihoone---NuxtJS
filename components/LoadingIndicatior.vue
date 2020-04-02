@@ -1,7 +1,7 @@
 <template>
   <div class="loading-indicator">
     <svg-icon
-      v-for="index in 10"
+      v-for="index in 16"
       :key="index"
       name="loader"
       class="loading-indicator__icon"
@@ -12,11 +12,10 @@
 <style lang="scss" scoped>
 .loading-indicator {
   position: absolute;
-  top: 50%;
+  top: 1.4rem;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   display: flex;
-  max-width: rem-calc(300);
   justify-content: center;
   z-index: 4;
 }
@@ -34,17 +33,22 @@
 }
 
 .loading-indicator__icon {
-  width: 10%;
-  height: auto;
+  width: 0.6rem;
+  height: 0.6rem;
   animation-name: pulse;
   animation-duration: 1s;
   animation-iteration-count: infinite;
+
+  @include breakpoint('xlarge') {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
 
   /deep/ path {
     fill: $white;
   }
 
-  @for $i from 1 through 10 {
+  @for $i from 1 through 16 {
     &:nth-child(#{$i}) {
       animation-delay: 0.1s * $i;
     }

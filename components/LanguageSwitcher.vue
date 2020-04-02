@@ -11,25 +11,10 @@
 </template>
 
 <script>
-import ToggleSettings from '~/components/ToggleSettings'
-
 export default {
-  components: {
-    ToggleSettings
-  },
-  data() {
-    return {
-      toggleLanguages: false
-    }
-  },
   computed: {
     availableLocales() {
       return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale)
-    }
-  },
-  watch: {
-    $route() {
-      this.toggleLanguages = false
     }
   }
 }

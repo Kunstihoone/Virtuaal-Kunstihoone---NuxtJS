@@ -15,7 +15,9 @@
         :current-room="currentRoom"
       />
 
-      <loading-indicatior v-if="placeholderVisible" />
+      <transition name="fade">
+        <loading-indicatior v-if="placeholderVisible" />
+      </transition>
 
       <details-layer v-if="detailsLayer" :details-layer="detailsLayer" />
       <transition name="fade">
@@ -140,6 +142,7 @@ p {
 }
 
 .button {
+  display: inline-block;
   height: 2rem;
   background-color: white;
   color: $black;
@@ -151,6 +154,7 @@ p {
   transition: 0.3s ease-in-out;
   cursor: pointer;
 
+  &.m-active,
   &:hover {
     background-color: $gray;
     box-shadow: 0px 2px 10px rgba(84, 84, 84, 0);

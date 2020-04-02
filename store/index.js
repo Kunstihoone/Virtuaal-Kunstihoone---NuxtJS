@@ -12,7 +12,9 @@ export const state = () => ({
   siteData: null,
   splashState: true,
   placeholderImage: null,
-  placeholderVisible: false
+  placeholderVisible: false,
+  fullscreen: false,
+  muted: false
 })
 
 export const mutations = {
@@ -51,6 +53,12 @@ export const mutations = {
   },
   SetPlaceholderVisible(state, value) {
     Vue.set(state, 'placeholderVisible', value)
+  },
+  SetFullscreen(state, value) {
+    Vue.set(state, 'fullscreen', value)
+  },
+  SetMute(state, value) {
+    Vue.set(state, 'mute', value)
   }
 }
 

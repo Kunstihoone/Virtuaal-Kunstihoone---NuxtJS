@@ -5,5 +5,7 @@
   "video_guide": "Videogiid",
   "audio_guide": "Audiogiid",
   "digital_guide": "Digigiid",
-  "details_label": "Etikett"
+  "details_label": "Etikett",
+  "mute": "Vaigista",
+  "full_screen": "Täisekraan"
 }
