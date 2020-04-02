@@ -76,6 +76,19 @@ export const actions = {
       }
     })
     commit('SetSiteData', siteData.data)
+
+    const queryParams = {
+      lang: app.i18n.locale,
+      acf: true,
+      sort_order: 'DESC',
+      sort_column: 'post_date'
+    }
+
+    const exhibitions = await app.$axios.$get('pages', {
+      params: queryParams
+    })
+
+    commit('SetExhibitions', exhibitions)
   },
 
   async getSiteData({ commit }, lang) {

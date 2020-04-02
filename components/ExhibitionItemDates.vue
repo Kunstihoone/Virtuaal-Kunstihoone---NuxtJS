@@ -34,3 +34,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+time {
+  @include font-size(h5);
+}
+</style>

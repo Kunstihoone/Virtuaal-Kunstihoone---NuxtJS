@@ -39,12 +39,10 @@ export default {
         .then(function(muted) {})
         .catch(function(error) {
           console.log('error on muted', error)
-          // an error occurred
         })
     }
   },
   beforeDestroy() {
-    console.log('siit v?')
     this.$store.commit('SetMutedRoomAudio', false)
   }
 }

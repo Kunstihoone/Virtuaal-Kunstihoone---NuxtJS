@@ -2,7 +2,10 @@
   <div class="index-page">
     <application-intro />
 
-    <exhibitions-slider :exhibitions="data" />
+    <exhibitions-slider
+      v-if="$store.state.exhibitions"
+      :exhibitions="$store.state.exhibitions"
+    />
   </div>
 </template>
 
@@ -27,24 +30,6 @@ export default {
           done()
         }
       })
-    }
-  },
-  async asyncData({ store, $axios, app }) {
-    const queryParams = {
-      lang: app.i18n.locale,
-      acf: true,
-      sort_order: 'DESC',
-      sort_column: 'post_date'
-    }
-
-    const data = await $axios.$get('pages', {
-      params: queryParams
-    })
-
-    store.commit('SetExhibitions', data)
-
-    return {
-      data
     }
   }
 }

@@ -73,6 +73,11 @@ export default {
     $route() {
       this.$store.commit('SetNavigationButtons', null)
       this.$store.commit('SetDetailsLayer', null)
+
+      if (this.getRouteBaseName() === 'index') {
+        this.$store.commit('SetPlaceholderImage', null)
+        this.$store.commit('SetPlaceholderVisible', false)
+      }
     }
   },
   mounted() {
@@ -136,6 +141,28 @@ body {
 
 p {
   margin-bottom: 1rem;
+}
+
+h1 {
+  @include font-size(h1);
+}
+
+h2 {
+  @include font-size(h2);
+}
+
+h3 {
+  @include font-size(h3);
+}
+h4 {
+  @include font-size(h4);
+}
+h5 {
+  @include font-size(h5);
+}
+
+h6 {
+  @include font-size(h6);
 }
 
 .main {

@@ -41,9 +41,10 @@
 }
 
 .application-intro__text {
-  @include font-size(h2);
+  @include font-size(h4);
 
-  text-align: center;
   margin-bottom: 2rem;
+  column-count: 2;
+  column-gap: 1rem;
 }
 </style>
