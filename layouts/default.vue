@@ -10,12 +10,7 @@
         :placeholder-image="placeholderImage"
       />
 
-      <transition @enter="playerEnter" @leave="playerLeave" :css="false">
-        <room-navigation
-          v-if="navigationButtons"
-          :navigation-buttons="navigationButtons"
-        />
-      </transition>
+      <room-navigation :current-room="currentRoom" />
 
       <loading-indicatior v-if="placeholderVisible" />
 

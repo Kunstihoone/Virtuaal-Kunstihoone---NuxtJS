@@ -1,6 +1,6 @@
 <template>
   <nav class="room-navigation">
-    <template v-for="(button, index) in navigationButtons">
+    <template v-for="(button, index) in currentRoom.acf.buttons">
       <button
         v-if="button.related_item.is_detail"
         :style="{
@@ -52,8 +52,8 @@ export default {
     NavigationButton
   },
   props: {
-    navigationButtons: {
-      type: Array,
+    currentRoom: {
+      type: Object,
       default: null
     }
   }
@@ -62,7 +62,7 @@ export default {
 
 <style lang="scss" scoped>
 .room-navigation {
-  opacity: 0;
+  // opacity: 0;
   width: 100%;
   height: 100%;
   position: absolute;

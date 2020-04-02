@@ -51,7 +51,11 @@ export default {
         this.buttonData.related_item.post_name
       )
 
-      if (room.featured_image && room.featured_image.sizes.large) {
+      if (
+        !this.$store.state.placeholderVisible &&
+        room.featured_image &&
+        room.featured_image.sizes.large
+      ) {
         this.$store.commit(
           'SetPlaceholderImage',
           room.featured_image.sizes.large
