@@ -18,6 +18,14 @@ export default {
       type: Object,
       default: null
     }
+  },
+  watch: {
+    '$store.state.muted'() {
+      this.$refs.player.muted = this.$store.state.muted
+    },
+    '$store.state.mutedRoomAudio'() {
+      this.$refs.player.muted = this.$store.state.mutedRoomAudio
+    }
   }
 }
 </script>

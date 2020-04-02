@@ -30,15 +30,21 @@ export default {
       this.$store.commit('SetAudioPlayerState', false)
     })
 
-    this.player
-      .setMuted(this.$store.state.muted)
-      .then(function(muted) {})
-      .catch(function(error) {
-        console.log('error on muted', error)
-        // an error occurred
-      })
+    this.videoSetMuted(this.$store.state.muted)
+  },
+  methods: {
+    videoSetMuted(state) {
+      this.player
+        .setMuted(state)
+        .then(function(muted) {})
+        .catch(function(error) {
+          console.log('error on muted', error)
+          // an error occurred
+        })
+    }
   },
   beforeDestroy() {
+    console.log('siit v?')
     this.$store.commit('SetMutedRoomAudio', false)
   }
 }

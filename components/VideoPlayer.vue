@@ -20,22 +20,10 @@ export default {
   },
   watch: {
     '$store.state.muted'() {
-      this.player
-        .setMuted(this.$store.state.muted)
-        .then(function(muted) {})
-        .catch(function(error) {
-          console.log('error on muted', error)
-          // an error occurred
-        })
+      this.videoSetMuted(this.$store.state.muted)
     },
     '$store.state.mutedRoomAudio'() {
-      this.player
-        .setMuted(this.$store.state.mutedRoomAudio)
-        .then(function(muted) {})
-        .catch(function(error) {
-          console.log('error on muted', error)
-          // an error occurred
-        })
+      this.videoSetMuted(this.$store.state.mutedRoomAudio)
     }
   },
   mounted() {
@@ -53,6 +41,10 @@ export default {
       this.player = new Player('video-wrapper', videoOptions)
 
       document.addEventListener('keydown', this.addKeyEvent)
+
+      if (this.$store.state.muted || this.$store.state.mutedRoomAudio) {
+        this.videoSetMuted(true)
+      }
 
       this.player.on('timeupdate', () => {
         if (!this.videoStarted) {
@@ -90,6 +82,15 @@ export default {
     },
     addKeyEvent(event) {
       if (event.keyCode === 32) this.handleVideoState() // space
+    },
+    videoSetMuted(state) {
+      this.player
+        .setMuted(state)
+        .then(function(muted) {})
+        .catch(function(error) {
+          console.log('error on muted', error)
+          // an error occurred
+        })
     }
   }
 }
