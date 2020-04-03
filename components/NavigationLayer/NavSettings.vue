@@ -4,7 +4,7 @@
       <menu-button
         @click.native="toggleMenu = !toggleMenu"
         :icon="toggleMenu ? 'icon-close' : 'icon-settings'"
-        class="nav-settings__button"
+        class="nav-settings__toggle"
       >
         <tool-tip>
           {{ $t('menu') }}
@@ -37,7 +37,7 @@
         <menu-button
           @click.native="handleMute"
           :class="{ 'm-active': mutedRoomAudio }"
-          icon="icon-mute"
+          :icon="mutedRoomAudio ? 'icon-muted' : 'icon-mute'"
           class="nav-settings__utility-button"
         >
           <tool-tip>
@@ -158,8 +158,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$menu-items-spacing: 0.5rem;
-
 .nav-settings {
   position: absolute;
   top: 1rem;
@@ -174,6 +172,7 @@ $menu-items-spacing: 0.5rem;
   display: flex;
 }
 
+.nav-settings__toggle,
 .nav-settings__button {
   margin-right: $menu-items-spacing;
 }
@@ -197,6 +196,21 @@ $menu-items-spacing: 0.5rem;
   &:hover {
     /deep/ .tooltip {
       transform: translateX(-50%) translateY(0.4rem);
+      opacity: 1;
+    }
+  }
+}
+
+.nav-settings__toggle {
+  /deep/ .tooltip {
+    top: 100%;
+    left: 0;
+    transform: translateY(0.2rem);
+  }
+
+  &:hover {
+    /deep/ .tooltip {
+      transform: translateY(0.4rem);
       opacity: 1;
     }
   }

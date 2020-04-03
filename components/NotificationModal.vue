@@ -1,0 +1,62 @@
+<template>
+  <div class="notification-modal">
+    <button
+      @click="$emit('closeNotification')"
+      class="notification-modal__close"
+    >
+      <svg-icon name="icon-close" />
+    </button>
+
+    <div class="notification-modal__content" v-html="notification" />
+  </div>
+</template>
+
+<script>
+import MenuButton from '~/components/MenuButton'
+
+export default {
+  components: {
+    MenuButton
+  },
+  props: {
+    notification: {
+      type: String,
+      default: null
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.notification-modal {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  width: rem-calc(400);
+  box-shadow: $button-shadow;
+  background-color: $kh-yellow;
+  border-radius: 0.6rem;
+  overflow: hidden;
+  padding: 1rem;
+  margin-top: $menu-items-spacing;
+  margin-bottom: $menu-items-spacing;
+  overflow: scroll;
+}
+
+.notification-modal__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+
+  svg {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+}
+
+.notification-modal__content {
+  /deep/:last-child {
+    margin-bottom: 0;
+  }
+}
+</style>

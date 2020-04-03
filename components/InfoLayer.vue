@@ -85,7 +85,7 @@ export default {
   },
   created() {
     this.exhibitionData = this.$store.getters.getSingleExhibition(
-      this.$store.state.currentExhibition
+      this.$route.params.exhibition
     )
   }
 }
@@ -96,7 +96,6 @@ export default {
   position: absolute;
   top: 100%;
   right: 0;
-  margin-bottom: 1rem;
   width: rem-calc(400);
   height: rem-calc(400);
   box-shadow: $button-shadow;
@@ -104,7 +103,8 @@ export default {
   overflow: hidden;
   background-color: $white;
   padding: 1rem;
-  margin-top: 1rem;
+  margin-top: $menu-items-spacing;
+  margin-bottom: $menu-items-spacing;
   overflow: scroll;
 
   /deep/ p {

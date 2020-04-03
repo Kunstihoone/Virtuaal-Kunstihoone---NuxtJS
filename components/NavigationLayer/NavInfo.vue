@@ -1,6 +1,10 @@
 <template>
   <div class="nav-info">
-    <button @click="layerState = !layerState" class="button nav-info__toggle">
+    <button
+      @click="layerState = !layerState"
+      :class="{ 'm-active': layerState }"
+      class="button nav-info__toggle"
+    >
       Info
     </button>
 

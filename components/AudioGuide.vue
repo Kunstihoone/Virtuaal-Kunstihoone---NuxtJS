@@ -140,7 +140,7 @@ export default {
   height: 2rem;
   padding: 0.4rem;
   border-radius: 50%;
-  margin-left: 0.4rem;
+  margin-left: $menu-items-spacing;
 
   svg {
     width: 100%;

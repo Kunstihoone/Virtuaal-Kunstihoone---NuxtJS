@@ -6,6 +6,21 @@
       v-if="$store.getters.getExhibitions"
       :exhibitions="$store.getters.getExhibitions"
     />
+
+    <transition name="fade">
+      <notification-modal
+        v-if="
+          displayNotification &&
+            $store.state.siteData.options &&
+            $store.state.siteData.options.notifications &&
+            $store.state.siteData.options.notifications[$i18n.locale]
+        "
+        :notification="
+          $store.state.siteData.options.notifications[$i18n.locale]
+        "
+        @closeNotification="displayNotification = false"
+      />
+    </transition>
   </div>
 </template>
 
@@ -13,11 +28,18 @@
 import anime from 'animejs'
 import ApplicationIntro from '~/components/ApplicationIntro'
 import ExhibitionsSlider from '~/components/ExhibitionsSlider'
+import NotificationModal from '~/components/NotificationModal'
 
 export default {
   components: {
     ApplicationIntro,
-    ExhibitionsSlider
+    ExhibitionsSlider,
+    NotificationModal
+  },
+  data() {
+    return {
+      displayNotification: true
+    }
   },
   transition: {
     leave(el, done) {

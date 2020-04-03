@@ -27,7 +27,11 @@
     </ratio-container>
 
     <background-audio
-      v-if="currentRoom.acf.audio_track"
+      v-if="
+        getRouteBaseName() !== 'index' &&
+          currentRoom &&
+          currentRoom.acf.audio_track
+      "
       :key="currentRoom.acf.audio_track.url"
       :audio-data="currentRoom.acf.audio_track"
     />
@@ -161,6 +165,8 @@ h2 {
 
 h3 {
   @include font-size(h3);
+
+  margin-bottom: 1rem;
 }
 h4 {
   @include font-size(h4);

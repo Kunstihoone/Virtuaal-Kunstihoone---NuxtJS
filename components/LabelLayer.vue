@@ -20,7 +20,7 @@ export default {
   position: absolute;
   bottom: 100%;
   left: 0;
-  margin-bottom: 1rem;
+  margin-bottom: $menu-items-spacing;
   width: rem-calc(320);
   box-shadow: $button-shadow;
   border-radius: 0.6rem;
