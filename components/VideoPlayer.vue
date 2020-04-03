@@ -19,9 +19,6 @@ export default {
     }
   },
   watch: {
-    '$store.state.muted'() {
-      this.videoSetMuted(this.$store.state.muted)
-    },
     '$store.state.mutedRoomAudio'() {
       this.videoSetMuted(this.$store.state.mutedRoomAudio)
     }
@@ -42,9 +39,8 @@ export default {
 
       document.addEventListener('keydown', this.addKeyEvent)
 
-      if (this.$store.state.muted || this.$store.state.mutedRoomAudio) {
-        this.videoSetMuted(true)
-      }
+      // Mute video, if mute toggle from settings
+      this.videoSetMuted(this.$store.state.mutedRoomAudio)
 
       this.player.on('timeupdate', () => {
         if (!this.videoStarted) {

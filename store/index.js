@@ -8,7 +8,6 @@ export const state = () => ({
   detailsData: null,
   exhibitions: null,
   fullscreen: false,
-  muted: false,
   mutedRoomAudio: false,
   navigationButtons: null,
   placeholderImage: null,
@@ -40,9 +39,6 @@ export const mutations = {
   },
   SetFullscreen(state, value) {
     Vue.set(state, 'fullscreen', value)
-  },
-  SetMute(state, value) {
-    Vue.set(state, 'muted', value)
   },
   SetMutedRoomAudio(state, value) {
     Vue.set(state, 'mutedRoomAudio', value)

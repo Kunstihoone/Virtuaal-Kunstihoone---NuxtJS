@@ -20,9 +20,6 @@ export default {
     }
   },
   watch: {
-    '$store.state.muted'() {
-      this.$refs.player.muted = this.$store.state.muted
-    },
     '$store.state.mutedRoomAudio'() {
       this.$refs.player.muted = this.$store.state.mutedRoomAudio
     }

@@ -14,14 +14,21 @@ export default {
       default: null
     }
   },
+  data() {
+    return {
+      initialMutedState: null
+    }
+  },
   mounted() {
+    this.initialMutedState = this.$store.state.mutedRoomAudio
     this.$store.commit('SetMutedRoomAudio', true)
 
     const videoOptions = {
       url: this.embedUrl,
       width: 1920,
       controls: false,
-      autoplay: true
+      autoplay: true,
+      loop: true
     }
 
     this.player = new Player(this.$refs.vimeoSlide, videoOptions)
@@ -29,22 +36,9 @@ export default {
     this.player.on('play', () => {
       this.$store.commit('SetAudioPlayerState', false)
     })
-
-    this.videoSetMuted(this.$store.state.muted)
   },
   beforeDestroy() {
-    this.$store.commit('SetMutedRoomAudio', false)
-  },
-  methods: {
-    videoSetMuted(state) {
-      this.player
-        .setMuted(state)
-        .then(function(muted) {})
-        .catch(function(error) {
-          // eslint-disable-next-line
-          console.log('error on muted', error)
-        })
-    }
+    this.$store.commit('SetMutedRoomAudio', this.initialMutedState)
   }
 }
 </script>

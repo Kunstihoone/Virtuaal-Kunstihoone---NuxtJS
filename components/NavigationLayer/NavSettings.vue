@@ -36,7 +36,7 @@
 
         <menu-button
           @click.native="handleMute"
-          :class="{ 'm-active': muted }"
+          :class="{ 'm-active': mutedRoomAudio }"
           icon="icon-mute"
           class="nav-settings__utility-button"
         >
@@ -81,7 +81,7 @@ export default {
   computed: {
     ...mapState({
       fullscreen: (state) => state.fullscreen,
-      muted: (state) => state.muted
+      mutedRoomAudio: (state) => state.mutedRoomAudio
     }),
     availableLocales() {
       return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale)
@@ -113,7 +113,7 @@ export default {
       this.$store.commit('SetFullscreen', document.fullscreenElement)
     },
     handleMute() {
-      this.$store.commit('SetMute', !this.muted)
+      this.$store.commit('SetMutedRoomAudio', !this.mutedRoomAudio)
     },
     toggleFullscreen() {
       if (this.fullscreen) {

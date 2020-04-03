@@ -46,7 +46,7 @@ export default {
         this.localePath({
           name: 'exhibition-parent',
           params: {
-            exhibition: this.data.acf.post_type_slug,
+            exhibition: this.data.acf.entry_room.post_type,
             parent: this.data.acf.entry_room.post_name
           }
         })
