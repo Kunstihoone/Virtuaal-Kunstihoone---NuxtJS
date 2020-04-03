@@ -23,6 +23,9 @@ export default {
     '$store.state.mutedRoomAudio'() {
       this.$refs.player.muted = this.$store.state.mutedRoomAudio
     }
+  },
+  mounted() {
+    this.$refs.player.muted = this.$store.state.mutedRoomAudio
   }
 }
 </script>

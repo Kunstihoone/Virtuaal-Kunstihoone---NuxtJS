@@ -7,7 +7,7 @@
     />
 
     <background-audio
-      v-if="data.acf.audio_track && playerLoaded && !audioGuideState"
+      v-if="data.acf.audio_track"
       :audio-data="data.acf.audio_track"
     />
   </div>
