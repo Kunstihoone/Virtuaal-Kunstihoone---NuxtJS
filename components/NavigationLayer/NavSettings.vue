@@ -1,11 +1,15 @@
 <template>
   <nav :class="{ 'm-menu-active': toggleMenu }" class="nav-settings">
     <div class="nav-settings__top-nav">
-      <toggle-settings
+      <menu-button
         @click.native="toggleMenu = !toggleMenu"
-        :toggle-state="toggleMenu"
+        :icon="toggleMenu ? 'icon-close' : 'icon-settings'"
         class="nav-settings__button"
-      />
+      >
+        <tool-tip>
+          {{ $t('menu') }}
+        </tool-tip>
+      </menu-button>
 
       <div class="nav-settings__utility">
         <menu-button
@@ -13,7 +17,11 @@
           icon="icon-home"
           component-element="nuxt-link"
           class="nav-settings__button"
-        />
+        >
+          <tool-tip>
+            {{ $t('frontpage') }}
+          </tool-tip>
+        </menu-button>
 
         <menu-button
           @click.native="toggleFullscreen"
@@ -21,7 +29,7 @@
           icon="icon-fullscreen"
           class="nav-settings__utility-button"
         >
-          <tool-tip class="toggle-audio-guide__tooltip">
+          <tool-tip>
             {{ $t('full_screen') }}
           </tool-tip>
         </menu-button>
@@ -32,8 +40,8 @@
           icon="icon-mute"
           class="nav-settings__utility-button"
         >
-          <tool-tip class="toggle-audio-guide__tooltip">
-            {{ $t('mute') }}
+          <tool-tip>
+            {{ $t('mute_bg') }}
           </tool-tip>
         </menu-button>
       </div>
@@ -55,14 +63,12 @@
 
 <script>
 import { mapState } from 'vuex'
-import ToggleSettings from '~/components/ToggleSettings'
 import LanguageSwitcher from '~/components/LanguageSwitcher'
 import MenuButton from '~/components/MenuButton'
 import ToolTip from '~/components/ToolTip'
 
 export default {
   components: {
-    ToggleSettings,
     LanguageSwitcher,
     MenuButton,
     ToolTip
@@ -178,6 +184,25 @@ $menu-items-spacing: 0.5rem;
 }
 
 .nav-settings__utility-button,
+.nav-settings__button {
+  position: relative;
+  z-index: 12;
+
+  /deep/ .tooltip {
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(0.2rem);
+  }
+
+  &:hover {
+    /deep/ .tooltip {
+      transform: translateX(-50%) translateY(0.4rem);
+      opacity: 1;
+    }
+  }
+}
+
+.nav-settings__utility-button,
 .nav-settings__menu-item {
   opacity: 0;
   transition: 0.2s ease;
@@ -200,6 +225,7 @@ $menu-items-spacing: 0.5rem;
 .nav-settings__menu-item {
   margin-bottom: $menu-items-spacing;
   transform: translateY(-0.6rem);
+  z-index: 10;
 
   .m-menu-active & {
     transform: translateY(0);

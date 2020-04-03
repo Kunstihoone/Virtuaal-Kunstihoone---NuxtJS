@@ -1,10 +1,10 @@
 <template>
-  <div class="piece-audio">
+  <div class="background-audio">
     <audio
       ref="player"
       :src="audioData.url"
       crossorigin="anonymous"
-      class="piece-audio__player"
+      class="background-audio__player"
       autoplay
       controls
     />
@@ -31,7 +31,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.piece-audio__player {
+.background-audio__player {
   display: none;
 }
 </style>

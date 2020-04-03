@@ -50,11 +50,15 @@ export default {
   mounted() {
     this.fetchDetails()
   },
+  beforeDestroy() {
+    this.$store.commit('SetDetailsData', null)
+  },
   methods: {
     async fetchDetails() {
       const data = await this.$axios.$get(
         `post-types/${this.$route.params.exhibition}/${this.detailsLayer}`
       )
+      this.$store.commit('SetDetailsData', data)
       this.modalData = data
     }
   }

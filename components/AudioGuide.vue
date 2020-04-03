@@ -157,7 +157,6 @@ export default {
 
   &:hover {
     .toggle-audio-guide__tooltip {
-      // transform: translate(-50%, -0.4rem);
       transform: translateY(-0.4rem);
 
       opacity: 1;
@@ -166,12 +165,8 @@ export default {
 }
 
 .toggle-audio-guide__tooltip {
-  position: absolute;
   right: 0%;
   bottom: 100%;
   transform: translateY(-0.2rem);
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.2s ease;
 }
 </style>

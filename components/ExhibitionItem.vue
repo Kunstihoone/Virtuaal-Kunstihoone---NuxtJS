@@ -47,7 +47,7 @@ export default {
           name: 'exhibition-parent',
           params: {
             exhibition: this.data.acf.post_type_slug,
-            parent: 'fuajee'
+            parent: this.data.acf.entry_room.post_name
           }
         })
       )

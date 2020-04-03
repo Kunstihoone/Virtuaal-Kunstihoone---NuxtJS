@@ -5,5 +5,8 @@
   "audio_guide": "Audio guide",
   "digital_guide": "Digital Guide",
   "mute": "Mute",
+  "mute_bg": "Mute background",
+  "frontpage": "Frontpage",
+  "menu": "Menu",
   "full_screen": "Fullscreen"
 }

@@ -32,18 +32,19 @@ export default {
 
     this.videoSetMuted(this.$store.state.muted)
   },
+  beforeDestroy() {
+    this.$store.commit('SetMutedRoomAudio', false)
+  },
   methods: {
     videoSetMuted(state) {
       this.player
         .setMuted(state)
         .then(function(muted) {})
         .catch(function(error) {
+          // eslint-disable-next-line
           console.log('error on muted', error)
         })
     }
-  },
-  beforeDestroy() {
-    this.$store.commit('SetMutedRoomAudio', false)
   }
 }
 </script>

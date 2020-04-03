@@ -6,7 +6,7 @@
       @playerLoaded="onPlayerLoaded"
     />
 
-    <piece-audio
+    <background-audio
       v-if="data.acf.audio_track && playerLoaded && !audioGuideState"
       :audio-data="data.acf.audio_track"
     />
@@ -15,12 +15,12 @@
 
 <script>
 import { mapState } from 'vuex'
-import PieceAudio from '~/components/PieceAudio'
+import BackgroundAudio from '~/components/BackgroundAudio'
 import VideoPlayer from '~/components/VideoPlayer'
 
 export default {
   components: {
-    PieceAudio,
+    BackgroundAudio,
     VideoPlayer
   },
   props: {

@@ -88,8 +88,8 @@ export default {
         .setMuted(state)
         .then(function(muted) {})
         .catch(function(error) {
+          // eslint-disable-next-line
           console.log('error on muted', error)
-          // an error occurred
         })
     }
   }
