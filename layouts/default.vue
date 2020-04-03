@@ -25,12 +25,19 @@
         <splash-layer v-if="getRouteBaseName() !== 'index' && splashState" />
       </transition>
     </ratio-container>
+
+    <background-audio
+      v-if="currentRoom.acf.audio_track"
+      :key="currentRoom.acf.audio_track.url"
+      :audio-data="currentRoom.acf.audio_track"
+    />
   </main>
 </template>
 
 <script>
 import anime from 'animejs'
 import { mapState } from 'vuex'
+import BackgroundAudio from '~/components/BackgroundAudio'
 import NavigationLayer from '~/components/NavigationLayer/NavigationLayer'
 import DetailsLayer from '~/components/DetailsLayer'
 import SplashLayer from '~/components/SplashLayer'
@@ -41,6 +48,7 @@ import LoadingIndicatior from '~/components/LoadingIndicatior'
 
 export default {
   components: {
+    BackgroundAudio,
     NavigationLayer,
     DetailsLayer,
     SplashLayer,

@@ -5,22 +5,15 @@
       :video-src="data.acf.video"
       @playerLoaded="onPlayerLoaded"
     />
-
-    <background-audio
-      v-if="data.acf.audio_track"
-      :audio-data="data.acf.audio_track"
-    />
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import BackgroundAudio from '~/components/BackgroundAudio'
 import VideoPlayer from '~/components/VideoPlayer'
 
 export default {
   components: {
-    BackgroundAudio,
     VideoPlayer
   },
   props: {
