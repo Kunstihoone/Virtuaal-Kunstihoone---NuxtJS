@@ -10,14 +10,14 @@
         :placeholder-image="placeholderImage"
       />
 
-      <room-navigation
-        v-if="getRouteBaseName() !== 'index'"
-        :current-room="currentRoom"
-      />
-
-      <transition name="fade">
-        <loading-indicatior v-if="placeholderVisible" />
+      <transition name="fast-fade">
+        <room-navigation
+          v-if="getRouteBaseName() !== 'index'"
+          :current-room="currentRoom"
+        />
       </transition>
+
+      <loading-indicatior v-if="placeholderVisible" />
 
       <details-layer v-if="detailsLayer" :details-layer="detailsLayer" />
 
@@ -35,6 +35,8 @@
       :key="currentRoom.acf.audio_track.url"
       :audio-data="currentRoom.acf.audio_track"
     />
+
+    <portrait-notification v-if="isWindowPortrait" />
   </main>
 </template>
 
@@ -49,6 +51,7 @@ import RatioContainer from '~/components/RatioContainer'
 import RoomNavigation from '~/components/RoomNavigation'
 import PlaceholderImage from '~/components/PlaceholderImage'
 import LoadingIndicatior from '~/components/LoadingIndicatior'
+import PortraitNotification from '~/components/PortraitNotification'
 
 export default {
   components: {
@@ -59,7 +62,13 @@ export default {
     RatioContainer,
     RoomNavigation,
     PlaceholderImage,
-    LoadingIndicatior
+    LoadingIndicatior,
+    PortraitNotification
+  },
+  data() {
+    return {
+      isWindowPortrait: false
+    }
   },
   computed: {
     ...mapState({
@@ -96,8 +105,16 @@ export default {
     window.onpopstate = (event) => {
       this.$store.commit('SetPlaceholderImage', null)
     }
+    this.checkWindowPortrait()
+    window.addEventListener('resize', this.checkWindowPortrait)
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.checkWindowPortrait)
   },
   methods: {
+    checkWindowPortrait() {
+      this.isWindowPortrait = window.innerHeight > window.innerWidth
+    },
     playerEnter(el, done) {
       anime({
         targets: el,
@@ -186,16 +203,21 @@ h6 {
 
 .button {
   display: inline-block;
-  height: 2rem;
+  height: $nav-button-small;
   background-color: white;
   color: $black;
-  padding: 0.5rem 0.8rem;
+  padding: 0.3rem 0.6rem;
   border-radius: 0.6rem;
   font-size: 1rem;
   box-shadow: $button-shadow;
   line-height: 1;
   transition: 0.3s ease-in-out;
   cursor: pointer;
+
+  @include breakpoint('large') {
+    height: $nav-button-medium;
+    padding: 0.5rem 0.8rem;
+  }
 
   &.m-active,
   &:hover {
@@ -213,11 +235,21 @@ h6 {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.5s;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .fade-enter,
 .fade-leave-to {
+  opacity: 0;
+}
+
+.fast-fade-enter-active,
+.fast-fade-leave-active {
+  transition: opacity 0.2s ease-in-out;
+}
+
+.fast-fade-enter,
+.fast-fade-leave-to {
   opacity: 0;
 }
 </style>

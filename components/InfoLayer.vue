@@ -103,9 +103,14 @@ export default {
   overflow: hidden;
   background-color: $white;
   padding: 1rem;
-  margin-top: $menu-items-spacing;
-  margin-bottom: $menu-items-spacing;
+  margin-top: $menu-items-spacing-small;
+  margin-bottom: $menu-items-spacing-small;
   overflow: scroll;
+
+  @include breakpoint('large') {
+    margin-top: $menu-items-spacing-medium;
+    margin-bottom: $menu-items-spacing-medium;
+  }
 
   /deep/ p {
     line-height: $body-line-height;

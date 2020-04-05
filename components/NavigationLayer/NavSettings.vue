@@ -168,13 +168,21 @@ export default {
 }
 
 .nav-settings__top-nav {
-  margin-bottom: $menu-items-spacing;
+  margin-bottom: $menu-items-spacing-small;
   display: flex;
+
+  @include breakpoint('large') {
+    margin-bottom: $menu-items-spacing-medium;
+  }
 }
 
 .nav-settings__toggle,
 .nav-settings__button {
-  margin-right: $menu-items-spacing;
+  margin-right: $menu-items-spacing-small;
+
+  @include breakpoint('large') {
+    margin-right: $menu-items-spacing-medium;
+  }
 }
 
 .nav-settings__menu-items {
@@ -237,9 +245,13 @@ export default {
 }
 
 .nav-settings__menu-item {
-  margin-bottom: $menu-items-spacing;
+  margin-bottom: $menu-items-spacing-small;
   transform: translateY(-0.6rem);
   z-index: 10;
+
+  @include breakpoint('large') {
+    margin-bottom: $menu-items-spacing-medium;
+  }
 
   .m-menu-active & {
     transform: translateY(0);
@@ -254,7 +266,11 @@ export default {
   transform: translateX(-0.6rem);
 
   &:not(:last-child) {
-    margin-right: $menu-items-spacing;
+    margin-right: $menu-items-spacing-small;
+
+    @include breakpoint('large') {
+      margin-right: $menu-items-spacing-medium;
+    }
   }
 
   .m-menu-active & {

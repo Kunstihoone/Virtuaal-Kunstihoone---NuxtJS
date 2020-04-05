@@ -93,7 +93,11 @@ export default {
 // }
 
 .nav-label__toggle {
-  margin-right: $menu-items-spacing;
+  margin-right: $menu-items-spacing-small;
+
+  @include breakpoint('large') {
+    margin-right: $menu-items-spacing-medium;
+  }
 
   &:hover {
     /deep/ .tooltip {

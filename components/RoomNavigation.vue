@@ -62,7 +62,6 @@ export default {
 
 <style lang="scss" scoped>
 .room-navigation {
-  // opacity: 0;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -77,35 +76,51 @@ export default {
   border-style: solid;
   border-color: white;
   border-width: 0.2rem;
-  width: 1rem;
-  height: 1rem;
-  background: none;
+  width: $nav-button-small;
+  height: $nav-button-small;
+  // background: none;
   transform: translate(-50%, -50%) scale(1);
   transition: transform $transition-cubic-bezier, background-color 0.2s ease;
   box-shadow: $button-shadow;
+  background-color: $white;
+
+  @include breakpoint('large') {
+    background-color: transparent;
+    width: $nav-button-medium / 2;
+    height: $nav-button-medium / 2;
+  }
 
   &:after {
-    @include absolute-center;
+    @include breakpoint('large') {
+      @include absolute-center;
 
-    content: '';
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
+      content: '';
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+    }
   }
 
   svg {
     @include absolute-center;
 
-    opacity: 0;
-    width: 0.6rem;
-    height: 0.6rem;
-    transition: opacity 0.4s ease;
+    width: $nav-button-svg-small;
+    height: $nav-button-svg-small;
+
+    @include breakpoint('large') {
+      width: $nav-button-svg-medium / 2;
+      height: $nav-button-svg-medium / 2;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
   }
 
   &:hover {
-    transform: translate(-50%, -50%) scale(2);
-    background-color: white;
-    border-color: transparent;
+    @include breakpoint('large') {
+      transform: translate(-50%, -50%) scale(2);
+      background-color: white;
+      border-color: transparent;
+    }
 
     svg {
       opacity: 1;

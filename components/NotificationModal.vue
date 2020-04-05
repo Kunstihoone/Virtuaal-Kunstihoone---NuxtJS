@@ -7,7 +7,7 @@
       <svg-icon name="icon-close" />
     </button>
 
-    <div class="notification-modal__content" v-html="notification" />
+    <div v-html="notification" class="notification-modal__content" />
   </div>
 </template>
 
@@ -38,9 +38,14 @@ export default {
   border-radius: 0.6rem;
   overflow: hidden;
   padding: 1rem;
-  margin-top: $menu-items-spacing;
-  margin-bottom: $menu-items-spacing;
+  margin-top: $menu-items-spacing-small;
+  margin-bottom: $menu-items-spacing-small;
   overflow: scroll;
+
+  @include breakpoint('large') {
+    margin-top: $menu-items-spacing-medium;
+    margin-bottom: $menu-items-spacing-medium;
+  }
 }
 
 .notification-modal__close {

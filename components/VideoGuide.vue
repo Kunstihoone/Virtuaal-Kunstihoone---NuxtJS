@@ -13,16 +13,16 @@
       />
     </transition>
 
-    <button
-      @click="$store.commit('SetAudiGuideState', !audioGuideState)"
+    <menu-button
+      @click-native="$store.commit('SetAudiGuideState', !audioGuideState)"
       :class="{ 'm-active': audioGuideState }"
-      class="toggle-audio-guide button"
+      :icon="audioGuideState ? 'icon-close' : 'icon-video'"
+      class="toggle-audio-guide"
     >
       <tool-tip class="toggle-audio-guide__tooltip">
         {{ $t('video_guide') }}
       </tool-tip>
-      <svg-icon :name="audioGuideState ? 'icon-close' : 'icon-video'" />
-    </button>
+    </menu-button>
   </div>
 </template>
 
@@ -30,11 +30,13 @@
 import { mapState } from 'vuex'
 import anime from 'animejs'
 import SmallVideoPlayer from '~/components/SmallVideoPlayer'
+import MenuButton from '~/components/MenuButton'
 import ToolTip from '~/components/ToolTip'
 
 export default {
   components: {
     SmallVideoPlayer,
+    MenuButton,
     ToolTip
   },
   props: {
@@ -125,15 +127,13 @@ export default {
 }
 
 .toggle-audio-guide {
-  width: 2rem;
-  height: 2rem;
-  padding: 0.4rem;
-  border-radius: 50%;
-  margin-left: $menu-items-spacing;
+  margin-left: $menu-items-spacing-small;
+
+  @include breakpoint('large') {
+    margin-left: $menu-items-spacing-medium;
+  }
 
   svg {
-    width: 100%;
-    height: 100%;
     opacity: 0.3;
     transition: 0.3s ease;
   }

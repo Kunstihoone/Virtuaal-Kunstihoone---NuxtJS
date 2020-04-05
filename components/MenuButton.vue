@@ -31,16 +31,26 @@ export default {
 <style lang="scss" scoped>
 .menu-button {
   position: relative;
-  width: 2rem;
-  height: 2rem;
+  width: $nav-button-small;
+  height: $nav-button-small;
   border-radius: 50%;
   padding: 0;
+
+  @include breakpoint('large') {
+    width: $nav-button-medium;
+    height: $nav-button-medium;
+  }
 
   svg {
     @include absolute-center;
 
-    width: 1.2rem;
-    height: 1.2rem;
+    width: $nav-button-svg-small;
+    height: $nav-button-svg-small;
+
+    @include breakpoint('large') {
+      width: $nav-button-svg-medium;
+      height: $nav-button-svg-medium;
+    }
   }
 }
 </style>

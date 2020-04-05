@@ -20,11 +20,15 @@ export default {
   position: absolute;
   bottom: 100%;
   left: 0;
-  margin-bottom: $menu-items-spacing;
+  margin-bottom: $menu-items-spacing-small;
   width: rem-calc(320);
   box-shadow: $button-shadow;
   border-radius: 0.6rem;
   overflow: hidden;
   background-color: $white;
+
+  @include breakpoint('large') {
+    margin-bottom: $menu-items-spacing-medium;
+  }
 }
 </style>

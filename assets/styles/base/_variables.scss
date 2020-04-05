@@ -76,4 +76,10 @@ $block-spacing-medium: map-get($block-spacing, medium);
 $button-shadow: 0px 2px 10px rgba(84, 84, 84, 0.25);
 $transition-cubic-bezier: 0.3s cubic-bezier(0.22, 0.68, 0, 1.71);
 
-$menu-items-spacing: 0.5rem;
+$menu-items-spacing-small: 0.3rem;
+$menu-items-spacing-medium: 0.5rem;
+
+$nav-button-small: 1.6rem;
+$nav-button-medium: 2rem;
+$nav-button-svg-small: $nav-button-small * 0.6;
+$nav-button-svg-medium: $nav-button-medium * 0.6;
