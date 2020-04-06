@@ -3,5 +3,9 @@ export default function({ app, store }) {
   app.i18n.beforeLanguageSwitch = (oldLocale, newLocale) => {
     store.commit('SetExhibitions', null)
     store.dispatch('getSiteData', newLocale)
+
+    if (newLocale === 'evk') {
+      store.commit('SetAudiGuideState', true)
+    }
   }
 }

@@ -4,6 +4,7 @@
       <menu-button
         @click.native="toggleMenu = !toggleMenu"
         :icon="toggleMenu ? 'icon-close' : 'icon-settings'"
+        :class="{ 'm-active': toggleMenu }"
         class="nav-settings__toggle"
       >
         <tool-tip>
@@ -11,40 +12,38 @@
         </tool-tip>
       </menu-button>
 
-      <div class="nav-settings__utility">
-        <menu-button
-          :link-path="localePath('index')"
-          icon="icon-home"
-          component-element="nuxt-link"
-          class="nav-settings__button"
-        >
-          <tool-tip>
-            {{ $t('frontpage') }}
-          </tool-tip>
-        </menu-button>
+      <menu-button
+        :link-path="localePath('index')"
+        icon="icon-home"
+        component-element="nuxt-link"
+        class="nav-settings__button"
+      >
+        <tool-tip>
+          {{ $t('frontpage') }}
+        </tool-tip>
+      </menu-button>
 
-        <menu-button
-          @click.native="handleMute"
-          :class="{ 'm-active': mutedRoomAudio }"
-          :icon="mutedRoomAudio ? 'icon-muted' : 'icon-mute'"
-          class="nav-settings__mute nav-settings__utility-button"
-        >
-          <tool-tip>
-            {{ $t('mute_bg') }}
-          </tool-tip>
-        </menu-button>
+      <menu-button
+        @click.native="toggleFullscreen"
+        :class="{ 'm-active': fullscreen }"
+        icon="icon-fullscreen"
+        class="nav-settings__button"
+      >
+        <tool-tip>
+          {{ $t('full_screen') }}
+        </tool-tip>
+      </menu-button>
 
-        <menu-button
-          @click.native="toggleFullscreen"
-          :class="{ 'm-active': fullscreen }"
-          icon="icon-fullscreen"
-          class="nav-settings__utility-button"
-        >
-          <tool-tip>
-            {{ $t('full_screen') }}
-          </tool-tip>
-        </menu-button>
-      </div>
+      <menu-button
+        @click.native="handleMute"
+        :class="{ 'm-active': mutedRoomAudio }"
+        :icon="mutedRoomAudio ? 'icon-muted' : 'icon-mute'"
+        class="nav-settings__button"
+      >
+        <tool-tip>
+          {{ $t('mute_bg') }}
+        </tool-tip>
+      </menu-button>
     </div>
 
     <div class="nav-settings__menu-items">
@@ -101,7 +100,12 @@ export default {
   mounted() {
     document.addEventListener('fullscreenchange', this.handleFullScreen)
 
-    if (this.getRouteBaseName() === 'index') {
+    if (
+      this.getRouteBaseName() === 'index' &&
+      !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      )
+    ) {
       this.toggleMenu = true
     }
   },
@@ -178,10 +182,12 @@ export default {
 
 .nav-settings__toggle,
 .nav-settings__button {
-  margin-right: $menu-items-spacing-small;
+  &:not(:last-child) {
+    margin-right: $menu-items-spacing-small;
 
-  @include breakpoint('large') {
-    margin-right: $menu-items-spacing-medium;
+    @include breakpoint('large') {
+      margin-right: $menu-items-spacing-medium;
+    }
   }
 }
 
@@ -190,7 +196,6 @@ export default {
   flex-direction: column;
 }
 
-.nav-settings__utility-button,
 .nav-settings__button {
   position: relative;
   z-index: 12;
@@ -224,8 +229,10 @@ export default {
   }
 }
 
-.nav-settings__utility-button,
 .nav-settings__menu-item {
+  margin-bottom: $menu-items-spacing-small;
+  transform: translateY(-0.6rem);
+  z-index: 10;
   opacity: 0;
   transition: 0.2s ease;
   pointer-events: none;
@@ -242,12 +249,6 @@ export default {
         0.3s transform ease-in-out #{-0.1 + (0.1 * $i)}s;
     }
   }
-}
-
-.nav-settings__menu-item {
-  margin-bottom: $menu-items-spacing-small;
-  transform: translateY(-0.6rem);
-  z-index: 10;
 
   @include breakpoint('large') {
     margin-bottom: $menu-items-spacing-medium;
@@ -255,26 +256,6 @@ export default {
 
   .m-menu-active & {
     transform: translateY(0);
-  }
-}
-
-.nav-settings__utility {
-  display: flex;
-}
-
-.nav-settings__utility-button {
-  transform: translateX(-0.6rem);
-
-  &:not(:last-child) {
-    margin-right: $menu-items-spacing-small;
-
-    @include breakpoint('large') {
-      margin-right: $menu-items-spacing-medium;
-    }
-  }
-
-  .m-menu-active & {
-    transform: translateX(0);
   }
 }
 

@@ -109,8 +109,8 @@ export const actions = {
 
     const queryParams = {
       acf: true,
-      sort_order: 'DESC',
-      sort_column: 'post_date',
+      sort_order: 'ASC',
+      sort_column: 'menu_order',
       lang
     }
 

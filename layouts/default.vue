@@ -102,6 +102,9 @@ export default {
     }
   },
   mounted() {
+    if (this.$i18n.locale === 'evk') {
+      this.$store.commit('SetAudiGuideState', true)
+    }
     window.onpopstate = (event) => {
       this.$store.commit('SetPlaceholderImage', null)
     }
