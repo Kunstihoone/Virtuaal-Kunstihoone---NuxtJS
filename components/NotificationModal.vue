@@ -32,17 +32,16 @@ export default {
   position: fixed;
   top: 1rem;
   right: 1rem;
-  width: rem-calc(400);
+  width: rem-calc(320);
   box-shadow: $button-shadow;
   background-color: $kh-yellow;
   border-radius: 0.6rem;
-  overflow: hidden;
   padding: 1rem;
   margin-top: $menu-items-spacing-small;
   margin-bottom: $menu-items-spacing-small;
-  overflow: scroll;
 
   @include breakpoint('large') {
+    width: rem-calc(400);
     margin-top: $menu-items-spacing-medium;
     margin-bottom: $menu-items-spacing-medium;
   }

@@ -24,8 +24,32 @@ export default {
       },
       { name: 'robots', content: 'noindex' }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-    link: [{ rel: 'manifest', href: 'manifest.json' }]
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicons/favicon.ico' },
+      {
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+        href: '/favicons/apple-touch-icon.png'
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '32x32',
+        href: '/favicons/favicon-32x32.png'
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '16x16',
+        href: '/favicons/favicon-16x16.png'
+      },
+      {
+        rel: 'mask-icon',
+        href: '/favicons/safari-pinned-tab.svg',
+        color: '#1f1f1f'
+      },
+      { rel: 'preconnect', href: process.env.BASE_URL }
+    ]
   },
   /*
    ** Customize the progress-bar color

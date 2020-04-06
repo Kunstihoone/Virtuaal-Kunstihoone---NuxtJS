@@ -105,7 +105,7 @@ export default {
   padding: 1rem;
   margin-top: $menu-items-spacing-small;
   margin-bottom: $menu-items-spacing-small;
-  overflow: scroll;
+  overflow-y: scroll;
 
   @include breakpoint('large') {
     margin-top: $menu-items-spacing-medium;

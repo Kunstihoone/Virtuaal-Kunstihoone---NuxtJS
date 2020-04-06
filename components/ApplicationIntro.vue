@@ -7,7 +7,7 @@
       class="application-intro__logo"
       target="_blank"
     >
-      <svg-icon name="kh-logo" />
+      <img src="~assets/kh-logo.svg" name="kh-logo" />
     </a>
 
     <div v-html="data.content" class="application-intro__text" />
@@ -54,25 +54,38 @@ export default {
 
   width: 100%;
   display: block;
+  margin-top: 4.4rem;
   margin-bottom: 2rem;
-  margin-top: 2rem;
 
-  svg {
-    width: 100%;
+  @include breakpoint('large') {
+    margin-top: 2rem;
+  }
+
+  img {
+    display: block;
+    opacity: 1;
+    width: 60%;
     height: auto;
+    transition: 0.3s ease;
+    margin: 0 auto;
+
+    @include breakpoint('large') {
+      width: 100%;
+    }
+  }
+
+  &:hover {
+    img {
+      opacity: 0.8;
+    }
   }
 }
 
 .application-intro__text,
 .application-intro__authors {
-  // @include grid(1);
   @include gutter;
 
   margin-bottom: 1rem;
-
-  @include breakpoint('medium') {
-    // @include grid(1/2);
-  }
 }
 
 .application-intro__text {
