@@ -69,15 +69,15 @@ export default {
       {
         detectBrowserLanguage: false,
         locales: [
-          { code: 'et', iso: 'eng', name: 'ET', full_name: 'Eesti keeles' },
+          { code: 'et', iso: 'est', name: 'ET', full_name: 'Eesti keeles' },
           {
             code: 'evk',
-            iso: 'evk',
+            iso: 'est',
             name: 'EVK',
             full_name: 'Eesti viipekeel'
           },
           { code: 'ru', iso: 'rus', name: 'RU', full_name: 'По Pусски' },
-          { code: 'en', iso: 'est', name: 'EN', full_name: 'In English' }
+          { code: 'en', iso: 'eng', name: 'EN', full_name: 'In English' }
         ],
         defaultLocale: 'et',
         vueI18n: {

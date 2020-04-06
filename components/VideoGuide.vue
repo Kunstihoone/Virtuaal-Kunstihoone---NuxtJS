@@ -20,7 +20,7 @@
       class="toggle-audio-guide"
     >
       <tool-tip class="toggle-audio-guide__tooltip">
-        {{ $t('video_guide') }}
+        {{ $t('sign_language') }}
       </tool-tip>
     </menu-button>
   </div>

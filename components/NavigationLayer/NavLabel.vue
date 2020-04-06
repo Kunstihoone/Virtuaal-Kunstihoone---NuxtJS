@@ -73,24 +73,11 @@ export default {
   left: 1rem;
   bottom: 1rem;
   z-index: 25;
-
-  //   &:hover {
-  //     .nav-label__guide-link {
-  //       opacity: 1;
-  //       pointer-events: auto;
-  //     }
-  //   }
 }
 
 .nav-label__buttons {
   display: flex;
 }
-
-// .nav-label__guide-link {
-//   opacity: 0;
-//   pointer-events: none;
-//   transition: opacity 0.3s ease;
-// }
 
 .nav-label__toggle {
   margin-right: $menu-items-spacing-small;
