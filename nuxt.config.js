@@ -48,7 +48,8 @@ export default {
         href: '/favicons/safari-pinned-tab.svg',
         color: '#1f1f1f'
       },
-      { rel: 'preconnect', href: process.env.BASE_URL }
+      { rel: 'preconnect', href: process.env.BASE_URL },
+      { rel: 'manifest', href: '/manifest.json' }
     ]
   },
   /*
