@@ -209,7 +209,7 @@ h6 {
 
 .main {
   position: relative;
-  height: 100%;
+  height: 100vh;
 }
 
 .button {
