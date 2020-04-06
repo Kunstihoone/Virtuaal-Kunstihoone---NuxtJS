@@ -10,7 +10,7 @@
     </transition>
 
     <menu-button
-      @click="$store.commit('SetAudiGuideState', !audioGuideState)"
+      @click.native="$store.commit('SetAudiGuideState', !audioGuideState)"
       :class="{ 'm-active': audioGuideState }"
       :icon="audioGuideState ? 'icon-audio' : 'icon-no-audio'"
       class="toggle-audio-guide button"

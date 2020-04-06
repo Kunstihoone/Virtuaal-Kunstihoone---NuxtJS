@@ -14,7 +14,7 @@
     </transition>
 
     <menu-button
-      @click-native="$store.commit('SetAudiGuideState', !audioGuideState)"
+      @click.native="$store.commit('SetAudiGuideState', !audioGuideState)"
       :class="{ 'm-active': audioGuideState }"
       :icon="audioGuideState ? 'icon-close' : 'icon-video'"
       class="toggle-audio-guide"
