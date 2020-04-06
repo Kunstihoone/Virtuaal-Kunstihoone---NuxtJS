@@ -58,12 +58,19 @@ export default {
 
 <style lang="scss" scoped>
 .exhibition-item {
+  @include gutter;
+
   position: relative;
   text-align: center;
   color: $black;
-  max-width: rem-calc(600);
   margin: 0 auto;
   margin-bottom: 2rem;
+  width: 100%;
+
+  @include breakpoint('large') {
+    max-width: 60%;
+    margin-bottom: 3rem;
+  }
 
   &.m-disabled {
     opacity: 0.6;

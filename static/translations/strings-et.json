@@ -1,6 +1,7 @@
 {
   "details": "Detailid",
   "info": "Info",
+  "exhibition_info": "Exhibition info",
   "sign_language": "Viipekeel",
   "audio_guide": "Audiogiid",
   "digital_guide": "Digigiid",
@@ -9,6 +10,7 @@
   "mute_bg": "Vaigista taustahelid",
   "frontpage": "Esileht",
   "menu": "Menüü",
+  "languages": "Keeled",
   "full_screen": "Täisekraan",
   "landscape_notification": "Palun vaata maastikuvaates"
 }

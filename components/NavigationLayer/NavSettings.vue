@@ -89,25 +89,10 @@ export default {
   watch: {
     $route() {
       this.toggleMenu = false
-
-      if (this.getRouteBaseName() === 'index') {
-        this.toggleMenu = true
-      } else {
-        this.toggleMenu = false
-      }
     }
   },
   mounted() {
     document.addEventListener('fullscreenchange', this.handleFullScreen)
-
-    if (
-      this.getRouteBaseName() === 'index' &&
-      !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent
-      )
-    ) {
-      this.toggleMenu = true
-    }
   },
   beforeDestroy() {
     document.removeEventListener('fullscreenchange', this.handleFullScreen)
