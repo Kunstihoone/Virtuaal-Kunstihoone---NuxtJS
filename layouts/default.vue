@@ -107,6 +107,14 @@ export default {
     }
     this.checkWindowPortrait()
     window.addEventListener('resize', this.checkWindowPortrait)
+
+    if (
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      )
+    ) {
+      this.$store.commit('SetMutedRoomAudio', true)
+    }
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.checkWindowPortrait)

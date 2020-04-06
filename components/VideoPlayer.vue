@@ -27,12 +27,15 @@ export default {
     if (this.videoSrc) {
       const videoOptions = {
         url: this.videoSrc,
-        width: 1920,
-        dnt: true,
-        controls: false,
-        autoplay: true,
+        background: true,
+        playsinline: true
+        // width: 1920,
+        // dnt: true,
+        // muted: true
+        // controls: true
+        // autoplay: true,
+        // loop: true,
         // quality: '1080p',
-        loop: true
       }
 
       this.player = new Player('video-wrapper', videoOptions)
@@ -50,7 +53,7 @@ export default {
             targets: '.placeholder-image',
             opacity: 0,
             easing: 'easeOutExpo',
-            duration: 500,
+            duration: 300,
             complete: (anim) => {
               this.$emit('playerLoaded')
               this.$store.commit('SetPlaceholderVisible', false)

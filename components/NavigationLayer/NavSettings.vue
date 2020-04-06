@@ -24,6 +24,17 @@
         </menu-button>
 
         <menu-button
+          @click.native="handleMute"
+          :class="{ 'm-active': mutedRoomAudio }"
+          :icon="mutedRoomAudio ? 'icon-muted' : 'icon-mute'"
+          class="nav-settings__mute nav-settings__utility-button"
+        >
+          <tool-tip>
+            {{ $t('mute_bg') }}
+          </tool-tip>
+        </menu-button>
+
+        <menu-button
           @click.native="toggleFullscreen"
           :class="{ 'm-active': fullscreen }"
           icon="icon-fullscreen"
@@ -31,17 +42,6 @@
         >
           <tool-tip>
             {{ $t('full_screen') }}
-          </tool-tip>
-        </menu-button>
-
-        <menu-button
-          @click.native="handleMute"
-          :class="{ 'm-active': mutedRoomAudio }"
-          :icon="mutedRoomAudio ? 'icon-muted' : 'icon-mute'"
-          class="nav-settings__utility-button"
-        >
-          <tool-tip>
-            {{ $t('mute_bg') }}
           </tool-tip>
         </menu-button>
       </div>
@@ -274,6 +274,14 @@ export default {
   }
 
   .m-menu-active & {
+    transform: translateX(0);
+  }
+}
+
+.nav-settings__mute {
+  @include breakpoint('large', max) {
+    opacity: 1;
+    pointer-events: auto;
     transform: translateX(0);
   }
 }
