@@ -12,7 +12,7 @@
 
     <div v-html="data.content" class="application-intro__text" />
 
-    <div class="application-intro__authors">
+    <div v-if="data.acf && data.acf.authors" class="application-intro__authors">
       <p
         v-for="(author, index) in data.acf.authors"
         :key="index"

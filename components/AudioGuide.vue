@@ -1,7 +1,7 @@
 <template>
   <div class="audio-guide">
     <transition @enter="playerEnter" @leave="playerLeave" :css="false">
-      <audio-player
+      <audio-guide-player
         v-if="audioGuideState && activeTrack"
         :key="activeTrack.ID"
         :active-track="activeTrack"
@@ -25,13 +25,13 @@
 <script>
 import { mapState } from 'vuex'
 import anime from 'animejs'
-import AudioPlayer from '~/components/AudioPlayer'
+import AudioGuidePlayer from '~/components/AudioGuidePlayer'
 import MenuButton from '~/components/MenuButton'
 import ToolTip from '~/components/ToolTip'
 
 export default {
   components: {
-    AudioPlayer,
+    AudioGuidePlayer,
     MenuButton,
     ToolTip
   },

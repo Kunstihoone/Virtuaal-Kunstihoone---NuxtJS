@@ -30,7 +30,7 @@
               exhibitionData.acf.curators.length > 1
                 ? $t('curators')
                 : $t('curator')
-            }}:
+            }}:&nbsp;
           </p>
 
           <p
@@ -127,6 +127,7 @@ export default {
 }
 
 .exhibition-impressum__curators {
+  display: flex;
   margin-bottom: 1rem;
 
   p {

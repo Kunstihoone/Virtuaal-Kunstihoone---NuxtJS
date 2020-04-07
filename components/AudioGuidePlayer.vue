@@ -1,30 +1,30 @@
 <template>
-  <div v-if="activeTrack" class="audio-player">
-    <div class="audio-player__inner">
+  <div v-if="activeTrack" class="audio-guide-player">
+    <div class="audio-guide-player__inner">
       <audio
         ref="player"
         :src="activeTrack.url"
         crossorigin="anonymous"
-        class="audio-player__player"
+        class="audio-guide-player__player"
         autoplay
         controls
       />
 
       <button
         @click="$store.commit('SetAudioPlayerState', !playerState)"
-        class="audio-player__control"
+        class="audio-guide-player__control"
       >
         <svg-icon v-if="!playerState" name="icon-play" />
         <svg-icon v-else name="icon-pause" />
       </button>
 
-      <h4 class="audio-player__title">
+      <h4 class="audio-guide-player__title">
         {{ audioGuideTitle }}
       </h4>
 
       <div
         :style="{ width: playerTrackProgress + '%' }"
-        class="audio-player__progress"
+        class="audio-guide-player__progress"
       />
     </div>
   </div>
@@ -97,7 +97,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.audio-player__inner {
+.audio-guide-player__inner {
   position: relative;
   background-color: white;
   color: $black;
@@ -113,17 +113,17 @@ export default {
   width: 100%;
 }
 
-.audio-player__title {
+.audio-guide-player__title {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.audio-player__player {
+.audio-guide-player__player {
   display: none;
 }
 
-.audio-player__progress {
+.audio-guide-player__progress {
   position: absolute;
   width: 0%;
   height: 100%;
@@ -132,7 +132,7 @@ export default {
   z-index: -1;
 }
 
-.audio-player__control {
+.audio-guide-player__control {
   margin-right: 1rem;
   width: 1.2rem;
   height: 1.2rem;

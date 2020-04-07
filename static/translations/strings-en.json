@@ -9,5 +9,7 @@
   "frontpage": "Frontpage",
   "menu": "Menu",
   "full_screen": "Fullscreen",
-  "landscape_notification": "Please view in landscape mode."
+  "landscape_notification": "Please view in landscape mode.",
+  "curator": "Curator",
+  "curators": "Curators"
 }
