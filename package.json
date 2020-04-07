@@ -1,9 +1,15 @@
 {
   "name": "kunstihoone-videogiid-nuxt",
   "version": "1.0.0",
-  "description": "Kunstihoone videogiid app",
+  "description": "Kunstihoone virtuaalnäitus - app",
   "author": "WWW Stuudio",
   "private": true,
+  "config": {
+    "nuxt": {
+      "host": "0.0.0.0",
+      "port": "3333"
+    }
+  },
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",

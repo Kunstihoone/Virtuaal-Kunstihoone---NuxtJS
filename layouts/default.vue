@@ -105,11 +105,14 @@ export default {
     if (this.$i18n.locale === 'evk') {
       this.$store.commit('SetAudiGuideState', true)
     }
+
     window.onpopstate = (event) => {
       this.$store.commit('SetPlaceholderImage', null)
     }
-    this.checkWindowPortrait()
-    window.addEventListener('resize', this.checkWindowPortrait)
+
+    this.resizeHandle()
+
+    window.addEventListener('resize', this.resizeHandle)
 
     if (
       /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
@@ -120,10 +123,12 @@ export default {
     }
   },
   beforeDestroy() {
-    window.removeEventListener('resize', this.checkWindowPortrait)
+    window.removeEventListener('resize', this.resizeHandle)
   },
   methods: {
-    checkWindowPortrait() {
+    resizeHandle() {
+      const vh = window.innerHeight * 0.01
+      document.documentElement.style.setProperty('--vh', `${vh}px`)
       this.isWindowPortrait = window.innerHeight > window.innerWidth
     },
     playerEnter(el, done) {
@@ -209,7 +214,7 @@ h6 {
 
 .main {
   position: relative;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
 }
 
 .button {
