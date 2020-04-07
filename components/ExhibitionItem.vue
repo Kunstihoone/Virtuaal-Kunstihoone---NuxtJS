@@ -81,6 +81,7 @@ export default {
 .exhibition-item__thumbnail {
   margin-bottom: 0;
   margin-bottom: 0.6rem;
+  background-color: $kh-yellow;
 
   /deep/ img {
     object-fit: cover;
