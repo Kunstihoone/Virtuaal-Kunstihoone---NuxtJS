@@ -12,6 +12,19 @@
         </tool-tip>
       </menu-button>
 
+      <div class="nav-settings__menu-items">
+        <nuxt-link
+          v-for="locale in $i18n.locales"
+          :key="locale.code"
+          :to="switchLocalePath(locale.code)"
+          :class="{ 'm-active': locale.code === $i18n.locale }"
+          :tabindex="tabindex"
+          class="nav-settings__menu-item button"
+        >
+          {{ locale.full_name }}
+        </nuxt-link>
+      </div>
+
       <menu-button
         :link-path="localePath('index')"
         icon="icon-home"
@@ -45,18 +58,6 @@
         </tool-tip>
       </menu-button>
     </div>
-
-    <div class="nav-settings__menu-items">
-      <nuxt-link
-        v-for="locale in $i18n.locales"
-        :key="locale.code"
-        :to="switchLocalePath(locale.code)"
-        :class="{ 'm-active': locale.code === $i18n.locale }"
-        class="nav-settings__menu-item button"
-      >
-        {{ locale.full_name }}
-      </nuxt-link>
-    </div>
   </nav>
 </template>
 
@@ -82,6 +83,9 @@ export default {
     }),
     availableLocales() {
       return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale)
+    },
+    tabindex() {
+      return this.toggleMenu ? '0' : '-1'
     }
   },
   watch: {
@@ -177,6 +181,9 @@ export default {
 .nav-settings__menu-items {
   display: flex;
   flex-direction: column;
+  position: absolute;
+  top: 2.5rem;
+  left: 0;
 }
 
 .nav-settings__button {

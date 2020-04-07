@@ -6,6 +6,7 @@
       "
       class="application-intro__logo"
       target="_blank"
+      :aria-label="$t('home')"
     >
       <img src="~assets/kh-logo.svg" name="kh-logo" />
     </a>

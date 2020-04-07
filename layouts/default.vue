@@ -1,6 +1,10 @@
 <template>
   <main :class="{ 'modal-active': detailsLayer }" class="main">
     <ratio-container>
+      <transition name="fade">
+        <splash-layer v-if="getRouteBaseName() !== 'index' && splashState" />
+      </transition>
+
       <navigation-layer :current-room="currentRoom" />
 
       <nuxt />
@@ -20,10 +24,6 @@
       <loading-indicatior v-if="placeholderVisible" />
 
       <details-layer v-if="detailsLayer" :details-layer="detailsLayer" />
-
-      <transition name="fade">
-        <splash-layer v-if="getRouteBaseName() !== 'index' && splashState" />
-      </transition>
     </ratio-container>
 
     <background-audio

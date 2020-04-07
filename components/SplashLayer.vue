@@ -2,6 +2,7 @@
   <div class="splash">
     <button
       @click="handleClick"
+      tabindex="1"
       :class="{ 'm-ready': buttonReady }"
       class="button"
     >

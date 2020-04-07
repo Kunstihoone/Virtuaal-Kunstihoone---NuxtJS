@@ -13,5 +13,9 @@
   "languages": "Языки",
   "full_screen": "Полноэкранный режим",
   "landscape_notification": "Пожалуйста, используйте горизонтальный вид",
-  "supporters": "Спонсоры"
+  "supporters": "Спонсоры",
+  "enter": "Войти",
+  "curator": "Куратор",
+  "curators": "Кураторы",
+  "close_notification": "Закрыть уведомление"
 }

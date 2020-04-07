@@ -12,6 +12,7 @@
             eventClick('Relatied item')
         "
         :key="`nav-button-${index}`"
+        :aria-label="button.related_item.post_title"
         class="room-navigation__link"
       >
         <svg-icon :name="button.icon" />
@@ -26,6 +27,7 @@
         :key="`nav-button-${index}`"
         :href="button.external_link.url"
         @click="eventClick('External link')"
+        :aria-label="button.external_link.title"
         target="_blank"
         class="room-navigation__link"
       >
@@ -41,6 +43,7 @@
         :button-data="button"
         :key="`nav-button-${button.related_item.post_name}`"
         @click.native="eventClick('Navigation button')"
+        :aria-label="button.related_item.post_title"
         class="room-navigation__link"
       >
         <svg-icon :name="button.icon" />
