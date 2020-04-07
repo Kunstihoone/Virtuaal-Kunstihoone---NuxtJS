@@ -190,6 +190,11 @@ p {
   margin-bottom: 1rem;
 }
 
+b,
+strong {
+  font-weight: bold;
+}
+
 h1 {
   @include font-size(h1);
 }

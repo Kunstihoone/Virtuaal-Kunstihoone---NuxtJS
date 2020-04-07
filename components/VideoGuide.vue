@@ -16,6 +16,7 @@
       @click.native="$store.commit('SetAudiGuideState', !audioGuideState)"
       :class="{ 'm-active': audioGuideState }"
       :icon="audioGuideState ? 'icon-hand-sign-off' : 'icon-hand-sign'"
+      button-event="Toggle hand sign guide"
       class="toggle-audio-guide"
     >
       <tool-tip class="toggle-audio-guide__tooltip">

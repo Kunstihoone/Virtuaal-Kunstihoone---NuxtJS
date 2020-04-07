@@ -2,8 +2,8 @@
   <div class="notification-modal">
     <button
       @click="$emit('closeNotification')"
-      class="notification-modal__close"
       :aria-label="$t('close_notification')"
+      class="notification-modal__close"
     >
       <svg-icon name="icon-close" />
     </button>

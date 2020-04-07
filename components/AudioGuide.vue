@@ -13,6 +13,7 @@
       @click.native="$store.commit('SetAudiGuideState', !audioGuideState)"
       :class="{ 'm-active': audioGuideState }"
       :icon="audioGuideState ? 'icon-no-audio' : 'icon-audio'"
+      button-event="Toggle audio guide"
       class="toggle-audio-guide button"
     >
       <tool-tip class="toggle-audio-guide__tooltip">

@@ -9,7 +9,7 @@
         }"
         @click="
           $store.commit('SetDetailsLayer', button.related_item.post_name) &
-            eventClick('Relatied item')
+            analyticsEvent('Details layer', button.related_item.post_name)
         "
         :key="`nav-button-${index}`"
         :aria-label="button.related_item.post_title"
@@ -26,7 +26,7 @@
         }"
         :key="`nav-button-${index}`"
         :href="button.external_link.url"
-        @click="eventClick('External link')"
+        @click="analyticsEvent('External link', button.external_link.url)"
         :aria-label="button.external_link.title"
         target="_blank"
         class="room-navigation__link"
@@ -42,7 +42,12 @@
         }"
         :button-data="button"
         :key="`nav-button-${button.related_item.post_name}`"
-        @click.native="eventClick('Navigation button')"
+        @click.native="
+          analyticsEvent(
+            'Room navigation button',
+            button.related_item.post_name
+          )
+        "
         :aria-label="button.related_item.post_title"
         class="room-navigation__link"
       >
@@ -66,9 +71,8 @@ export default {
     }
   },
   methods: {
-    eventClick(name) {
-      console.log(name)
-      this.$ga.event('Virtuaalnäitus', name)
+    analyticsEvent(name, destination) {
+      this.$ga.event('Virtuaalnäitus', name, destination)
     }
   }
 }

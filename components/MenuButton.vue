@@ -2,7 +2,7 @@
   <component
     v-bind:is="componentElement"
     :to="linkPath"
-    @click="eventClick"
+    @click="analyticsEvent"
     class="menu-button button"
   >
     <slot />
@@ -13,6 +13,10 @@
 <script>
 export default {
   props: {
+    buttonEvent: {
+      type: String,
+      default: null
+    },
     icon: {
       type: String,
       default: null
@@ -27,8 +31,8 @@ export default {
     }
   },
   methods: {
-    eventClick() {
-      this.$ga.event('Virtuaalnäitus', 'Menu button click')
+    analyticsEvent() {
+      this.$ga.event('Virtuaalnäitus', 'Menu button click', this.buttonEvent)
     }
   }
 }

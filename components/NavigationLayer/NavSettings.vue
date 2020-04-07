@@ -5,6 +5,7 @@
         @click.native="toggleMenu = !toggleMenu"
         :icon="toggleMenu ? 'icon-close' : 'icon-settings'"
         :class="{ 'm-active': toggleMenu }"
+        button-event="Toggle languages"
         class="nav-settings__toggle"
       >
         <tool-tip>
@@ -29,6 +30,7 @@
         :link-path="localePath('index')"
         icon="icon-home"
         component-element="nuxt-link"
+        button-event="Home page"
         class="nav-settings__button"
       >
         <tool-tip>
@@ -40,6 +42,7 @@
         @click.native="toggleFullscreen"
         :class="{ 'm-active': fullscreen }"
         icon="icon-fullscreen"
+        button-event="Toggle fullscreen"
         class="nav-settings__button"
       >
         <tool-tip>
@@ -51,6 +54,7 @@
         @click.native="handleMute"
         :class="{ 'm-active': mutedRoomAudio }"
         :icon="mutedRoomAudio ? 'icon-muted' : 'icon-mute'"
+        button-event="Toggle mute"
         class="nav-settings__button"
       >
         <tool-tip>

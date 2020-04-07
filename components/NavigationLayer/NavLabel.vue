@@ -5,6 +5,7 @@
         <menu-button
           @click.native="detailsState = !detailsState"
           :icon="detailsState ? 'icon-close' : 'icon-info'"
+          button-event="Toggle label"
           class="nav-label__toggle"
         >
           <tool-tip>

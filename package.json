@@ -4,12 +4,6 @@
   "description": "Kunstihoone virtuaalnäitus - app",
   "author": "WWW Stuudio",
   "private": true,
-  "config": {
-    "nuxt": {
-      "host": "0.0.0.0",
-      "port": "3333"
-    }
-  },
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
