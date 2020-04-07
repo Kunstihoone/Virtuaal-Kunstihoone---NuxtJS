@@ -1,6 +1,11 @@
 <template>
   <main :class="{ 'modal-active': detailsLayer }" class="main">
-    <ratio-container>
+    <ratio-container
+      :style="{ width: containerWidth }"
+      :class="[
+        containerOrientation === 'landscape' ? 'm-landscape' : 'm-portrait'
+      ]"
+    >
       <transition name="fade">
         <splash-layer v-if="getRouteBaseName() !== 'index' && splashState" />
       </transition>
@@ -67,7 +72,9 @@ export default {
   },
   data() {
     return {
-      isWindowPortrait: false
+      isWindowPortrait: false,
+      containerOrientation: 'landscape',
+      containerWidth: '100%'
     }
   },
   computed: {
@@ -112,9 +119,9 @@ export default {
       this.$store.commit('SetPlaceholderImage', null)
     }
 
-    this.resizeHandle()
-
-    window.addEventListener('resize', this.resizeHandle)
+    this.handleResize()
+    window.addEventListener('resize', this.handleResize)
+    window.addEventListener('orientationchange', this.handleOrientation)
 
     if (
       /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
@@ -125,13 +132,30 @@ export default {
     }
   },
   beforeDestroy() {
-    window.removeEventListener('resize', this.resizeHandle)
+    window.removeEventListener('resize', this.handleResize)
+    window.removeEventListener('orientationchange', this.handleOrientation)
   },
   methods: {
-    resizeHandle() {
-      const vh = window.innerHeight * 0.01
-      document.documentElement.style.setProperty('--vh', `${vh}px`)
-      this.isWindowPortrait = window.innerHeight > window.innerWidth
+    handleOrientation() {
+      setTimeout(() => {
+        this.handleResize()
+      }, 500)
+    },
+    handleResize() {
+      console.log('resizzze')
+      const windowWidth = window.innerWidth
+      const windowHeight = window.innerHeight
+      const ratio = windowHeight / windowWidth
+
+      this.isWindowPortrait = windowHeight > windowWidth
+
+      if (ratio * 100 < 56.25) {
+        this.containerOrientation = 'portrait'
+        this.containerWidth = `${(16 / 9) * windowHeight}px`
+      } else {
+        this.containerOrientation = 'landscape'
+        this.containerWidth = '100%'
+      }
     },
     playerEnter(el, done) {
       anime({
@@ -151,6 +175,13 @@ export default {
           done()
         }
       })
+    }
+  },
+  head() {
+    return {
+      htmlAttrs: {
+        lang: this.$i18n.locale
+      }
     }
   }
 }
@@ -221,7 +252,7 @@ h6 {
 
 .main {
   // position: relative;
-  height: calc(var(--vh, 1vh) * 100);
+  // height: calc(var(--vh, 1vh) * 100);
 }
 
 .button {

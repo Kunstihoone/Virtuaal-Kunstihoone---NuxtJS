@@ -19,7 +19,8 @@ export default {
         dnt: true,
         autoplay: true,
         muted: true,
-        controls: false
+        controls: false,
+        loop: true
       }
 
       this.player = new Player('small-video', videoOptions)

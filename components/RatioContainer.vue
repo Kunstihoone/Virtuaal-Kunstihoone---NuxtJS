@@ -1,45 +1,8 @@
 <template>
-  <div
-    :style="{ width: portraitWith }"
-    :class="[orientation === 'landscape' ? 'm-landscape' : 'm-portrait']"
-    class="ratio-container"
-  >
+  <div class="ratio-container">
     <slot />
   </div>
 </template>
-
-<script>
-export default {
-  data() {
-    return {
-      orientation: 'landscape',
-      portraitWith: '100%'
-    }
-  },
-  mounted() {
-    this.orientationListener()
-    window.addEventListener('resize', this.orientationListener)
-  },
-  beforeDestroy() {
-    window.removeEventListener('resize', this.orientationListener)
-  },
-  methods: {
-    orientationListener() {
-      const windowWidth = window.innerWidth
-      const windowHeight = window.innerHeight
-      const ratio = windowHeight / windowWidth
-
-      if (ratio * 100 < 56.25) {
-        this.orientation = 'portrait'
-        this.portraitWith = `${(16 / 9) * windowHeight}px`
-      } else {
-        this.orientation = 'landscape'
-        this.portraitWith = '100%'
-      }
-    }
-  }
-}
-</script>
 
 <style lang="scss" scoped>
 .ratio-container {
