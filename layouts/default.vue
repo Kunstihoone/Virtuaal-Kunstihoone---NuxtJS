@@ -104,6 +104,8 @@ export default {
   mounted() {
     if (this.$i18n.locale === 'evk') {
       this.$store.commit('SetAudiGuideState', true)
+    } else {
+      this.$store.commit('SetAudiGuideState', false)
     }
 
     window.onpopstate = (event) => {
@@ -213,7 +215,7 @@ h6 {
 }
 
 .main {
-  position: relative;
+  // position: relative;
   height: calc(var(--vh, 1vh) * 100);
 }
 
