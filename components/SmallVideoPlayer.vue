@@ -18,7 +18,8 @@ export default {
         url: this.videoSrc,
         dnt: true,
         autoplay: true,
-        muted: true
+        muted: true,
+        controls: false
       }
 
       this.player = new Player('small-video', videoOptions)
