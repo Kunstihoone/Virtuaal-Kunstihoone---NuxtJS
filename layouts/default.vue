@@ -142,7 +142,6 @@ export default {
       }, 500)
     },
     handleResize() {
-      console.log('resizzze')
       const windowWidth = window.innerWidth
       const windowHeight = window.innerHeight
       const ratio = windowHeight / windowWidth
