@@ -159,7 +159,7 @@ export default {
 .details-slider__slides-wrapper {
   position: relative;
   display: flex;
-  transition: transform 0.3s ease;
+  transition: transform $transition-ease-in-out;
   height: 100%;
 }
 

@@ -1,9 +1,17 @@
 {
-  "details": "Детали",
+  "details": "подробности",
   "info": "Информация",
-  "enter": "Войти",
-  "audio_guide": "Аудио гид",
-  "digital_guide": "Цифровой гид",
-  "curator": "Куратор",
-  "curators": "Кураторы"
+  "exhibition_info": "Информация о выставке",
+  "sign_language": "Сурдоперевод",
+  "audio_guide": "Аудиогид",
+  "digital_guide": "Виртуальный гид",
+  "details_label": "Ярлык",
+  "mute": "Без звука",
+  "mute_bg": "Отключить фоновый звук",
+  "frontpage": "Стартовая страница",
+  "menu": "Меню",
+  "languages": "Языки",
+  "full_screen": "Полноэкранный режим",
+  "landscape_notification": "Пожалуйста, используйте горизонтальный вид",
+  "supporters": "Спонсоры"
 }

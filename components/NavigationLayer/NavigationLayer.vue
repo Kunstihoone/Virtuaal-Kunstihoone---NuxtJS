@@ -62,7 +62,7 @@ export default {
 <style lang="scss" scoped>
 .navigation-layer__bottom-layer {
   opacity: 1;
-  transition: 0.3s ease;
+  transition: opacity $transition-ease-in-out;
 
   .modal-active & {
     opacity: 0;

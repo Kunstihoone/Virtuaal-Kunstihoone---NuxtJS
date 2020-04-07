@@ -23,7 +23,7 @@ export default {
   margin-bottom: $menu-items-spacing-small;
   width: rem-calc(320);
   box-shadow: $button-shadow;
-  border-radius: 0.6rem;
+  border-radius: $layers-border-radius;
   overflow: hidden;
   background-color: $white;
 

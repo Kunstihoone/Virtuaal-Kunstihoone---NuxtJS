@@ -66,7 +66,7 @@ export default {
     opacity: 1;
     width: 60%;
     height: auto;
-    transition: 0.3s ease;
+    transition: opacity $transition-ease-in-out;
     margin: 0 auto;
 
     @include breakpoint('large') {

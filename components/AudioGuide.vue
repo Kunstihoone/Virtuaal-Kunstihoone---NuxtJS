@@ -145,7 +145,7 @@ export default {
 
   svg {
     opacity: 0.3;
-    transition: 0.3s ease;
+    transition: opacity 0.3s $transition-ease-in-out;
   }
 
   &.m-active {

@@ -1,7 +1,7 @@
 {
   "details": "Detailid",
   "info": "Info",
-  "exhibition_info": "Exhibition info",
+  "exhibition_info": "Näituse info",
   "sign_language": "Viipekeel",
   "audio_guide": "Audiogiid",
   "digital_guide": "Digigiid",
@@ -12,7 +12,8 @@
   "menu": "Menüü",
   "languages": "Keeled",
   "full_screen": "Täisekraan",
-  "landscape_notification": "Palun vaata maastikuvaates",
+  "landscape_notification": "Palun vaata horisontaalvaates",
   "curator": "Kuraator",
-  "curators": "Kuraatorid"
+  "curators": "Kuraatorid",
+  "supporters": "Toetajad"
 }

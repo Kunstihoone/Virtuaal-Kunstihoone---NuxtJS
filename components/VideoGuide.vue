@@ -2,11 +2,7 @@
   <div class="video-guide">
     <transition name="fade">
       <small-video-player
-        v-if="
-          !placeholderVisible &&
-            audioGuideState &&
-            currentRoom.acf.hand_sign_translation
-        "
+        v-if="audioGuideState && currentRoom.acf.hand_sign_translation"
         :key="currentRoom.acf.hand_sign_translation"
         :video-src="currentRoom.acf.hand_sign_translation"
         :audio-guide-title="audioGuideTitle"
@@ -135,7 +131,7 @@ export default {
 
   svg {
     opacity: 0.3;
-    transition: 0.3s ease;
+    transition: opacity $transition-ease-in-out;
   }
 
   &.m-active {

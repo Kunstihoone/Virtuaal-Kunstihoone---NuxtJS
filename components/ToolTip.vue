@@ -10,11 +10,11 @@
   background-color: $gray;
   color: $black;
   padding: 0.2rem 0.5rem;
-  border-radius: 0.6rem;
+  border-radius: $layers-border-radius;
   box-shadow: $button-shadow;
   line-height: 1;
   white-space: nowrap;
-  transition: 0.3s ease-in-out;
+  transition: $transition-ease-in-out;
   cursor: pointer;
   pointer-events: none;
   opacity: 0;

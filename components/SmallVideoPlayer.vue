@@ -36,7 +36,7 @@ export default {
   width: rem-calc(320);
   height: rem-calc(320 * (9 / 16));
   box-shadow: $button-shadow;
-  border-radius: 0.6rem;
+  border-radius: $layers-border-radius;
   overflow: hidden;
   background-color: $kh-yellow;
   z-index: 15;

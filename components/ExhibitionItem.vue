@@ -36,11 +36,11 @@ export default {
     enterExhibition() {
       this.$store.commit('SetUserReady', true)
       this.$store.commit('SetSplashState', false)
-      this.$store.commit(
-        'SetPlaceholderImage',
-        this.data.featured_image.sizes.large
-      )
-      this.$store.commit('SetPlaceholderVisible', true)
+      // this.$store.commit(
+      //   'SetPlaceholderImage',
+      //   this.data.featured_image.sizes.large
+      // )
+      // this.$store.commit('SetPlaceholderVisible', true)
 
       this.$router.push(
         this.localePath({

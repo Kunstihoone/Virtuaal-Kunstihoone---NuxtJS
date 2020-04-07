@@ -218,11 +218,11 @@ h6 {
   background-color: white;
   color: $black;
   padding: 0.3rem 0.6rem;
-  border-radius: 0.6rem;
+  border-radius: $layers-border-radius;
   font-size: 1rem;
   box-shadow: $button-shadow;
   line-height: 1;
-  transition: 0.3s ease-in-out;
+  transition: $transition-ease-in-out;
   cursor: pointer;
 
   @include breakpoint('large') {
@@ -246,7 +246,7 @@ h6 {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity $transition-ease-in-out;
 }
 
 .fade-enter,
@@ -256,7 +256,7 @@ h6 {
 
 .fast-fade-enter-active,
 .fast-fade-leave-active {
-  transition: opacity 0.2s ease-in-out;
+  transition: opacity $transition-ease-in-out;
 }
 
 .fast-fade-enter,

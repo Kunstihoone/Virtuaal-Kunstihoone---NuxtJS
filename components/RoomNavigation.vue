@@ -78,9 +78,9 @@ export default {
   border-width: 0.2rem;
   width: $nav-button-small;
   height: $nav-button-small;
-  // background: none;
   transform: translate(-50%, -50%) scale(1);
-  transition: transform $transition-cubic-bezier, background-color 0.2s ease;
+  transition: transform $transition-cubic-bezier,
+    background-color $transition-ease-in-out;
   box-shadow: $button-shadow;
   background-color: $white;
 
@@ -111,7 +111,7 @@ export default {
       width: $nav-button-svg-medium / 2;
       height: $nav-button-svg-medium / 2;
       opacity: 0;
-      transition: opacity 0.4s ease;
+      transition: opacity $transition-ease-in-out;
     }
   }
 

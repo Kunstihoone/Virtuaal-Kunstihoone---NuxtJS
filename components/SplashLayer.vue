@@ -3,7 +3,7 @@
     <button
       @click="handleClick"
       :class="{ 'm-ready': buttonReady }"
-      class="intro-button"
+      class="button"
     >
       Jätka
     </button>
@@ -43,7 +43,7 @@ export default {
   flex-direction: column;
   align-items: center;
   z-index: 50;
-  background-color: rgba(250, 250, 250, 0.6);
+  background-color: rgba(250, 250, 250, 0.8);
 }
 
 .splash__logo {
@@ -69,7 +69,7 @@ export default {
     opacity: 0;
     width: 0.6rem;
     height: 0.6rem;
-    transition: opacity 0.4s ease;
+    transition: opacity $transition-ease-in-out;
   }
 
   &.m-ready {

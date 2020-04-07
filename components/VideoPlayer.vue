@@ -29,21 +29,16 @@ export default {
         url: this.videoSrc,
         background: true,
         playsinline: true
-        // width: 1920,
-        // dnt: true,
-        // muted: true
-        // controls: true
-        // autoplay: true,
-        // loop: true,
-        // quality: '1080p',
       }
 
       this.player = new Player('video-wrapper', videoOptions)
 
       document.addEventListener('keydown', this.addKeyEvent)
 
-      // Mute video, if mute toggle from settings
-      this.videoSetMuted(this.$store.state.mutedRoomAudio)
+      this.player.on('eventName', (data) => {
+        // Mute video, if mute toggle from settings
+        this.videoSetMuted(this.$store.state.mutedRoomAudio)
+      })
 
       this.player.on('timeupdate', () => {
         if (!this.videoStarted) {

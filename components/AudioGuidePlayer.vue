@@ -102,7 +102,7 @@ export default {
   background-color: white;
   color: $black;
   padding: 0.4rem 0.8rem;
-  border-radius: 0.8rem;
+  border-radius: $layers-border-radius;
   z-index: 15;
   transform-origin: bottom right;
   display: flex;

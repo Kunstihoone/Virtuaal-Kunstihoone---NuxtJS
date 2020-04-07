@@ -5,7 +5,7 @@
       :class="{ 'm-active': layerState }"
       class="button nav-info__toggle"
     >
-      Info
+      {{ $t('exhibition_info') }}
     </button>
 
     <transition name="fade">

@@ -30,7 +30,7 @@ export default {
   width: rem-calc(320);
   box-shadow: $button-shadow;
   background-color: $kh-yellow;
-  border-radius: 0.6rem;
+  border-radius: $layers-border-radius;
   padding: 1rem;
   margin-top: $menu-items-spacing-small;
   margin-bottom: $menu-items-spacing-small;
@@ -54,6 +54,11 @@ export default {
 }
 
 .notification-modal__content {
+  /deep/ a {
+    color: $black;
+    text-decoration: underline;
+  }
+
   /deep/:last-child {
     margin-bottom: 0;
   }

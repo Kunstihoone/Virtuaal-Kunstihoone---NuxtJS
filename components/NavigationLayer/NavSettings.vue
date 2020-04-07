@@ -217,7 +217,7 @@ export default {
   transform: translateY(-0.6rem);
   z-index: 10;
   opacity: 0;
-  transition: 0.2s ease;
+  transition: $transition-ease-in-out;
   pointer-events: none;
 
   .m-menu-active & {
@@ -227,7 +227,7 @@ export default {
 
   @for $i from 1 through 6 {
     &:nth-child(#{$i}) {
-      transition: background-color 0.3s ease-in-out,
+      transition: background-color $transition-ease-in-out,
         0.3s opacity ease-in-out #{-0.1 + (0.1 * $i)}s,
         0.3s transform ease-in-out #{-0.1 + (0.1 * $i)}s;
     }

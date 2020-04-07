@@ -44,8 +44,8 @@ export default {
   transition: {
     leave(el, done) {
       anime({
-        targets: '.placeholder-image',
-        scale: [0.6, 1],
+        targets: '.index-page',
+        opacity: [1, 0],
         easing: 'easeOutExpo',
         duration: 600,
         complete: (anim) => {
@@ -93,5 +93,6 @@ export default {
   overflow-y: scroll;
   top: 0;
   left: 0;
+  opacity: 1;
 }
 </style>

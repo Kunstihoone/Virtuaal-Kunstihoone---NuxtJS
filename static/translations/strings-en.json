@@ -2,14 +2,18 @@
   "details": "Details",
   "info": "Info",
   "enter": "Enter",
+  "exhibition_info": "Näituse info",
   "audio_guide": "Audio guide",
   "digital_guide": "Digital Guide",
+  "details_label": "Label",
   "mute": "Mute",
   "mute_bg": "Mute background",
   "frontpage": "Frontpage",
   "menu": "Menu",
+  "languages": "Languages",
   "full_screen": "Fullscreen",
   "landscape_notification": "Please view in landscape mode.",
   "curator": "Curator",
-  "curators": "Curators"
+  "curators": "Curators",
+  "supporters": "Supporters"
 }

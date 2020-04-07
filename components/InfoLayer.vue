@@ -99,7 +99,7 @@ export default {
   width: rem-calc(400);
   height: rem-calc(400);
   box-shadow: $button-shadow;
-  border-radius: 0.6rem;
+  border-radius: $layers-border-radius;
   overflow: hidden;
   background-color: $white;
   padding: 1rem;
@@ -119,6 +119,10 @@ export default {
 
 .exhibition-impressum__header {
   margin-bottom: 1rem;
+
+  h2 {
+    line-height: $heading-line-height;
+  }
 
   h2,
   p {
