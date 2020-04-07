@@ -50,7 +50,10 @@ export default {
       },
       { rel: 'preconnect', href: process.env.BASE_URL },
       { rel: 'manifest', href: '/manifest.json' }
-    ]
+    ],
+    htmlAttrs: {
+      lang: 'et'
+    }
   },
   /*
    ** Customize the progress-bar color

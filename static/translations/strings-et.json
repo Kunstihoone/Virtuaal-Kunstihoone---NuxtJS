@@ -14,5 +14,7 @@
   "full_screen": "Täisekraan",
   "landscape_notification": "Palun vaata maastikuvaates",
   "curator": "Kuraator",
-  "curators": "Kuraatorid"
+  "curators": "Kuraatorid",
+  "close_notification": "Sulge teade",
+  "home": "Kodu"
 }

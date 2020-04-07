@@ -11,5 +11,7 @@
   "full_screen": "Fullscreen",
   "landscape_notification": "Please view in landscape mode.",
   "curator": "Curator",
-  "curators": "Curators"
+  "curators": "Curators",
+  "close_notification": "Close notification",
+  "home": "Home"
 }
