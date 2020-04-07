@@ -2,6 +2,7 @@
   <component
     v-bind:is="componentElement"
     :to="linkPath"
+    @click="eventClick"
     class="menu-button button"
   >
     <slot />
@@ -23,6 +24,11 @@ export default {
     linkPath: {
       type: String,
       default: null
+    }
+  },
+  methods: {
+    eventClick() {
+      this.$ga.event('Virtuaalnäitus', 'Menu button click')
     }
   }
 }
