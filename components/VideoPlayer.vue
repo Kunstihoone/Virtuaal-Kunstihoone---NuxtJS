@@ -27,6 +27,7 @@ export default {
     if (this.videoSrc) {
       const videoOptions = {
         url: this.videoSrc,
+        dnt: true,
         background: true,
         playsinline: true
       }
@@ -74,9 +75,9 @@ export default {
         this.videoPaused = true
       }
     },
-    addKeyEvent(event) {
-      if (event.keyCode === 32) this.handleVideoState() // space
-    },
+    // addKeyEvent(event) {
+    //   if (event.keyCode === 32) this.handleVideoState() // space
+    // },
     videoSetMuted(state) {
       this.player
         .setMuted(state)

@@ -26,6 +26,7 @@ export default {
     const videoOptions = {
       url: this.embedUrl,
       width: 1920,
+      dnt: true,
       controls: false,
       autoplay: true,
       loop: true

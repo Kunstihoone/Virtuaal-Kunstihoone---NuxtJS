@@ -139,7 +139,7 @@ export default {
     handleOrientation() {
       setTimeout(() => {
         this.handleResize()
-      }, 500)
+      }, 300)
     },
     handleResize() {
       const windowWidth = window.innerWidth
