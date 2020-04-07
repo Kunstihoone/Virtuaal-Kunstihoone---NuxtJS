@@ -7,7 +7,10 @@
           top: `${button.position.top}%`,
           left: `${button.position.left}%`
         }"
-        @click="$store.commit('SetDetailsLayer', button.related_item.post_name)"
+        @click="
+          $store.commit('SetDetailsLayer', button.related_item.post_name) &
+            eventClick('Relatied item')
+        "
         :key="`nav-button-${index}`"
         class="room-navigation__link"
       >
@@ -22,6 +25,7 @@
         }"
         :key="`nav-button-${index}`"
         :href="button.external_link.url"
+        @click="eventClick('External link')"
         target="_blank"
         class="room-navigation__link"
       >
@@ -36,6 +40,7 @@
         }"
         :button-data="button"
         :key="`nav-button-${button.related_item.post_name}`"
+        @click.native="eventClick('Navigation button')"
         class="room-navigation__link"
       >
         <svg-icon :name="button.icon" />
@@ -55,6 +60,12 @@ export default {
     currentRoom: {
       type: Object,
       default: null
+    }
+  },
+  methods: {
+    eventClick(name) {
+      console.log(name)
+      this.$ga.event('Virtuaalnäitus', name)
     }
   }
 }
