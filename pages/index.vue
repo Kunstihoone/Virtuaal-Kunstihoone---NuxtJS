@@ -2,7 +2,7 @@
   <div class="index-page">
     <application-intro :data="data" />
 
-    <exhibitions-slider
+    <exhibitions-list
       v-if="$store.getters.getExhibitions"
       :exhibitions="$store.getters.getExhibitions"
     />
@@ -27,13 +27,13 @@
 <script>
 import anime from 'animejs'
 import ApplicationIntro from '~/components/ApplicationIntro'
-import ExhibitionsSlider from '~/components/ExhibitionsSlider'
+import ExhibitionsList from '~/components/ExhibitionsList'
 import NotificationModal from '~/components/NotificationModal'
 
 export default {
   components: {
     ApplicationIntro,
-    ExhibitionsSlider,
+    ExhibitionsList,
     NotificationModal
   },
   data() {

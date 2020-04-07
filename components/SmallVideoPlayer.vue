@@ -17,8 +17,8 @@ export default {
       const videoOptions = {
         url: this.videoSrc,
         dnt: true,
-        // controls: false,
-        autoplay: true
+        autoplay: true,
+        muted: true
       }
 
       this.player = new Player('small-video', videoOptions)

@@ -2,10 +2,13 @@
   <div class="video-guide">
     <transition name="fade">
       <small-video-player
-        v-if="audioGuideState && currentRoom.acf.hand_sign_translation"
+        v-if="
+          !placeholderVisible &&
+            audioGuideState &&
+            currentRoom.acf.hand_sign_translation
+        "
         :key="currentRoom.acf.hand_sign_translation"
         :video-src="currentRoom.acf.hand_sign_translation"
-        :audio-guide-title="audioGuideTitle"
       />
     </transition>
 

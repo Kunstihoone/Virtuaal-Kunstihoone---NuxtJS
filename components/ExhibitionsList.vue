@@ -1,6 +1,6 @@
 <template>
   <client-only>
-    <div class="slider-wrapper">
+    <div class="exhibitions-list">
       <template v-for="(exhibition, index) in exhibitions">
         <exhibition-item :data="exhibition" :key="index" />
       </template>
@@ -33,14 +33,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.slider-wrapper {
-  // position: absolute;
-  // top: 0;
-  // left: 0;
-  // width: 100%;
-  // height: 100%;
-  // background-color: white;
-}
-</style>
