@@ -12,12 +12,7 @@
 </template>
 
 <script>
-import MenuButton from '~/components/MenuButton'
-
 export default {
-  components: {
-    MenuButton
-  },
   props: {
     notification: {
       type: String,

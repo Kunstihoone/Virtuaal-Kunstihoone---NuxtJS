@@ -17,8 +17,6 @@ module.exports = {
   plugins: ['prettier'],
   // add your custom rules here
   rules: {
-    'vue/require-component-is': 0,
-    'vue/no-unused-components': 0,
-    'unicorn/escape-case': 0
+    'vue/require-component-is': 0
   }
 }

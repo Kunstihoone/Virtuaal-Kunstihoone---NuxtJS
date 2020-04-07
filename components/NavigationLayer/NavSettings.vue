@@ -62,13 +62,11 @@
 
 <script>
 import { mapState } from 'vuex'
-import LanguageSwitcher from '~/components/LanguageSwitcher'
 import MenuButton from '~/components/MenuButton'
 import ToolTip from '~/components/ToolTip'
 
 export default {
   components: {
-    LanguageSwitcher,
     MenuButton,
     ToolTip
   },
