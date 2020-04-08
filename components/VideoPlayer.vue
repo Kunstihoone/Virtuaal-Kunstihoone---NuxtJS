@@ -36,7 +36,7 @@ export default {
 
       document.addEventListener('keydown', this.addKeyEvent)
 
-      this.player.on('eventName', (data) => {
+      this.player.on('loaded', (data) => {
         // Mute video, if mute toggle from settings
         this.videoSetMuted(this.$store.state.mutedRoomAudio)
       })
