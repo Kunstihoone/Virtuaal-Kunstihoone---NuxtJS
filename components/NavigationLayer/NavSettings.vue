@@ -55,7 +55,7 @@
         :class="{ 'm-active': mutedRoomAudio }"
         :icon="mutedRoomAudio ? 'icon-muted' : 'icon-mute'"
         button-event="Toggle mute"
-        class="nav-settings__button"
+        class="nav-settings__button nav-settings__mute"
       >
         <tool-tip>
           {{ $t('mute_bg') }}
@@ -258,6 +258,12 @@ export default {
     opacity: 1;
     pointer-events: auto;
     transform: translateX(0);
+  }
+}
+
+.nav-settings__mute {
+  .mobile-device & {
+    display: none;
   }
 }
 </style>

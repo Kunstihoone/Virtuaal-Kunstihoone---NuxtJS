@@ -1,5 +1,8 @@
 <template>
-  <main :class="{ 'modal-active': detailsLayer }" class="main">
+  <main
+    :class="{ 'modal-active': detailsLayer, 'mobile-device': isMobileDevide }"
+    class="main"
+  >
     <ratio-container
       :style="{ width: containerWidth }"
       :class="[
@@ -74,7 +77,8 @@ export default {
     return {
       isWindowPortrait: false,
       containerOrientation: 'landscape',
-      containerWidth: '100%'
+      containerWidth: '100%',
+      isMobileDevide: false
     }
   },
   computed: {
@@ -128,6 +132,7 @@ export default {
         navigator.userAgent
       )
     ) {
+      this.isMobileDevide = true
       this.$store.commit('SetMutedRoomAudio', true)
     }
   },
