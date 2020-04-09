@@ -9,7 +9,7 @@
         class="nav-settings__toggle"
       >
         <tool-tip>
-          {{ $t('menu') }}
+          {{ $t('languages') }}
         </tool-tip>
       </menu-button>
 
