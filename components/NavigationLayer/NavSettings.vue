@@ -188,6 +188,11 @@ export default {
   position: absolute;
   top: 2.5rem;
   left: 0;
+  width: rem-calc(120);
+
+  @include breakpoint('large') {
+    width: 100%;
+  }
 }
 
 .nav-settings__button {
