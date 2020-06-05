@@ -34,6 +34,8 @@
       <details-layer v-if="detailsLayer" :details-layer="detailsLayer" />
     </ratio-container>
 
+    <feedback-button />
+
     <background-audio
       v-if="
         getRouteBaseName() !== 'index' &&
@@ -60,6 +62,7 @@ import RoomNavigation from '~/components/RoomNavigation'
 import PlaceholderImage from '~/components/PlaceholderImage'
 import LoadingIndicatior from '~/components/LoadingIndicatior'
 import PortraitNotification from '~/components/PortraitNotification'
+import FeedbackButton from '~/components/FeedbackButton'
 
 export default {
   components: {
@@ -71,7 +74,8 @@ export default {
     RoomNavigation,
     PlaceholderImage,
     LoadingIndicatior,
-    PortraitNotification
+    PortraitNotification,
+    FeedbackButton
   },
   data() {
     return {
