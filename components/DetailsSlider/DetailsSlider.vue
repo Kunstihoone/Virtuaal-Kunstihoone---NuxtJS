@@ -35,6 +35,11 @@
           v-if="slide.acf_fc_layout === 'video'"
           :video-data="slide.video"
         />
+        <slide-image-with-text
+          v-if="slide.acf_fc_layout === 'image-with-text'"
+          :image-data="slide.image"
+          :text="slide.text"
+        />
         <slide-embed
           v-if="slide.acf_fc_layout === 'embed_video'"
           :embed-url="slide.embed_video_url"
@@ -48,12 +53,14 @@
 import SlideEmbed from '~/components/DetailsSlider/SlideEmbed'
 import SlideImage from '~/components/DetailsSlider/SlideImage'
 import SlideVideo from '~/components/DetailsSlider/SlideVideo'
+import SlideImageWithText from '~/components/DetailsSlider/SlideImageWithText'
 
 export default {
   components: {
     SlideEmbed,
     SlideImage,
-    SlideVideo
+    SlideVideo,
+    SlideImageWithText
   },
   props: {
     slides: {
@@ -76,6 +83,14 @@ export default {
             flattenedSlides.push({
               acf_fc_layout: 'image',
               image: imageObject
+            })
+          })
+        } else if (slide.acf_fc_layout === 'images_with_text_gallery_block') {
+          slide.gallery.forEach((item) => {
+            flattenedSlides.push({
+              acf_fc_layout: 'image-with-text',
+              image: item.image,
+              text: item.text
             })
           })
         } else {
@@ -167,8 +182,12 @@ export default {
   position: relative;
   min-width: 100%;
   min-height: 100%;
-  padding: 4rem;
   display: block;
+  padding: 3rem;
+
+  @include breakpoint(large) {
+    padding: 4rem;
+  }
 }
 
 /deep/ .detail-slide {

@@ -144,10 +144,8 @@ export default {
 
   align-items: center;
   justify-content: flex-start;
+  background-color: $white;
 
-  @media (prefers-color-scheme: dark) {
-    background-color: $white;
-  }
   p {
     margin-bottom: 0;
   }
@@ -160,9 +158,7 @@ export default {
   margin-top: 0.5rem;
 
   @include breakpoint(medium) {
-    @include breakpoint(medium) {
-      @include grid(1/6);
-    }
+    @include grid(1/6);
   }
 }
 </style>

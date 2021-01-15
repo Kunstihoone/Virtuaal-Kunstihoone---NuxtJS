@@ -37,7 +37,6 @@ export default {
     }
   },
   mounted() {
-    console.log(localStorage.getItem('feedback'))
     if (!localStorage.getItem('feedback')) {
       setTimeout(() => {
         this.buttonVisible = true

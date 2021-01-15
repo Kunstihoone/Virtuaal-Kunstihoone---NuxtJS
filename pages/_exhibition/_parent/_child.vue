@@ -28,7 +28,6 @@ export default {
     }
 
     const data = await store.getters.getSingleRoom(params.child)
-    console.log(data)
     return { data }
   },
   head() {

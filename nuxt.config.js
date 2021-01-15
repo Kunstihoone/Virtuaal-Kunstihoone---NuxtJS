@@ -124,16 +124,19 @@ export default {
         pages: {
           '_exhibition/index': {
             et: '/:exhibition',
+            evk: '/:exhibition',
             en: '/:exhibition',
             ru: '/:exhibition'
           },
           '_exhibition/_parent/index': {
             et: '/:exhibition/:parent',
+            evk: '/:exhibition/:parent',
             en: '/:exhibition/:parent',
             ru: '/:exhibition/:parent'
           },
           '_exhibition/_parent/_child': {
             et: '/:exhibition/:parent/:child',
+            evk: '/:exhibition/:parent/:child',
             en: '/:exhibition/:parent/:child',
             ru: '/:exhibition/:parent/:child'
           }
@@ -165,14 +168,10 @@ export default {
   },
   generate: {
     interval: 100,
+    crawler: false,
     routes: function() {
-      return request.get('post-types/virtual-exhibitions').then((res) => {
-        return res.data.map((route) => {
-          const slug = route.slug
-          const parentSlug = route.parent_slug
-
-          return parentSlug ? `${parentSlug}/${slug}` : slug
-        })
+      return request.get('generate').then((res) => {
+        return res.data
       })
     }
   }
