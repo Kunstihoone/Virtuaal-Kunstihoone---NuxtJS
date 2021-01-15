@@ -18,9 +18,6 @@ export default {
       default: null
     }
   },
-  mounted() {
-    console.log(this.imageData)
-  },
   computed: {
     currentLocaleIso() {
       return this.$i18n.locales.find((lang) => lang.code === this.$i18n.locale)
