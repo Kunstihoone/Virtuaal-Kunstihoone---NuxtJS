@@ -9,8 +9,22 @@ export default {
   components: {
     RoomWrapper
   },
-  async asyncData({ $axios, params, store, route }) {
-    if (
+  async asyncData({ $axios, params, store, route, isStatic }) {
+    if (isStatic) {
+      const data = await $axios.get(
+        `post-types/${params.exhibition}/${params.parent}`,
+        {
+          params: {
+            acf: true
+          }
+        }
+      )
+
+      store.commit('SetCurrentExhibition', params.exhibition)
+      store.commit('SetRoomsData', [data.data])
+
+      return { data: data.data }
+    } else if (
       !store.state.roomsData ||
       store.state.currentExhibition !== params.exhibition
     ) {
@@ -25,11 +39,16 @@ export default {
       })
       store.commit('SetCurrentExhibition', params.exhibition)
       store.commit('SetRoomsData', getRooms.data)
+
+      const data = getRooms.data.find((event) => {
+        return decodeURIComponent(event.slug) === params.parent
+      })
+
+      return { data }
+    } else {
+      const data = await store.getters.getSingleRoom(params.parent)
+      return { data }
     }
-
-    const data = await store.getters.getSingleRoom(route.params.parent)
-
-    return { data }
   },
   head() {
     return this.metaData(this.data)

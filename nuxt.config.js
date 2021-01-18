@@ -8,10 +8,10 @@ var request = axios.create({
 })
 
 export default {
-  mode: 'universal',
   /*
    ** Headers of the page
    */
+  target: 'static',
   head: {
     title: process.env.npm_package_name || '',
     meta: [
@@ -167,9 +167,9 @@ export default {
     extend(config, ctx) {}
   },
   generate: {
-    interval: 100,
+    interval: 200,
     crawler: false,
-    routes: function() {
+    routes() {
       return request.get('generate').then((res) => {
         return res.data
       })
