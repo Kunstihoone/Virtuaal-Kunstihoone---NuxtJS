@@ -16,8 +16,7 @@
         <transition name="fade">
           <a
             v-if="
-              detailsState &&
-                currentRoom.acf.digital_guide_links &&
+              currentRoom.acf.digital_guide_links &&
                 currentRoom.acf.digital_guide_links[currentLocaleIso]
             "
             :href="currentRoom.acf.digital_guide_links[currentLocaleIso]"
