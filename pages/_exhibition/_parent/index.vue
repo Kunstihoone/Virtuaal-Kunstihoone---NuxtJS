@@ -42,7 +42,6 @@ export default {
       store.commit('SetRoomsData', getRooms.data)
 
       const lang = app.i18n.locale === 'evk' ? 'et' : app.i18n.locale
-      const lang = 'et'
       if (!store.state.siteData) {
         const siteData = await $axios.get('site-data', {
           params: {
