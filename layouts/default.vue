@@ -13,7 +13,7 @@
         <splash-layer v-if="getRouteBaseName() !== 'index' && splashState" />
       </transition>
 
-      <navigation-layer v-if="currentRoom" :current-room="currentRoom" />
+      <navigation-layer :current-room="currentRoom" />
 
       <nuxt />
 

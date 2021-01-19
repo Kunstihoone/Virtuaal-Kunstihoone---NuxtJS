@@ -11,6 +11,7 @@ export default {
   /*
    ** Headers of the page
    */
+  // target: process.env.target ? process.env.target : 'server',
   target: 'static',
   head: {
     title: process.env.npm_package_name || '',
@@ -167,12 +168,12 @@ export default {
     extend(config, ctx) {}
   },
   generate: {
-    interval: 200,
-    crawler: false,
-    routes() {
-      return request.get('generate').then((res) => {
-        return res.data
-      })
-    }
+    interval: 100
+    // crawler: false,
+    // routes() {
+    //   return request.get('generate').then((res) => {
+    //     return res.data
+    //   })
+    // }
   }
 }

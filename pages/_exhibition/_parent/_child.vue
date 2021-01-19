@@ -9,8 +9,8 @@ export default {
   components: {
     RoomWrapper
   },
-  async asyncData({ $axios, params, store, isStatic }) {
-    if (isStatic) {
+  async asyncData({ $axios, params, store, isStatic, app }) {
+    if (!process.browser && process.env.NODE_ENV !== 'development') {
       const data = await $axios.get(
         `post-types/${params.exhibition}/${params.child}`,
         {
@@ -39,6 +39,31 @@ export default {
       })
       store.commit('SetCurrentExhibition', params.exhibition)
       store.commit('SetRoomsData', getRooms.data)
+
+      const lang = app.i18n.locale === 'evk' ? 'et' : app.i18n.locale
+      if (!store.state.siteData) {
+        const siteData = await $axios.get('site-data', {
+          params: {
+            lang
+          }
+        })
+        store.commit('SetSiteData', siteData.data)
+      }
+
+      if (!store.state.exhibitions) {
+        const queryParams = {
+          acf: true,
+          sort_order: 'DESC',
+          sort_column: 'post_date',
+          lang
+        }
+
+        const exhibitions = await $axios.$get('post-types/exhibitions', {
+          params: queryParams
+        })
+
+        store.commit('SetExhibitions', exhibitions)
+      }
 
       const data = getRooms.data.find((event) => {
         return decodeURIComponent(event.slug) === params.child

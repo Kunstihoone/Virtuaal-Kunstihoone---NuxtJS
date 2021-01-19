@@ -73,8 +73,6 @@ export const actions = {
 
     const siteData = await app.$axios.get('site-data', {
       params: {
-        include_menus: true,
-        include_taxonomies: true,
         lang
       }
     })

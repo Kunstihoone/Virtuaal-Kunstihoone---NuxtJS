@@ -8,21 +8,25 @@
     />
 
     <nav-label
-      v-if="getRouteBaseName() !== 'index'"
+      v-if="currentRoom && getRouteBaseName() !== 'index'"
       :current-room="
         $store.state.detailsData ? $store.state.detailsData : currentRoom
       "
     />
 
     <audio-guide
-      v-if="getRouteBaseName() !== 'index' && $i18n.locale !== 'evk'"
+      v-if="
+        currentRoom && getRouteBaseName() !== 'index' && $i18n.locale !== 'evk'
+      "
       :current-room="
         $store.state.detailsData ? $store.state.detailsData : currentRoom
       "
     />
 
     <video-guide
-      v-else-if="getRouteBaseName() !== 'index' && $i18n.locale === 'evk'"
+      v-else-if="
+        currentRoom && getRouteBaseName() !== 'index' && $i18n.locale === 'evk'
+      "
       :current-room="
         $store.state.detailsData ? $store.state.detailsData : currentRoom
       "
