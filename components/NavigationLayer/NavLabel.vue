@@ -1,8 +1,9 @@
 <template>
-  <transition name="fade">
-    <div v-if="currentRoom.acf.label" class="nav-label">
-      <div class="nav-label__buttons">
+  <div class="nav-label">
+    <div class="nav-label__buttons">
+      <transition name="fade">
         <menu-button
+          v-if="currentRoom.acf.label"
           @click.native="detailsState = !detailsState"
           :icon="detailsState ? 'icon-close' : 'icon-info'"
           button-event="Toggle label"
@@ -12,28 +13,40 @@
             {{ $t('details_label') }}
           </tool-tip>
         </menu-button>
-
-        <transition name="fade">
-          <a
-            v-if="
-              currentRoom.acf.digital_guide_links &&
-                currentRoom.acf.digital_guide_links[currentLocaleIso]
-            "
-            :href="currentRoom.acf.digital_guide_links[currentLocaleIso]"
-            @click="$store.commit('SetAudioPlayerState', false)"
-            target="blank"
-            class="nav-label__guide-link button"
-          >
-            {{ $t('digital_guide') }}
-          </a>
-        </transition>
-      </div>
+      </transition>
 
       <transition name="fade">
-        <label-layer v-if="detailsState" :label-image="currentRoom.acf.label" />
+        <a
+          v-if="
+            currentRoom.acf.curators_essay_links &&
+              currentRoom.acf.curators_essay_links[currentLocaleIso]
+          "
+          :href="currentRoom.acf.curators_essay_links[currentLocaleIso]"
+          @click="$store.commit('SetAudioPlayerState', false)"
+          target="_blank"
+          class="nav-label__guide-link button"
+        >
+          {{ $t('curators_essay') }}
+        </a>
+        <a
+          v-else-if="
+            currentRoom.acf.digital_guide_links &&
+              currentRoom.acf.digital_guide_links[currentLocaleIso]
+          "
+          :href="currentRoom.acf.digital_guide_links[currentLocaleIso]"
+          @click="$store.commit('SetAudioPlayerState', false)"
+          target="_blank"
+          class="nav-label__guide-link button"
+        >
+          {{ $t('digital_guide') }}
+        </a>
       </transition>
     </div>
-  </transition>
+
+    <transition name="fade">
+      <label-layer v-if="detailsState" :label-image="currentRoom.acf.label" />
+    </transition>
+  </div>
 </template>
 
 <script>
