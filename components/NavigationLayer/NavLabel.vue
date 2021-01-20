@@ -21,12 +21,16 @@
             currentRoom.acf.curators_essay_links &&
               currentRoom.acf.curators_essay_links[currentLocaleIso]
           "
-          :href="currentRoom.acf.curators_essay_links[currentLocaleIso]"
+          :href="currentRoom.acf.curators_essay_links[currentLocaleIso].url"
           @click="$store.commit('SetAudioPlayerState', false)"
           target="_blank"
           class="nav-label__guide-link button"
         >
-          {{ $t('curators_essay') }}
+          {{
+            currentRoom.acf.curators_essay_links[currentLocaleIso].title
+              ? currentRoom.acf.curators_essay_links[currentLocaleIso].title
+              : $t('curators_essay')
+          }}
         </a>
         <a
           v-else-if="
