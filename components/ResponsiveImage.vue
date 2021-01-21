@@ -1,6 +1,6 @@
 <template>
   <img
-    v-if="imageData && imageData.srcset"
+    v-if="imageData"
     :key="imageData.ID"
     :src="imageData.sizes.thumbnail_lqip"
     :data-src="defaultImage"
