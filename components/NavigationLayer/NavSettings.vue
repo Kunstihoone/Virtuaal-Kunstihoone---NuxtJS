@@ -189,6 +189,7 @@ export default {
   top: 2.5rem;
   left: 0;
   width: rem-calc(120);
+  pointer-events: none;
 
   @include breakpoint('large') {
     width: 100%;

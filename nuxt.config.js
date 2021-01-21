@@ -11,8 +11,8 @@ export default {
   /*
    ** Headers of the page
    */
-  // target: process.env.target ? process.env.target : 'server',
-  target: 'static',
+  target: process.env.target ? process.env.target : 'static',
+  // target: 'static',
   head: {
     title: process.env.npm_package_name || '',
     meta: [
