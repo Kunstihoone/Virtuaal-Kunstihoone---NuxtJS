@@ -19,8 +19,10 @@
 </template>
 
 <script>
+import fetchApi from '~/utils/fetchApi'
+
 export default {
-  async asyncData({ store, params, $axios, app }) {
+  async asyncData({ store, params, app }) {
     if (store.state.exhibition) {
       const data = await store.getters.getSingleExhibition(params.exhibition)
 
@@ -28,19 +30,15 @@ export default {
         data
       }
     } else {
-      const queryParams = {
-        lang: app.i18n.locale === 'evk' ? 'et' : app.i18n.locale,
-        acf: true,
-        sort_order: 'DESC',
-        sort_column: 'post_date'
-      }
-
-      const data = await $axios.$get(
-        `post-types/exhibitions/${params.exhibition}`,
-        {
-          params: queryParams
+      const data = await fetchApi({
+        path: `post-types/exhibitions/${params.exhibition}`,
+        params: {
+          lang: app.i18n.locale === 'evk' ? 'et' : app.i18n.locale,
+          acf: true,
+          sort_order: 'DESC',
+          sort_column: 'post_date'
         }
-      )
+      })
 
       return {
         data

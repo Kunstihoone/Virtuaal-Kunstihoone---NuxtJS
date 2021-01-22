@@ -26,6 +26,7 @@
 
 <script>
 import anime from 'animejs'
+import fetchApi from '~/utils/fetchApi'
 import ApplicationIntro from '~/components/ApplicationIntro'
 import ExhibitionsList from '~/components/ExhibitionsList'
 import NotificationModal from '~/components/NotificationModal'
@@ -54,31 +55,29 @@ export default {
       })
     }
   },
-  async asyncData({ store, $axios, app }) {
-    const baseUrl = process.env.BASE_URL
+  async asyncData({ app }) {
     let frontPagePath = ''
 
-    if (app.i18n.locale === 'et' || app.i18n.locale === 'evk') {
-      frontPagePath = 'esileht'
-    } else if (app.i18n.locale === 'en') {
-      frontPagePath = 'front-page'
-    } else if (app.i18n.locale === 'ru') {
-      frontPagePath = 'esileht-rus'
+    switch (app.i18n.locale) {
+      case 'en':
+        frontPagePath = 'front-page'
+        break
+      case 'ru':
+        frontPagePath = 'esileht-rus'
+        break
+
+      default:
+        frontPagePath = 'esileht'
+        break
     }
 
-    const params = new URLSearchParams({
-      lang: app.i18n.locale === 'evk' ? 'et' : app.i18n.locale,
-      acf: true
-    })
-
-    const data = await fetch(`${baseUrl}pages/${frontPagePath}?${params}`).then(
-      (res) => {
-        if (!res.ok) {
-          return null
-        }
-        return res.json()
+    const data = await fetchApi({
+      path: `pages/${frontPagePath}`,
+      params: {
+        lang: app.i18n.locale === 'evk' ? 'et' : app.i18n.locale,
+        acf: true
       }
-    )
+    })
 
     return {
       data

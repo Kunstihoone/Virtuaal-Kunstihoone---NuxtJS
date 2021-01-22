@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import fetchApi from '../utils/fetchApi'
+import fetchApi from '~/utils/fetchApi'
 
 export const state = () => ({
   audioGuideState: false,
