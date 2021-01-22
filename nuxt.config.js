@@ -5,7 +5,7 @@ export default {
   /*
    ** Headers of the page
    */
-  target: 'static',
+  target: process.env.TARGET ? process.env.TARGET : 'static',
   head: {
     title: process.env.npm_package_name || '',
     meta: [
