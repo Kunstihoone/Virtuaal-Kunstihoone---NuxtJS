@@ -1,7 +1,7 @@
 {
-  "name": "kunstihoone-videogiid-nuxt",
+  "name": "tallinna-kunstihoone-virtuaalnaitused",
   "version": "1.0.0",
-  "description": "Kunstihoone virtuaalnäitus - app",
+  "description": "Tallinna Kunstihoone virtuaalnäitused",
   "author": "WWW Stuudio",
   "private": true,
   "scripts": {
