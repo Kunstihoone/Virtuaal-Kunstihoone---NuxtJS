@@ -12,7 +12,7 @@ export default {
   },
   async asyncData({ params, store, app }) {
     if (!process.browser && process.env.NODE_ENV !== 'development') {
-      const data = await fetchApi.get({
+      const data = await fetchApi({
         path: `post-types/${params.exhibition}/${params.parent}`,
 
         params: {
