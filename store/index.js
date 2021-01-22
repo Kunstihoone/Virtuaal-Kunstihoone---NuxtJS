@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import fetchApi from '../utils/fetchApi'
 
 export const state = () => ({
   audioGuideState: false,
@@ -67,56 +68,42 @@ export const mutations = {
   }
 }
 
-export const actions = {
-  async nuxtServerInit({ commit }, { app }) {
-    const lang = app.i18n.locale === 'evk' ? 'et' : app.i18n.locale
-
-    const siteData = await app.$axios.get('site-data', {
-      params: {
-        lang
-      }
-    })
-    commit('SetSiteData', siteData.data)
-
-    const queryParams = {
-      acf: true,
-      sort_order: 'DESC',
-      sort_column: 'post_date',
+async function fetchSiteData({ commit, lang }) {
+  const siteData = await fetchApi({
+    path: 'site-data',
+    params: {
+      include_menus: true,
+      include_taxonomies: true,
       lang
     }
+  })
 
-    const exhibitions = await app.$axios.$get('post-types/exhibitions', {
-      params: queryParams
-    })
+  commit('SetSiteData', siteData)
 
-    commit('SetExhibitions', exhibitions)
-  },
-
-  async getSiteData({ commit }, locale) {
-    const lang = locale === 'evk' ? 'et' : locale
-
-    const siteData = await this.$axios.get('site-data', {
-      params: {
-        include_menus: true,
-        include_taxonomies: true,
-        lang
-      }
-    })
-
-    commit('SetSiteData', siteData.data)
-
-    const queryParams = {
+  const exhibitions = await fetchApi({
+    path: 'post-types/exhibitions',
+    params: {
       acf: true,
       sort_order: 'ASC',
       sort_column: 'menu_order',
       lang
     }
+  })
 
-    const exhibitions = await this.$axios.$get('post-types/exhibitions', {
-      params: queryParams
-    })
+  commit('SetExhibitions', exhibitions)
+}
 
-    commit('SetExhibitions', exhibitions)
+export const actions = {
+  async nuxtServerInit({ commit }, { app }) {
+    const lang = app.i18n.locale === 'evk' ? 'et' : app.i18n.locale
+
+    await fetchSiteData({ commit, lang })
+  },
+
+  async getSiteData({ commit }, locale) {
+    const lang = locale === 'evk' ? 'et' : locale
+
+    await fetchSiteData({ commit, lang })
   }
 }
 

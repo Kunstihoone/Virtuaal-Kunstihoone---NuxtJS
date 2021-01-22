@@ -9,7 +9,7 @@ export default {
   components: {
     RoomWrapper
   },
-  async asyncData({ $axios, params, store, route, isStatic, app }) {
+  async asyncData({ $axios, params, store, app }) {
     if (!process.browser && process.env.NODE_ENV !== 'development') {
       const data = await $axios.get(
         `post-types/${params.exhibition}/${params.parent}`,

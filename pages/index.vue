@@ -55,11 +55,7 @@ export default {
     }
   },
   async asyncData({ store, $axios, app }) {
-    const queryParams = {
-      lang: app.i18n.locale === 'evk' ? 'et' : app.i18n.locale,
-      acf: true
-    }
-
+    const baseUrl = process.env.BASE_URL
     let frontPagePath = ''
 
     if (app.i18n.locale === 'et' || app.i18n.locale === 'evk') {
@@ -70,9 +66,19 @@ export default {
       frontPagePath = 'esileht-rus'
     }
 
-    const data = await $axios.$get(`pages/${frontPagePath}`, {
-      params: queryParams
+    const params = new URLSearchParams({
+      lang: app.i18n.locale === 'evk' ? 'et' : app.i18n.locale,
+      acf: true
     })
+
+    const data = await fetch(`${baseUrl}pages/${frontPagePath}?${params}`).then(
+      (res) => {
+        if (!res.ok) {
+          return null
+        }
+        return res.json()
+      }
+    )
 
     return {
       data
