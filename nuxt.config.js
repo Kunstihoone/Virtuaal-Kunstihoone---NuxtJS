@@ -128,7 +128,7 @@ export default {
         if (!res.ok) {
           return null
         }
-        return res.json().then((paths) => ['/en', '/ru', '/evk', ...paths])
+        return res.json().then((paths) => [...paths])
       })
     }
   }
