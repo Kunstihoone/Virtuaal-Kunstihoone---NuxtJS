@@ -1,13 +1,11 @@
 require('dotenv').config()
-
-// const baseURL = 'http://kunstihoone-videogiid.test/wp-json/www-api/v1/'
+const fetch = require('node-fetch')
 
 export default {
   /*
    ** Headers of the page
    */
-  target: process.env.target ? process.env.target : 'static',
-  // target: 'static',
+  target: 'static',
   head: {
     title: process.env.npm_package_name || '',
     meta: [
@@ -47,53 +45,30 @@ export default {
       { rel: 'manifest', href: '/manifest.json' }
     ]
   },
-  /*
-   ** Customize the progress-bar color
-   */
   loading: { color: '#fff' },
-  /*
-   ** Global CSS
-   */
   css: ['assets/styles/reset.css'],
-  /*
-   ** Plugins to load before mounting the App
-   */
   plugins: [
     '~/plugins/components.js',
     '~/mixins/MixinMetaData.js',
     '~/plugins/i18n',
     {
-      src: '~/plugins/vue-concise-slider',
-      ssr: false
-    },
-    {
       src: '~/plugins/lazysizes.js',
       ssr: false
     }
   ],
-  /*
-   ** Nuxt.js dev-modules
-   */
   buildModules: [
-    // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
     '@nuxtjs/dotenv',
     '@nuxtjs/google-analytics'
   ],
-  /*
-   ** Analytics
-   */
   googleAnalytics: {
     id: 'UA-154575282-2'
   },
-  /*
-   ** Nuxt.js modules
-   */
   modules: [
     [
       'nuxt-i18n',
       {
-        detectBrowserLanguage: false,
+        detectBrowserLanguage: true,
         locales: [
           { code: 'et', iso: 'est', name: 'ET', full_name: 'Eesti keeles' },
           {
@@ -144,22 +119,17 @@ export default {
   styleResources: {
     scss: ['./assets/styles/main.scss']
   },
-  /*
-   ** Build configuration
-   */
-  build: {
-    /*
-     ** You can extend webpack config here
-     */
-    extend(config, ctx) {}
-  },
+  build: {},
   generate: {
-    interval: 100
-    // crawler: false,
-    // routes() {
-    //   return request.get('generate').then((res) => {
-    //     return res.data
-    //   })
-    // }
+    interval: 100,
+    crawler: false,
+    routes() {
+      return fetch(`${process.env.BASE_URL}generate`).then((res) => {
+        if (!res.ok) {
+          return null
+        }
+        return res.json().then((paths) => ['/en', '/ru', '/evk', ...paths])
+      })
+    }
   }
 }

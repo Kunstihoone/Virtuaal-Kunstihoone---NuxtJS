@@ -97,6 +97,8 @@ export const actions = {
   async nuxtServerInit({ commit }, { app }) {
     const lang = app.i18n.locale === 'evk' ? 'et' : app.i18n.locale
 
+    console.log('nuxtServerInit')
+
     await fetchSiteData({ commit, lang })
   },
 

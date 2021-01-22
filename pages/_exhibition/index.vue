@@ -22,8 +22,8 @@
 import fetchApi from '~/utils/fetchApi'
 
 export default {
-  async asyncData({ store, params, app }) {
-    if (store.state.exhibition) {
+  async asyncData({ store, params }) {
+    if (store.state.exhibitions) {
       const data = await store.getters.getSingleExhibition(params.exhibition)
 
       return {
@@ -33,10 +33,7 @@ export default {
       const data = await fetchApi({
         path: `post-types/exhibitions/${params.exhibition}`,
         params: {
-          lang: app.i18n.locale === 'evk' ? 'et' : app.i18n.locale,
-          acf: true,
-          sort_order: 'DESC',
-          sort_column: 'post_date'
+          acf: true
         }
       })
 
