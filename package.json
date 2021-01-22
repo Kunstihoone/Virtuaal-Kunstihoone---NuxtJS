@@ -22,7 +22,7 @@
     "dayjs": "^1.8.23",
     "lazysizes": "^5.1.1",
     "node-fetch": "^2.6.1",
-    "nuxt-edge": "^2.15.0-26854632.498f8553",
+    "nuxt": "^2.14.12",
     "nuxt-i18n": "^6.18.0"
   },
   "devDependencies": {
