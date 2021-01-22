@@ -138,7 +138,6 @@ export default {
         }
       }
     ],
-    '@nuxtjs/axios',
     '@nuxtjs/style-resources',
     '@nuxtjs/svg-sprite'
   ],
