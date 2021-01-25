@@ -9,12 +9,12 @@ export default {
   props: {
     startingDateTime: {
       type: String,
-      default: null
+      default: null,
     },
     endingDateTime: {
       type: String,
-      default: null
-    }
+      default: null,
+    },
   },
   computed: {
     exhibitionDates() {
@@ -23,15 +23,15 @@ export default {
 
       if (startingTime.isSame(endingTime, 'year')) {
         return `${startingTime.format('DD.MM')} – ${endingTime.format(
-          'DD.MM.YYYY'
+          'DD.MM.YYYY',
         )}`
       } else {
         return `${startingTime.format('DD.MM.YYYY')} – ${endingTime.format(
-          'DD.MM.YYYY'
+          'DD.MM.YYYY',
         )}`
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

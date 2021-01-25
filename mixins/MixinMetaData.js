@@ -39,13 +39,13 @@ Vue.mixin({
         ogImage = {
           url: data.featured_image.url,
           width: data.featured_image.width,
-          height: data.featured_image.height
+          height: data.featured_image.height,
         }
       } else {
         ogImage = {
           url: '/og-image.png',
           width: 1200,
-          height: 1260
+          height: 1260,
         }
       }
 
@@ -55,45 +55,45 @@ Vue.mixin({
           {
             hid: 'og:url',
             property: 'og:url',
-            content: siteUrl + this.$route.path
+            content: siteUrl + this.$route.path,
           },
           { hid: 'og:title', property: 'og:title', content: metaTitle },
           { hid: 'og:image', property: 'og:image', content: ogImage.url },
           {
             hid: 'og:image:width',
             property: 'og:image:width',
-            content: ogImage.width
+            content: ogImage.width,
           },
           {
             hid: 'og:image:height',
             property: 'og:image:height',
-            content: ogImage.height
-          }
+            content: ogImage.height,
+          },
         ],
         link: [
           {
             hid: 'canonical',
             rel: 'canonical',
-            href: siteUrl + this.$route.path
-          }
-        ]
+            href: siteUrl + this.$route.path,
+          },
+        ],
       }
 
       if (metaDescription) {
         metaData.meta.push({
           hid: 'description',
           name: 'description',
-          content: siteDescription
+          content: siteDescription,
         })
 
         metaData.meta.push({
           hid: 'og:description',
           property: 'og:description',
-          content: metaDescription
+          content: metaDescription,
         })
       }
 
       return metaData
-    }
-  }
+    },
+  },
 })

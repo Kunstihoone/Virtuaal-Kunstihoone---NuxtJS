@@ -19,18 +19,18 @@ import InfoLayer from '~/components/InfoLayer'
 
 export default {
   components: {
-    InfoLayer
+    InfoLayer,
   },
   data() {
     return {
-      layerState: false
+      layerState: false,
     }
   },
   watch: {
     $route() {
       this.layerState = false
-    }
-  }
+    },
+  },
 }
 </script>
 

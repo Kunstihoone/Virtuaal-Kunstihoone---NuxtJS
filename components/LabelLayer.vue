@@ -9,9 +9,9 @@ export default {
   props: {
     labelImage: {
       type: Object,
-      default: null
-    }
-  }
+      default: null,
+    },
+  },
 }
 </script>
 

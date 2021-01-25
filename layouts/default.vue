@@ -6,7 +6,7 @@
     <ratio-container
       :style="{ width: containerWidth }"
       :class="[
-        containerOrientation === 'landscape' ? 'm-landscape' : 'm-portrait'
+        containerOrientation === 'landscape' ? 'm-landscape' : 'm-portrait',
       ]"
     >
       <transition name="fade">
@@ -39,8 +39,8 @@
     <background-audio
       v-if="
         getRouteBaseName() !== 'index' &&
-          currentRoom &&
-          currentRoom.acf.audio_track
+        currentRoom &&
+        currentRoom.acf.audio_track
       "
       :key="currentRoom.acf.audio_track.url"
       :audio-data="currentRoom.acf.audio_track"
@@ -75,14 +75,14 @@ export default {
     PlaceholderImage,
     LoadingIndicatior,
     PortraitNotification,
-    FeedbackButton
+    FeedbackButton,
   },
   data() {
     return {
       isWindowPortrait: false,
       containerOrientation: 'landscape',
       containerWidth: '100%',
-      isMobileDevide: false
+      isMobileDevide: false,
     }
   },
   computed: {
@@ -91,19 +91,19 @@ export default {
       placeholderImage: (state) => state.placeholderImage,
       placeholderVisible: (state) => state.placeholderVisible,
       detailsLayer: (state) => state.detailsLayer,
-      navigationButtons: (state) => state.navigationButtons
+      navigationButtons: (state) => state.navigationButtons,
     }),
     currentRoom() {
       if (this.$route.params.child || this.$route.params.parent) {
         return this.$store.getters.getSingleRoom(
           this.$route.params.child
             ? this.$route.params.child
-            : this.$route.params.parent
+            : this.$route.params.parent,
         )
       } else {
         return null
       }
-    }
+    },
   },
   watch: {
     $route() {
@@ -114,7 +114,7 @@ export default {
         this.$store.commit('SetPlaceholderImage', null)
         this.$store.commit('SetPlaceholderVisible', false)
       }
-    }
+    },
   },
   mounted() {
     if (this.$i18n.locale === 'evk') {
@@ -133,7 +133,7 @@ export default {
 
     if (
       /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent
+        navigator.userAgent,
       )
     ) {
       this.isMobileDevide = true
@@ -170,7 +170,7 @@ export default {
         targets: el,
         opacity: [0, 1],
         easing: 'easeOutExpo',
-        duration: 800
+        duration: 800,
       })
     },
     playerLeave(el, done) {
@@ -181,17 +181,17 @@ export default {
         duration: 600,
         complete: (anim) => {
           done()
-        }
+        },
       })
-    }
+    },
   },
   head() {
     return {
       htmlAttrs: {
-        lang: this.$i18n.locale
-      }
+        lang: this.$i18n.locale,
+      },
     }
-  }
+  },
 }
 </script>
 

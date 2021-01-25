@@ -13,8 +13,8 @@ export default {
   props: {
     buttonData: {
       type: Object,
-      default: null
-    }
+      default: null,
+    },
   },
   computed: {
     buttonPath() {
@@ -28,19 +28,19 @@ export default {
           params: {
             parent: parentSlug,
             child: slug,
-            exhibition
-          }
+            exhibition,
+          },
         }
       } else {
         return {
           name: 'exhibition-parent',
           params: {
             parent: slug,
-            exhibition
-          }
+            exhibition,
+          },
         }
       }
-    }
+    },
   },
   methods: {
     showPlaceholder() {
@@ -48,7 +48,7 @@ export default {
     },
     preloadPlaceholder() {
       const room = this.$store.getters.getSingleRoom(
-        this.buttonData.related_item.post_name
+        this.buttonData.related_item.post_name,
       )
 
       if (
@@ -58,10 +58,10 @@ export default {
       ) {
         this.$store.commit(
           'SetPlaceholderImage',
-          room.featured_image.sizes.large
+          room.featured_image.sizes.large,
         )
       }
-    }
-  }
+    },
+  },
 }
 </script>

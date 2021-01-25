@@ -6,12 +6,12 @@
         name: 'exhibition-parent',
         params: {
           exhibition: data.acf.entry_room.post_type,
-          parent: data.acf.entry_room.post_name
-        }
+          parent: data.acf.entry_room.post_name,
+        },
       })
     "
     :class="{
-      'm-disabled': $i18n.locale === 'evk' && !data.acf.in_sign_language
+      'm-disabled': $i18n.locale === 'evk' && !data.acf.in_sign_language,
     }"
     class="exhibition-item"
   >
@@ -39,20 +39,20 @@ import ExhibitionItemDates from '~/components/ExhibitionItemDates'
 
 export default {
   components: {
-    ExhibitionItemDates
+    ExhibitionItemDates,
   },
   props: {
     data: {
       type: Object,
-      default: null
-    }
+      default: null,
+    },
   },
   methods: {
     enterExhibition() {
       this.$store.commit('SetUserReady', true)
       this.$store.commit('SetSplashState', false)
-    }
-  }
+    },
+  },
 }
 </script>
 

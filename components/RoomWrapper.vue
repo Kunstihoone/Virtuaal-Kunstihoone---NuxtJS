@@ -14,32 +14,32 @@ import VideoPlayer from '~/components/VideoPlayer'
 
 export default {
   components: {
-    VideoPlayer
+    VideoPlayer,
   },
   props: {
     data: {
       type: Object,
-      default: null
-    }
+      default: null,
+    },
   },
   data() {
     return {
       videoPaused: false,
       playerLoaded: false,
-      showImage: true
+      showImage: true,
     }
   },
   computed: {
     ...mapState({
       audioGuideState: (state) => state.audioGuideState,
-      userReady: (state) => state.userReady
-    })
+      userReady: (state) => state.userReady,
+    }),
   },
   mounted() {
     if (this.data.featured_image && this.data.featured_image.sizes.medium) {
       this.$store.commit(
         'SetPlaceholderImage',
-        this.data.featured_image.sizes.large
+        this.data.featured_image.sizes.large,
       )
       this.$store.commit('SetPlaceholderVisible', true)
     }
@@ -51,7 +51,7 @@ export default {
       if (this.data.acf.buttons) {
         this.$store.commit('SetNavigationButtons', this.data.acf.buttons)
       }
-    }
-  }
+    },
+  },
 }
 </script>

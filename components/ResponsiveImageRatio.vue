@@ -9,18 +9,18 @@ export default {
   props: {
     imageData: {
       type: Object,
-      default: null
-    }
+      default: null,
+    },
   },
   computed: {
     ratioBox() {
       const ratio = this.imageData.height / this.imageData.width
 
       return {
-        paddingTop: ratio * 100 + '%'
+        paddingTop: ratio * 100 + '%',
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

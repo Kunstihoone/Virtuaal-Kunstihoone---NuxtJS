@@ -8,8 +8,8 @@
           name: 'exhibition-parent',
           params: {
             exhibition: data.acf.post_type_slug,
-            parent: 'fuajee'
-          }
+            parent: 'fuajee',
+          },
         })
       "
     >
@@ -27,24 +27,24 @@ export default {
       const data = await store.getters.getSingleExhibition(params.exhibition)
 
       return {
-        data
+        data,
       }
     } else {
       const data = await fetchApi({
         path: `post-types/exhibitions/${params.exhibition}`,
         params: {
-          acf: true
-        }
+          acf: true,
+        },
       })
 
       return {
-        data
+        data,
       }
     }
   },
   head() {
     return this.metaData(this.data)
-  }
+  },
 }
 </script>
 

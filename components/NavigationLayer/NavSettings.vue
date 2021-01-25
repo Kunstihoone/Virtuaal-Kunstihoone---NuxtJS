@@ -73,29 +73,29 @@ import ToolTip from '~/components/ToolTip'
 export default {
   components: {
     MenuButton,
-    ToolTip
+    ToolTip,
   },
   data() {
     return {
-      toggleMenu: false
+      toggleMenu: false,
     }
   },
   computed: {
     ...mapState({
       fullscreen: (state) => state.fullscreen,
-      mutedRoomAudio: (state) => state.mutedRoomAudio
+      mutedRoomAudio: (state) => state.mutedRoomAudio,
     }),
     availableLocales() {
       return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale)
     },
     tabindex() {
       return this.toggleMenu ? '0' : '-1'
-    }
+    },
   },
   watch: {
     $route() {
       this.toggleMenu = false
-    }
+    },
   },
   mounted() {
     document.addEventListener('fullscreenchange', this.handleFullScreen)
@@ -147,8 +147,8 @@ export default {
         /* IE/Edge */
         document.msExitFullscreen()
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

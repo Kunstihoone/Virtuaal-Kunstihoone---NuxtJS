@@ -15,7 +15,7 @@
 export default {
   data() {
     return {
-      buttonReady: false
+      buttonReady: false,
     }
   },
   mounted() {
@@ -27,8 +27,8 @@ export default {
     handleClick() {
       this.$store.commit('SetSplashState', false)
       this.$store.commit('SetUserReady', true)
-    }
-  }
+    },
+  },
 }
 </script>
 

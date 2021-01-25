@@ -8,7 +8,7 @@ import RoomWrapper from '~/components/RoomWrapper'
 
 export default {
   components: {
-    RoomWrapper
+    RoomWrapper,
   },
   async asyncData({ params, store, app }) {
     if (!process.browser && process.env.NODE_ENV !== 'development') {
@@ -16,8 +16,8 @@ export default {
         path: `post-types/${params.exhibition}/${params.parent}`,
 
         params: {
-          acf: true
-        }
+          acf: true,
+        },
       })
 
       store.commit('SetCurrentExhibition', params.exhibition)
@@ -35,8 +35,8 @@ export default {
           'tax_query[0][taxonomy]': 'type',
           'tax_query[0][terms]': 'details-overlay',
           'tax_query[0][field]': 'slug',
-          'tax_query[0][operator]': 'NOT IN'
-        }
+          'tax_query[0][operator]': 'NOT IN',
+        },
       })
 
       store.commit('SetCurrentExhibition', params.exhibition)
@@ -47,8 +47,8 @@ export default {
         const siteData = await fetchApi({
           path: 'site-data',
           params: {
-            lang
-          }
+            lang,
+          },
         })
         store.commit('SetSiteData', siteData)
       }
@@ -58,12 +58,12 @@ export default {
           acf: true,
           sort_order: 'DESC',
           sort_column: 'post_date',
-          lang
+          lang,
         }
 
         const exhibitions = await fetchApi({
           path: 'post-types/exhibitions',
-          params: queryParams
+          params: queryParams,
         })
 
         store.commit('SetExhibitions', exhibitions)
@@ -81,6 +81,6 @@ export default {
   },
   head() {
     return this.metaData(this.data)
-  }
+  },
 }
 </script>

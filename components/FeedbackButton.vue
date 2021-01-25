@@ -20,7 +20,7 @@
 export default {
   data() {
     return {
-      buttonVisible: false
+      buttonVisible: false,
     }
   },
   computed: {
@@ -34,7 +34,7 @@ export default {
       } else {
         return 'https://forms.gle/FsNSYZcGmGzJ7wQRA'
       }
-    }
+    },
   },
   mounted() {
     if (!localStorage.getItem('feedback')) {
@@ -47,8 +47,8 @@ export default {
     handleClose() {
       localStorage.setItem('feedback', 'closed')
       this.buttonVisible = false
-    }
-  }
+    },
+  },
 }
 </script>
 

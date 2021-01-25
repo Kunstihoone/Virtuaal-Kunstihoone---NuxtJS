@@ -5,7 +5,7 @@
         v-if="button.related_item.is_detail"
         :style="{
           top: `${button.position.top}%`,
-          left: `${button.position.left}%`
+          left: `${button.position.left}%`,
         }"
         @click="
           $store.commit('SetDetailsLayer', button.related_item.post_name) &
@@ -18,11 +18,31 @@
         <svg-icon :name="button.icon" />
       </button>
 
+      <navigation-button
+        v-else-if="button.related_item"
+        :style="{
+          top: `${button.position.top}%`,
+          left: `${button.position.left}%`,
+        }"
+        :button-data="button"
+        :key="`nav-button-${button.related_item.post_name}`"
+        @click.native="
+          analyticsEvent(
+            'Room navigation button',
+            button.related_item.post_name,
+          )
+        "
+        :aria-label="button.related_item.post_title"
+        class="room-navigation__link"
+      >
+        <svg-icon :name="button.icon" />
+      </navigation-button>
+
       <a
         v-else-if="button.external_link"
         :style="{
           top: `${button.position.top}%`,
-          left: `${button.position.left}%`
+          left: `${button.position.left}%`,
         }"
         :key="`nav-button-${index}`"
         :href="button.external_link.url"
@@ -33,26 +53,6 @@
       >
         <svg-icon name="icon-external-link" />
       </a>
-
-      <navigation-button
-        v-else
-        :style="{
-          top: `${button.position.top}%`,
-          left: `${button.position.left}%`
-        }"
-        :button-data="button"
-        :key="`nav-button-${button.related_item.post_name}`"
-        @click.native="
-          analyticsEvent(
-            'Room navigation button',
-            button.related_item.post_name
-          )
-        "
-        :aria-label="button.related_item.post_title"
-        class="room-navigation__link"
-      >
-        <svg-icon :name="button.icon" />
-      </navigation-button>
     </template>
   </nav>
 </template>
@@ -62,19 +62,19 @@ import NavigationButton from '~/components/NavigationButton'
 
 export default {
   components: {
-    NavigationButton
+    NavigationButton,
   },
   props: {
     currentRoom: {
       type: Object,
-      default: null
-    }
+      default: null,
+    },
   },
   methods: {
     analyticsEvent(name, destination) {
       this.$ga.event('Virtuaalnäitus', name, destination)
-    }
-  }
+    },
+  },
 }
 </script>
 

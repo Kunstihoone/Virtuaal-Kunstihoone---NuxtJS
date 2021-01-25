@@ -19,7 +19,7 @@
         <a
           v-if="
             currentRoom.acf.curators_essay_links &&
-              currentRoom.acf.curators_essay_links[currentLocaleIso]
+            currentRoom.acf.curators_essay_links[currentLocaleIso]
           "
           :href="currentRoom.acf.curators_essay_links[currentLocaleIso].url"
           @click="$store.commit('SetAudioPlayerState', false)"
@@ -35,7 +35,7 @@
         <a
           v-else-if="
             currentRoom.acf.digital_guide_links &&
-              currentRoom.acf.digital_guide_links[currentLocaleIso]
+            currentRoom.acf.digital_guide_links[currentLocaleIso]
           "
           :href="currentRoom.acf.digital_guide_links[currentLocaleIso]"
           @click="$store.commit('SetAudioPlayerState', false)"
@@ -62,25 +62,25 @@ export default {
   components: {
     LabelLayer,
     ToolTip,
-    MenuButton
+    MenuButton,
   },
   props: {
     currentRoom: {
       type: Object,
-      default: null
-    }
+      default: null,
+    },
   },
   data() {
     return {
-      detailsState: false
+      detailsState: false,
     }
   },
   computed: {
     currentLocaleIso() {
       return this.$i18n.locales.find((lang) => lang.code === this.$i18n.locale)
         .iso
-    }
-  }
+    },
+  },
 }
 </script>
 

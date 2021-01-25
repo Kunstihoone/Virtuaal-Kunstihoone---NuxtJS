@@ -37,23 +37,23 @@ export default {
   props: {
     activeTrack: {
       type: Object,
-      default: null
+      default: null,
     },
     audioGuideTitle: {
       type: String,
-      default: null
-    }
+      default: null,
+    },
   },
   data() {
     return {
       trackDuration: 0,
-      playerTrackProgress: 0
+      playerTrackProgress: 0,
     }
   },
   computed: {
     ...mapState({
-      playerState: (state) => state.audioPlayerState
-    })
+      playerState: (state) => state.audioPlayerState,
+    }),
   },
   watch: {
     playerState() {
@@ -62,7 +62,7 @@ export default {
       } else {
         this.$refs.player.pause()
       }
-    }
+    },
   },
   mounted() {
     this.$refs.player.onloadeddata = () => {
@@ -91,8 +91,8 @@ export default {
     playerCurrentProgress() {
       this.playerTrackProgress =
         (this.$refs.player.currentTime / this.trackDuration) * 100
-    }
-  }
+    },
+  },
 }
 </script>
 

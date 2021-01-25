@@ -2,9 +2,6 @@ require('dotenv').config()
 const fetch = require('node-fetch')
 
 export default {
-  /*
-   ** Headers of the page
-   */
   target: process.env.TARGET ? process.env.TARGET : 'static',
   head: {
     title: process.env.npm_package_name || '',
@@ -14,36 +11,36 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || ''
-      }
+        content: process.env.npm_package_description || '',
+      },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicons/favicon.ico' },
       {
         rel: 'apple-touch-icon',
         sizes: '180x180',
-        href: '/favicons/apple-touch-icon.png'
+        href: '/favicons/apple-touch-icon.png',
       },
       {
         rel: 'icon',
         type: 'image/png',
         sizes: '32x32',
-        href: '/favicons/favicon-32x32.png'
+        href: '/favicons/favicon-32x32.png',
       },
       {
         rel: 'icon',
         type: 'image/png',
         sizes: '16x16',
-        href: '/favicons/favicon-16x16.png'
+        href: '/favicons/favicon-16x16.png',
       },
       {
         rel: 'mask-icon',
         href: '/favicons/safari-pinned-tab.svg',
-        color: '#1f1f1f'
+        color: '#1f1f1f',
       },
       { rel: 'preconnect', href: process.env.BASE_URL },
-      { rel: 'manifest', href: '/manifest.json' }
-    ]
+      { rel: 'manifest', href: '/manifest.json' },
+    ],
   },
   loading: { color: '#fff' },
   css: ['assets/styles/reset.css'],
@@ -53,16 +50,16 @@ export default {
     '~/plugins/i18n',
     {
       src: '~/plugins/lazysizes.js',
-      ssr: false
-    }
+      ssr: false,
+    },
   ],
   buildModules: [
     '@nuxtjs/eslint-module',
     '@nuxtjs/dotenv',
-    '@nuxtjs/google-analytics'
+    '@nuxtjs/google-analytics',
   ],
   googleAnalytics: {
-    id: 'UA-154575282-2'
+    id: 'UA-154575282-2',
   },
   modules: [
     [
@@ -75,10 +72,10 @@ export default {
             code: 'evk',
             iso: 'est',
             name: 'EVK',
-            full_name: 'Eesti viipekeel'
+            full_name: 'Eesti viipekeel',
           },
           { code: 'ru', iso: 'rus', name: 'RU', full_name: 'По Pусски' },
-          { code: 'en', iso: 'eng', name: 'EN', full_name: 'In English' }
+          { code: 'en', iso: 'eng', name: 'EN', full_name: 'In English' },
         ],
         defaultLocale: 'et',
         vueI18n: {
@@ -87,8 +84,8 @@ export default {
             en: require('./static/translations/strings-en.json'),
             et: require('./static/translations/strings-et.json'),
             evk: require('./static/translations/strings-et.json'),
-            ru: require('./static/translations/strings-ru.json')
-          }
+            ru: require('./static/translations/strings-ru.json'),
+          },
         },
         parsePages: false,
         pages: {
@@ -96,28 +93,28 @@ export default {
             et: '/:exhibition',
             evk: '/:exhibition',
             en: '/:exhibition',
-            ru: '/:exhibition'
+            ru: '/:exhibition',
           },
           '_exhibition/_parent/index': {
             et: '/:exhibition/:parent',
             evk: '/:exhibition/:parent',
             en: '/:exhibition/:parent',
-            ru: '/:exhibition/:parent'
+            ru: '/:exhibition/:parent',
           },
           '_exhibition/_parent/_child': {
             et: '/:exhibition/:parent/:child',
             evk: '/:exhibition/:parent/:child',
             en: '/:exhibition/:parent/:child',
-            ru: '/:exhibition/:parent/:child'
-          }
-        }
-      }
+            ru: '/:exhibition/:parent/:child',
+          },
+        },
+      },
     ],
     '@nuxtjs/style-resources',
-    '@nuxtjs/svg-sprite'
+    '@nuxtjs/svg-sprite',
   ],
   styleResources: {
-    scss: ['./assets/styles/main.scss']
+    scss: ['./assets/styles/main.scss'],
   },
   build: {},
   generate: {
@@ -130,6 +127,6 @@ export default {
         }
         return res.json().then((paths) => [...paths])
       })
-    }
-  }
+    },
+  },
 }

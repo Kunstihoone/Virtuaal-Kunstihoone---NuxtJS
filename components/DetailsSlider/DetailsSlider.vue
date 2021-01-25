@@ -60,17 +60,17 @@ export default {
     SlideEmbed,
     SlideImage,
     SlideVideo,
-    SlideImageWithText
+    SlideImageWithText,
   },
   props: {
     slides: {
       type: Array,
-      default: null
-    }
+      default: null,
+    },
   },
   data() {
     return {
-      currentSlide: 0
+      currentSlide: 0,
     }
   },
   computed: {
@@ -82,7 +82,7 @@ export default {
           slide.gallery.forEach((imageObject) => {
             flattenedSlides.push({
               acf_fc_layout: 'image',
-              image: imageObject
+              image: imageObject,
             })
           })
         } else if (slide.acf_fc_layout === 'images_with_text_gallery_block') {
@@ -90,7 +90,7 @@ export default {
             flattenedSlides.push({
               acf_fc_layout: 'image-with-text',
               image: item.image,
-              text: item.text
+              text: item.text,
             })
           })
         } else {
@@ -99,7 +99,7 @@ export default {
       })
 
       return flattenedSlides
-    }
+    },
   },
   mounted() {
     window.addEventListener('keydown', (e) => this.keyDownListener(e))
@@ -129,8 +129,8 @@ export default {
       } else if (key === 27) {
         this.$store.commit('SetDetailsLayer', null)
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

@@ -10,18 +10,18 @@ export default {
   props: {
     videoSrc: {
       type: String,
-      default: null
-    }
+      default: null,
+    },
   },
   data() {
     return {
-      videoStarted: false
+      videoStarted: false,
     }
   },
   watch: {
     '$store.state.mutedRoomAudio'() {
       this.videoSetMuted(this.$store.state.mutedRoomAudio)
-    }
+    },
   },
   mounted() {
     if (this.videoSrc) {
@@ -29,7 +29,7 @@ export default {
         url: this.videoSrc,
         dnt: true,
         background: true,
-        playsinline: true
+        playsinline: true,
       }
 
       this.player = new Player('video-wrapper', videoOptions)
@@ -54,7 +54,7 @@ export default {
               this.$emit('playerLoaded')
               this.$store.commit('SetPlaceholderVisible', false)
               this.$store.commit('SetPlaceholderImage', null)
-            }
+            },
           })
         }
       })
@@ -81,13 +81,13 @@ export default {
     videoSetMuted(state) {
       this.player
         .setMuted(state)
-        .then(function(muted) {})
-        .catch(function(error) {
+        .then(function (muted) {})
+        .catch(function (error) {
           // eslint-disable-next-line
           console.log('error on muted', error)
         })
-    }
-  }
+    },
+  },
 }
 </script>
 

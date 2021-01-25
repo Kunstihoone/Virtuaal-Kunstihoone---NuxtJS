@@ -16,17 +16,17 @@ export default {
   props: {
     audioData: {
       type: Object,
-      default: null
-    }
+      default: null,
+    },
   },
   watch: {
     '$store.state.mutedRoomAudio'() {
       this.$refs.player.muted = this.$store.state.mutedRoomAudio
-    }
+    },
   },
   mounted() {
     this.$refs.player.muted = this.$store.state.mutedRoomAudio
-  }
+  },
 }
 </script>
 

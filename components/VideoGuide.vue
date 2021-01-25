@@ -4,8 +4,8 @@
       <small-video-player
         v-if="
           !placeholderVisible &&
-            audioGuideState &&
-            currentRoom.acf.hand_sign_translation
+          audioGuideState &&
+          currentRoom.acf.hand_sign_translation
         "
         :key="currentRoom.acf.hand_sign_translation"
         :video-src="currentRoom.acf.hand_sign_translation"
@@ -37,18 +37,18 @@ export default {
   components: {
     SmallVideoPlayer,
     MenuButton,
-    ToolTip
+    ToolTip,
   },
   props: {
     currentRoom: {
       type: Object,
-      default: null
-    }
+      default: null,
+    },
   },
   computed: {
     ...mapState({
       audioGuideState: (state) => state.audioGuideState,
-      placeholderVisible: (state) => state.placeholderVisible
+      placeholderVisible: (state) => state.placeholderVisible,
     }),
     audioGuideTitle() {
       if (this.currentRoom.acf.audio_guide_title_est) {
@@ -63,7 +63,7 @@ export default {
       } else {
         return null
       }
-    }
+    },
   },
   methods: {
     playerEnter(el, done) {
@@ -72,20 +72,20 @@ export default {
         duration: 400,
         complete() {
           done()
-        }
+        },
       })
 
       tl.add({
         targets: el,
         width: [0, '15rem'],
         opacity: [0, 1],
-        easing: 'easeInOutQuad'
+        easing: 'easeInOutQuad',
       })
 
       tl.add({
         targets: '.audio-player__title',
         opacity: [0, 1],
-        easing: 'easeInOutQuad'
+        easing: 'easeInOutQuad',
       })
     },
     playerLeave(el, done) {
@@ -94,13 +94,13 @@ export default {
         duration: 400,
         complete() {
           done()
-        }
+        },
       })
 
       tl.add({
         targets: '.audio-player__title',
         opacity: [1, 0],
-        easing: 'easeInOutQuad'
+        easing: 'easeInOutQuad',
       })
 
       tl.add(
@@ -108,12 +108,12 @@ export default {
           targets: el,
           width: 0,
           opacity: 0,
-          easing: 'easeInOutQuad'
+          easing: 'easeInOutQuad',
         },
-        '-=200'
+        '-=200',
       )
-    }
-  }
+    },
+  },
 }
 </script>
 

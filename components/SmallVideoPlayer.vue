@@ -9,8 +9,8 @@ export default {
   props: {
     videoSrc: {
       type: String,
-      default: null
-    }
+      default: null,
+    },
   },
   mounted() {
     if (this.videoSrc) {
@@ -20,12 +20,12 @@ export default {
         autoplay: true,
         muted: true,
         controls: false,
-        loop: true
+        loop: true,
       }
 
       this.player = new Player('small-video', videoOptions)
     }
-  }
+  },
 }
 </script>
 

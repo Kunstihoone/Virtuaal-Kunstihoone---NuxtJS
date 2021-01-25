@@ -15,19 +15,19 @@ export default {
   props: {
     imageData: {
       type: Object,
-      default: null
+      default: null,
     },
     text: {
       type: String,
-      default: null
-    }
+      default: null,
+    },
   },
   computed: {
     currentLocaleIso() {
       return this.$i18n.locales.find((lang) => lang.code === this.$i18n.locale)
         .iso
-    }
-  }
+    },
+  },
 }
 </script>
 

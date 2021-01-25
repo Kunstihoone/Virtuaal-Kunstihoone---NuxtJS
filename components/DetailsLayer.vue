@@ -17,17 +17,17 @@ import DetailsSlider from '~/components/DetailsSlider/DetailsSlider'
 
 export default {
   components: {
-    DetailsSlider
+    DetailsSlider,
   },
   props: {
     detailsLayer: {
       type: String,
-      default: null
-    }
+      default: null,
+    },
   },
   data() {
     return {
-      modalData: null
+      modalData: null,
     }
   },
   computed: {
@@ -46,7 +46,7 @@ export default {
       } else {
         return null
       }
-    }
+    },
   },
   mounted() {
     this.fetchDetails()
@@ -57,13 +57,13 @@ export default {
   methods: {
     async fetchDetails() {
       const data = await fetchApi({
-        path: `post-types/${this.$route.params.exhibition}/${this.detailsLayer}`
+        path: `post-types/${this.$route.params.exhibition}/${this.detailsLayer}`,
       })
 
       this.$store.commit('SetDetailsData', data)
       this.modalData = data
-    }
-  }
+    },
+  },
 }
 </script>
 

@@ -81,13 +81,13 @@ import ExhibitionItemDates from '~/components/ExhibitionItemDates'
 
 export default {
   components: {
-    ExhibitionItemDates
+    ExhibitionItemDates,
   },
   created() {
     this.exhibitionData = this.$store.getters.getSingleExhibition(
-      this.$route.params.exhibition
+      this.$route.params.exhibition,
     )
-  }
+  },
 }
 </script>
 

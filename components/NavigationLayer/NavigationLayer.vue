@@ -47,19 +47,19 @@ export default {
     NavInfo,
     NavLabel,
     NavSettings,
-    VideoGuide
+    VideoGuide,
   },
   props: {
     currentRoom: {
       type: Object,
-      default: null
-    }
+      default: null,
+    },
   },
   data() {
     return {
-      detailsImage: null
+      detailsImage: null,
     }
-  }
+  },
 }
 </script>
 

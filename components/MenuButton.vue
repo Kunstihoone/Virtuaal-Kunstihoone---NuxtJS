@@ -15,26 +15,26 @@ export default {
   props: {
     buttonEvent: {
       type: String,
-      default: null
+      default: null,
     },
     icon: {
       type: String,
-      default: null
+      default: null,
     },
     componentElement: {
       type: String,
-      default: 'button'
+      default: 'button',
     },
     linkPath: {
       type: String,
-      default: null
-    }
+      default: null,
+    },
   },
   methods: {
     analyticsEvent() {
       this.$ga.event('Virtuaalnäitus', 'Menu button click', this.buttonEvent)
-    }
-  }
+    },
+  },
 }
 </script>
 

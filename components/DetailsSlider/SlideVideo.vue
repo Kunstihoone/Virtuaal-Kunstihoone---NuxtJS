@@ -12,8 +12,8 @@ export default {
   props: {
     videoData: {
       type: Object,
-      default: null
-    }
-  }
+      default: null,
+    },
+  },
 }
 </script>

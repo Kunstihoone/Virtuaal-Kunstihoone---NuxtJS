@@ -11,9 +11,9 @@
       <notification-modal
         v-if="
           displayNotification &&
-            $store.state.siteData.options &&
-            $store.state.siteData.options.notifications &&
-            $store.state.siteData.options.notifications[$i18n.locale]
+          $store.state.siteData.options &&
+          $store.state.siteData.options.notifications &&
+          $store.state.siteData.options.notifications[$i18n.locale]
         "
         :notification="
           $store.state.siteData.options.notifications[$i18n.locale]
@@ -35,11 +35,11 @@ export default {
   components: {
     ApplicationIntro,
     ExhibitionsList,
-    NotificationModal
+    NotificationModal,
   },
   data() {
     return {
-      displayNotification: true
+      displayNotification: true,
     }
   },
   transition: {
@@ -51,9 +51,9 @@ export default {
         duration: 600,
         complete: (anim) => {
           done()
-        }
+        },
       })
-    }
+    },
   },
   async asyncData({ app }) {
     let frontPagePath = ''
@@ -75,17 +75,17 @@ export default {
       path: `pages/${frontPagePath}`,
       params: {
         lang: app.i18n.locale === 'evk' ? 'et' : app.i18n.locale,
-        acf: true
-      }
+        acf: true,
+      },
     })
 
     return {
-      data
+      data,
     }
   },
   head() {
     return this.metaData(this.data)
-  }
+  },
 }
 </script>
 

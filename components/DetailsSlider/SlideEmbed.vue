@@ -11,12 +11,12 @@ export default {
   props: {
     embedUrl: {
       type: String,
-      default: null
-    }
+      default: null,
+    },
   },
   data() {
     return {
-      initialMutedState: null
+      initialMutedState: null,
     }
   },
   mounted() {
@@ -29,7 +29,7 @@ export default {
       dnt: true,
       controls: false,
       autoplay: true,
-      loop: true
+      loop: true,
     }
 
     this.player = new Player(this.$refs.vimeoSlide, videoOptions)
@@ -40,7 +40,7 @@ export default {
   },
   beforeDestroy() {
     this.$store.commit('SetMutedRoomAudio', this.initialMutedState)
-  }
+  },
 }
 </script>
 

@@ -17,9 +17,9 @@ export default {
   props: {
     notification: {
       type: String,
-      default: null
-    }
-  }
+      default: null,
+    },
+  },
 }
 </script>
 

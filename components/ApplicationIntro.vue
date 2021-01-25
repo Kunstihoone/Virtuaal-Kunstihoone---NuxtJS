@@ -1,9 +1,9 @@
 <template>
   <div class="application-intro">
     <a
-      :href="
-        `https://kunstihoone.ee/${$i18n.locale === 'evk' ? 'et' : $i18n.locale}`
-      "
+      :href="`https://kunstihoone.ee/${
+        $i18n.locale === 'evk' ? 'et' : $i18n.locale
+      }`"
       class="application-intro__logo"
       target="_blank"
     >

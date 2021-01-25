@@ -16,8 +16,8 @@ export default {
   props: {
     imageData: {
       type: Object,
-      default: null
-    }
+      default: null,
+    },
   },
   computed: {
     defaultImage($event) {
@@ -26,8 +26,8 @@ export default {
       } else {
         return this.imageData.url
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

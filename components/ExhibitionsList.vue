@@ -13,23 +13,23 @@ import ExhibitionItem from '~/components/ExhibitionItem'
 
 export default {
   components: {
-    ExhibitionItem
+    ExhibitionItem,
   },
   props: {
     exhibitions: {
       type: Array,
-      default: null
-    }
+      default: null,
+    },
   },
   data() {
     return {
       options: {
         currentPage: 0,
-        pagination: false
+        pagination: false,
         // loopedSlides: 2,
         // slidesToScroll: 2
-      }
+      },
     }
-  }
+  },
 }
 </script>
