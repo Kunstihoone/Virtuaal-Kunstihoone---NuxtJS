@@ -35,9 +35,15 @@
         <a
           v-else-if="
             currentRoom.acf.digital_guide_links &&
-            currentRoom.acf.digital_guide_links[currentLocaleIso]
+            currentRoom.acf.digital_guide_links[
+              $i18n.locale === 'evk' ? 'evk' : currentLocaleIso
+            ]
           "
-          :href="currentRoom.acf.digital_guide_links[currentLocaleIso]"
+          :href="
+            currentRoom.acf.digital_guide_links[
+              $i18n.locale === 'evk' ? 'evk' : currentLocaleIso
+            ]
+          "
           @click="$store.commit('SetAudioPlayerState', false)"
           target="_blank"
           class="nav-label__guide-link button"
