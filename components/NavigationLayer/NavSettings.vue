@@ -2,7 +2,7 @@
   <nav :class="{ 'm-menu-active': toggleMenu }" class="nav-settings">
     <div class="nav-settings__top-nav">
       <menu-button
-        :icon="toggleMenu ? 'icon-close' : 'icon-settings'"
+        :icon="toggleMenu ? 'icon-close' : 'icon-languages'"
         :class="{ 'm-active': toggleMenu }"
         button-event="Toggle languages"
         class="nav-settings__toggle"
@@ -94,11 +94,12 @@ export default {
   },
   watch: {
     $route() {
-      this.toggleMenu = false
+      this.toggleMenu = this.getRouteBaseName(this.$route) === 'index'
     },
   },
   mounted() {
     document.addEventListener('fullscreenchange', this.handleFullScreen)
+    this.toggleMenu = this.getRouteBaseName(this.$route) === 'index'
   },
   beforeDestroy() {
     document.removeEventListener('fullscreenchange', this.handleFullScreen)

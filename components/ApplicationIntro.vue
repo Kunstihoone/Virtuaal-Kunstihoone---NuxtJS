@@ -11,17 +11,6 @@
     </a>
 
     <div class="application-intro__text" v-html="data.content" />
-
-    <div v-if="data.acf && data.acf.authors" class="application-intro__authors">
-      <p
-        v-for="(author, index) in data.acf.authors"
-        :key="index"
-        class="application-intro__author"
-      >
-        <span>{{ author.key }}:</span>
-        <span>{{ author.value }}</span>
-      </p>
-    </div>
   </div>
 </template>
 
@@ -43,6 +32,7 @@ export default {
   // max-width: rem-calc(600);
   margin: 0 auto;
   margin-bottom: 1rem;
+  justify-content: center;
 
   @include breakpoint('large') {
     max-width: 60%;
@@ -81,26 +71,20 @@ export default {
   }
 }
 
-.application-intro__text,
-.application-intro__authors {
-  @include gutter;
-
-  margin-bottom: 1rem;
-}
-
 .application-intro__text {
   @include font-size(h3);
-  @include grid(8/12);
+  @include grid(1);
+
+  margin-bottom: 4rem;
+  text-align: center;
+
+  @include breakpoint('large') {
+    @include grid(10/12);
+  }
 
   /deep/:last-child {
     margin-bottom: 0;
   }
-}
-
-.application-intro__authors {
-  // width: 80%;
-  @include grid(4/12);
-  // column-count: 2;
 }
 
 .application-intro__author {
