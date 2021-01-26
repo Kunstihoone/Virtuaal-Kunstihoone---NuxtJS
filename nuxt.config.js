@@ -50,7 +50,6 @@ export default {
   plugins: [
     '~/plugins/components.js',
     '~/mixins/MixinMetaData.js',
-    '~/plugins/i18n',
     {
       src: '~/plugins/lazysizes.js',
       ssr: false,

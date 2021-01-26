@@ -68,42 +68,30 @@ export const mutations = {
   },
 }
 
-async function fetchSiteData({ commit, lang }) {
-  const siteData = await fetchApi({
-    path: 'site-data',
-    params: {
-      include_menus: true,
-      include_taxonomies: true,
-      lang,
-    },
-  })
-
-  commit('SetSiteData', siteData)
-
-  const exhibitions = await fetchApi({
-    path: 'post-types/exhibitions',
-    params: {
-      acf: true,
-      sort_order: 'ASC',
-      sort_column: 'menu_order',
-      lang,
-    },
-  })
-
-  commit('SetExhibitions', exhibitions)
-}
-
 export const actions = {
   async nuxtServerInit({ commit }, { app }) {
     const lang = app.i18n.locale === 'evk' ? 'et' : app.i18n.locale
 
-    await fetchSiteData({ commit, lang })
-  },
+    const siteData = await fetchApi({
+      path: 'site-data',
+      params: {
+        lang,
+      },
+    })
 
-  async getSiteData({ commit }, locale) {
-    const lang = locale === 'evk' ? 'et' : locale
+    commit('SetSiteData', siteData)
 
-    await fetchSiteData({ commit, lang })
+    const exhibitions = await fetchApi({
+      path: 'post-types/exhibitions',
+      params: {
+        acf: true,
+        sort_order: 'ASC',
+        sort_column: 'menu_order',
+        lang,
+      },
+    })
+
+    commit('SetExhibitions', exhibitions)
   },
 }
 
