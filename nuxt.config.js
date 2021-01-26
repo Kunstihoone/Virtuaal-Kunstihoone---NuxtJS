@@ -3,6 +3,9 @@ const fetch = require('node-fetch')
 
 export default {
   target: process.env.TARGET ? process.env.TARGET : 'static',
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
+  },
   head: {
     title: process.env.npm_package_name || '',
     meta: [

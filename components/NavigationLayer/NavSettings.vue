@@ -17,7 +17,7 @@
         <nuxt-link
           v-for="locale in $i18n.locales"
           :key="locale.code"
-          :to="switchLocalePath(locale.code)"
+          :to="`${switchLocalePath(locale.code)}/`"
           :class="{ 'm-active': locale.code === $i18n.locale }"
           :tabindex="tabindex"
           class="nav-settings__menu-item button"

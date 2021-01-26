@@ -5,6 +5,7 @@
       :src="audioData.url"
       crossorigin="anonymous"
       class="background-audio__player"
+      loop
       autoplay
       controls
     />
