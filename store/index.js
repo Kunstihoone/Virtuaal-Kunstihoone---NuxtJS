@@ -16,7 +16,7 @@ export const state = () => ({
   roomsData: null,
   siteData: null,
   splashState: true,
-  userReady: false
+  userReady: false,
 })
 
 export const mutations = {
@@ -65,7 +65,7 @@ export const mutations = {
 
   SetUserReady(state, value) {
     Vue.set(state, 'userReady', value)
-  }
+  },
 }
 
 async function fetchSiteData({ commit, lang }) {
@@ -74,8 +74,8 @@ async function fetchSiteData({ commit, lang }) {
     params: {
       include_menus: true,
       include_taxonomies: true,
-      lang
-    }
+      lang,
+    },
   })
 
   commit('SetSiteData', siteData)
@@ -86,8 +86,8 @@ async function fetchSiteData({ commit, lang }) {
       acf: true,
       sort_order: 'ASC',
       sort_column: 'menu_order',
-      lang
-    }
+      lang,
+    },
   })
 
   commit('SetExhibitions', exhibitions)
@@ -104,13 +104,13 @@ export const actions = {
     const lang = locale === 'evk' ? 'et' : locale
 
     await fetchSiteData({ commit, lang })
-  }
+  },
 }
 
 export const getters = {
   getSingleRoom: (state) => (slug) => {
     return state.roomsData.find(
-      (event) => decodeURIComponent(event.slug) === slug
+      (event) => decodeURIComponent(event.slug) === slug,
     )
   },
   getExhibitions: (state) => {
@@ -119,7 +119,7 @@ export const getters = {
   getSingleExhibition: (state) => (slug) => {
     return state.exhibitions.find(
       (exhibition) =>
-        decodeURIComponent(exhibition.acf.entry_room.post_type) === slug
+        decodeURIComponent(exhibition.acf.entry_room.post_type) === slug,
     )
-  }
+  },
 }

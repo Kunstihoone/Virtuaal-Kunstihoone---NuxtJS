@@ -2,8 +2,8 @@
   <div class="details-slider">
     <button
       v-if="flattenedSlides.length > 1 && currentSlide > 0"
-      @click="navLeft"
       class="details-slider__button m-left"
+      @click="navLeft"
     >
       <svg-icon name="icon-arrow-left" />
     </button>
@@ -12,8 +12,8 @@
       v-if="
         flattenedSlides.length > 1 && flattenedSlides.length - 1 > currentSlide
       "
-      @click="navRight"
       class="details-slider__button m-right"
+      @click="navRight"
     >
       <svg-icon name="icon-arrow-right" />
     </button>

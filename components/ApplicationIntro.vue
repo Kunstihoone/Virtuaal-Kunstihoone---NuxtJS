@@ -10,7 +10,7 @@
       <img src="~assets/kh-logo.svg" name="kh-logo" />
     </a>
 
-    <div v-html="data.content" class="application-intro__text" />
+    <div class="application-intro__text" v-html="data.content" />
 
     <div v-if="data.acf && data.acf.authors" class="application-intro__authors">
       <p
@@ -30,9 +30,9 @@ export default {
   props: {
     data: {
       type: Object,
-      default: null
-    }
-  }
+      default: null,
+    },
+  },
 }
 </script>
 

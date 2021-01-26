@@ -17,8 +17,8 @@
       <template v-if="exhibitionData.acf">
         <div
           v-if="exhibitionData.acf.artists"
-          v-html="exhibitionData.acf.artists"
           class="exhibition-impressum__artists"
+          v-html="exhibitionData.acf.artists"
         />
 
         <div
@@ -43,8 +43,8 @@
 
         <div
           v-if="exhibitionData.acf.team"
-          v-html="exhibitionData.acf.team"
           class="exhibition-impressum__team"
+          v-html="exhibitionData.acf.team"
         />
       </template>
     </div>

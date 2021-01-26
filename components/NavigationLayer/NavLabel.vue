@@ -4,10 +4,10 @@
       <transition name="fade">
         <menu-button
           v-if="currentRoom.acf.label"
-          @click.native="detailsState = !detailsState"
           :icon="detailsState ? 'icon-close' : 'icon-info'"
           button-event="Toggle label"
           class="nav-label__toggle"
+          @click.native="detailsState = !detailsState"
         >
           <tool-tip>
             {{ $t('details_label') }}
@@ -22,9 +22,9 @@
             currentRoom.acf.curators_essay_links[currentLocaleIso]
           "
           :href="currentRoom.acf.curators_essay_links[currentLocaleIso].url"
-          @click="$store.commit('SetAudioPlayerState', false)"
           target="_blank"
           class="nav-label__guide-link button"
+          @click="$store.commit('SetAudioPlayerState', false)"
         >
           {{
             currentRoom.acf.curators_essay_links[currentLocaleIso].title
@@ -44,9 +44,9 @@
               $i18n.locale === 'evk' ? 'evk' : currentLocaleIso
             ]
           "
-          @click="$store.commit('SetAudioPlayerState', false)"
           target="_blank"
           class="nav-label__guide-link button"
+          @click="$store.commit('SetAudioPlayerState', false)"
         >
           {{ $t('digital_guide') }}
         </a>

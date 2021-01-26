@@ -3,13 +3,13 @@
     <div v-if="buttonVisible" class="feedback-button">
       <a
         :href="feedbackForm"
-        @click="handleClose"
         rel="noopener"
         target="_blank"
+        @click="handleClose"
         >{{ $t('give_feedback') }}</a
       >
 
-      <button @click="handleClose" class="feedback-button__close">
+      <button class="feedback-button__close" @click="handleClose">
         <svg-icon name="icon-close" />
       </button>
     </div>

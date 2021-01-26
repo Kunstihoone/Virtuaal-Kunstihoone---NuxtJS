@@ -85,6 +85,13 @@ export default {
       isMobileDevide: false,
     }
   },
+  head() {
+    return {
+      htmlAttrs: {
+        lang: this.$i18n.locale,
+      },
+    }
+  },
   computed: {
     ...mapState({
       splashState: (state) => state.splashState,
@@ -184,13 +191,6 @@ export default {
         },
       })
     },
-  },
-  head() {
-    return {
-      htmlAttrs: {
-        lang: this.$i18n.locale,
-      },
-    }
   },
 }
 </script>

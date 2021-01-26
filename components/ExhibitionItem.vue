@@ -1,6 +1,5 @@
 <template>
   <nuxt-link
-    @click.native="enterExhibition"
     :to="
       localePath({
         name: 'exhibition-parent',
@@ -14,6 +13,7 @@
       'm-disabled': $i18n.locale === 'evk' && !data.acf.in_sign_language,
     }"
     class="exhibition-item"
+    @click.native="enterExhibition"
   >
     <responsive-image-ratio
       v-if="data.featured_image"

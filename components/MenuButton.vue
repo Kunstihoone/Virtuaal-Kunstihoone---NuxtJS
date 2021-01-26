@@ -1,9 +1,9 @@
 <template>
   <component
-    v-bind:is="componentElement"
+    :is="componentElement"
     :to="linkPath"
-    @click="analyticsEvent"
     class="menu-button button"
+    @click="analyticsEvent"
   >
     <slot />
     <svg-icon :name="icon" />

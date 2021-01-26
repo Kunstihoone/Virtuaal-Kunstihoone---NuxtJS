@@ -2,11 +2,11 @@
   <nav :class="{ 'm-menu-active': toggleMenu }" class="nav-settings">
     <div class="nav-settings__top-nav">
       <menu-button
-        @click.native="toggleMenu = !toggleMenu"
         :icon="toggleMenu ? 'icon-close' : 'icon-settings'"
         :class="{ 'm-active': toggleMenu }"
         button-event="Toggle languages"
         class="nav-settings__toggle"
+        @click.native="toggleMenu = !toggleMenu"
       >
         <tool-tip>
           {{ $t('languages') }}
@@ -39,11 +39,11 @@
       </menu-button>
 
       <menu-button
-        @click.native="toggleFullscreen"
         :class="{ 'm-active': fullscreen }"
         icon="icon-fullscreen"
         button-event="Toggle fullscreen"
         class="nav-settings__button"
+        @click.native="toggleFullscreen"
       >
         <tool-tip>
           {{ $t('full_screen') }}
@@ -51,11 +51,11 @@
       </menu-button>
 
       <menu-button
-        @click.native="handleMute"
         :class="{ 'm-active': mutedRoomAudio }"
         :icon="mutedRoomAudio ? 'icon-muted' : 'icon-mute'"
         button-event="Toggle mute"
         class="nav-settings__button nav-settings__mute"
+        @click.native="handleMute"
       >
         <tool-tip>
           {{ $t('mute_bg') }}

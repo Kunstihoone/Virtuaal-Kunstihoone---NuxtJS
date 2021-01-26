@@ -1,14 +1,14 @@
 <template>
   <div class="notification-modal">
     <button
-      @click="$emit('closeNotification')"
       :aria-label="$t('close_notification')"
       class="notification-modal__close"
+      @click="$emit('closeNotification')"
     >
       <svg-icon name="icon-close" />
     </button>
 
-    <div v-html="notification" class="notification-modal__content" />
+    <div class="notification-modal__content" v-html="notification" />
   </div>
 </template>
 

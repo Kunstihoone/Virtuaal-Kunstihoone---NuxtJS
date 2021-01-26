@@ -1,6 +1,6 @@
 <template>
   <div class="audio-guide">
-    <transition @enter="playerEnter" @leave="playerLeave" :css="false">
+    <transition :css="false" @enter="playerEnter" @leave="playerLeave">
       <audio-guide-player
         v-if="audioGuideState && activeTrack"
         :key="activeTrack.ID"
@@ -10,11 +10,11 @@
     </transition>
 
     <menu-button
-      @click.native="$store.commit('SetAudiGuideState', !audioGuideState)"
       :class="{ 'm-active': audioGuideState }"
       :icon="audioGuideState ? 'icon-no-audio' : 'icon-audio'"
       button-event="Toggle audio guide"
       class="toggle-audio-guide button"
+      @click.native="$store.commit('SetAudiGuideState', !audioGuideState)"
     >
       <tool-tip class="toggle-audio-guide__tooltip">
         {{ $t('audio_guide') }}

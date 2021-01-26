@@ -1,9 +1,9 @@
 <template>
   <div class="nav-info">
     <button
-      @click="layerState = !layerState"
       :class="{ 'm-active': layerState }"
       class="button nav-info__toggle"
+      @click="layerState = !layerState"
     >
       {{ $t('exhibition_info') }}
     </button>

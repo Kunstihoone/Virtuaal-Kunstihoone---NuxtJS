@@ -2,7 +2,7 @@
   <client-only>
     <div class="exhibitions-list">
       <template v-for="(exhibition, index) in exhibitions">
-        <exhibition-item :data="exhibition" :key="index" />
+        <exhibition-item :key="index" :data="exhibition" />
       </template>
     </div>
   </client-only>

@@ -1,10 +1,10 @@
 <template>
   <div class="splash">
     <button
-      @click="handleClick"
       :class="{ 'm-ready': buttonReady }"
       tabindex="1"
       class="button"
+      @click="handleClick"
     >
       {{ $t('continue') }}
     </button>

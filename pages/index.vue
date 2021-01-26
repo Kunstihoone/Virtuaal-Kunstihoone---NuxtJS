@@ -37,11 +37,6 @@ export default {
     ExhibitionsList,
     NotificationModal,
   },
-  data() {
-    return {
-      displayNotification: true,
-    }
-  },
   transition: {
     leave(el, done) {
       anime({
@@ -81,6 +76,11 @@ export default {
 
     return {
       data,
+    }
+  },
+  data() {
+    return {
+      displayNotification: true,
     }
   },
   head() {

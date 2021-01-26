@@ -3,8 +3,8 @@
     <details-slider :slides="slides" />
 
     <button
-      @click="$store.commit('SetDetailsLayer', null)"
       class="details-layer__close button"
+      @click="$store.commit('SetDetailsLayer', null)"
     >
       <svg-icon name="icon-close" />
     </button>

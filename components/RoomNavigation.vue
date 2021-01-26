@@ -3,53 +3,53 @@
     <template v-for="(button, index) in currentRoom.acf.buttons">
       <button
         v-if="button.related_item.is_detail"
+        :key="`nav-button-${index}`"
         :style="{
           top: `${button.position.top}%`,
           left: `${button.position.left}%`,
         }"
+        :aria-label="button.related_item.post_title"
+        class="room-navigation__link"
         @click="
           $store.commit('SetDetailsLayer', button.related_item.post_name) &
             analyticsEvent('Details layer', button.related_item.post_name)
         "
-        :key="`nav-button-${index}`"
-        :aria-label="button.related_item.post_title"
-        class="room-navigation__link"
       >
         <svg-icon :name="button.icon" />
       </button>
 
       <navigation-button
         v-else-if="button.related_item"
+        :key="`nav-button-${button.related_item.post_name}`"
         :style="{
           top: `${button.position.top}%`,
           left: `${button.position.left}%`,
         }"
         :button-data="button"
-        :key="`nav-button-${button.related_item.post_name}`"
+        :aria-label="button.related_item.post_title"
+        class="room-navigation__link"
         @click.native="
           analyticsEvent(
             'Room navigation button',
             button.related_item.post_name,
           )
         "
-        :aria-label="button.related_item.post_title"
-        class="room-navigation__link"
       >
         <svg-icon :name="button.icon" />
       </navigation-button>
 
       <a
         v-else-if="button.external_link"
+        :key="`nav-button-${index}`"
         :style="{
           top: `${button.position.top}%`,
           left: `${button.position.left}%`,
         }"
-        :key="`nav-button-${index}`"
         :href="button.external_link.url"
-        @click="analyticsEvent('External link', button.external_link.url)"
         :aria-label="button.external_link.title"
         target="_blank"
         class="room-navigation__link"
+        @click="analyticsEvent('External link', button.external_link.url)"
       >
         <svg-icon name="icon-external-link" />
       </a>

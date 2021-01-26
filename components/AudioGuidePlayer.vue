@@ -11,8 +11,8 @@
       />
 
       <button
-        @click="$store.commit('SetAudioPlayerState', !playerState)"
         class="audio-guide-player__control"
+        @click="$store.commit('SetAudioPlayerState', !playerState)"
       >
         <svg-icon v-if="!playerState" name="icon-play" />
         <svg-icon v-else name="icon-pause" />
