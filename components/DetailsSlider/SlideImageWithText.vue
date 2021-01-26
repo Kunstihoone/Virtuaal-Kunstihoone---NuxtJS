@@ -56,5 +56,10 @@ export default {
   height: 100%;
   overflow-y: auto;
   background-color: $white;
+
+  ul {
+    list-style: circle;
+    margin-left: 1rem;
+  }
 }
 </style>
