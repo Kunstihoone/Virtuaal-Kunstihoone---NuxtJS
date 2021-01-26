@@ -65,7 +65,10 @@ export default {
     [
       'nuxt-i18n',
       {
-        detectBrowserLanguage: true,
+        detectBrowserLanguage: {
+          useCookie: true,
+          alwaysRedirect: true,
+        },
         locales: [
           { code: 'et', iso: 'est', name: 'ET', full_name: 'Eesti keeles' },
           {
