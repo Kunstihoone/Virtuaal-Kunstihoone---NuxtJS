@@ -50,6 +50,8 @@ export default {
   @include grid(1/2);
   @include gutter;
 
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   border-radius: 0 $layers-border-radius $layers-border-radius 0;
   height: 100%;
   overflow-y: auto;
