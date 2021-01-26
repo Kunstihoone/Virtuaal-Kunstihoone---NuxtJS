@@ -38,6 +38,7 @@
 
     <background-audio
       v-if="
+        !splashState &&
         getRouteBaseName() !== 'index' &&
         currentRoom &&
         currentRoom.acf.audio_track
