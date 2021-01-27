@@ -6,6 +6,9 @@ export default {
   env: {
     baseUrl: process.env.BASE_URL || 'http://localhost:3000',
   },
+  server: {
+    port: process.env.NUXT_PORT ? process.env.NUXT_PORT : 3000,
+  },
   head: {
     title: process.env.npm_package_name || '',
     meta: [
