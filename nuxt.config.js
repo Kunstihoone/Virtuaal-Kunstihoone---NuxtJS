@@ -120,8 +120,8 @@ export default {
   styleResources: {
     scss: ['./assets/styles/main.scss'],
   },
-  router: {
-    prefetchLinks: false,
-    trailingSlash: true,
-  },
+  // router: {
+  //   prefetchLinks: false,
+  //   trailingSlash: true,
+  // },
 }
