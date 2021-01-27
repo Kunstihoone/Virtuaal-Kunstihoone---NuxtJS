@@ -2,7 +2,7 @@
   <img
     v-if="imageData"
     :key="imageData.ID"
-    :src="imageData.sizes.thumbnail_lqip"
+    :src="imageData.sizes.thumbnail_lqip ? imageData.sizes.thumbnail_lqip : ''"
     :data-src="defaultImage"
     :data-srcset="imageData.srcset"
     :alt="imageData.alt"
