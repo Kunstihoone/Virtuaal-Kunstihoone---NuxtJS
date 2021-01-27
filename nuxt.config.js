@@ -1,5 +1,4 @@
 require('dotenv').config()
-const fetch = require('node-fetch')
 
 export default {
   target: process.env.TARGET ? process.env.TARGET : 'static',
@@ -121,17 +120,8 @@ export default {
   styleResources: {
     scss: ['./assets/styles/main.scss'],
   },
-  build: {},
-  generate: {
-    interval: 100,
-    crawler: false,
-    routes() {
-      return fetch(`${process.env.BASE_URL}generate`).then((res) => {
-        if (!res.ok) {
-          return null
-        }
-        return res.json().then((paths) => [...paths])
-      })
-    },
+  router: {
+    prefetchLinks: false,
+    trailingSlash: true,
   },
 }
