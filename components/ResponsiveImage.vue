@@ -2,7 +2,11 @@
   <img
     v-if="imageData"
     :key="imageData.ID"
-    :src="imageData.sizes.thumbnail_lqip ? imageData.sizes.thumbnail_lqip : ''"
+    :src="
+      imageData.sizes && imageData.sizes.thumbnail_lqip
+        ? imageData.sizes.thumbnail_lqip
+        : ''
+    "
     :data-src="defaultImage"
     :data-srcset="imageData.srcset"
     :alt="imageData.alt"
@@ -20,8 +24,8 @@ export default {
     },
   },
   computed: {
-    defaultImage($event) {
-      if (this.imageData.sizes.large) {
+    defaultImage() {
+      if (this.imageData.sizes && this.imageData.sizes.large) {
         return this.imageData.sizes.large
       } else {
         return this.imageData.url
