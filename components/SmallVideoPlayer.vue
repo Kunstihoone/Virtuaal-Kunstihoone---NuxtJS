@@ -35,13 +35,18 @@ export default {
   bottom: 100%;
   bottom: calc(100% + 1rem);
   right: 0;
-  width: rem-calc(320);
-  height: rem-calc(320 * (9 / 16));
+  width: rem-calc(220);
+  height: rem-calc(220 * (9 / 16));
   box-shadow: $button-shadow;
   border-radius: $layers-border-radius;
   overflow: hidden;
   background-color: $kh-yellow;
   z-index: 15;
+
+  @include breakpoint(large) {
+    width: rem-calc(320);
+    height: rem-calc(320 * (9 / 16));
+  }
 
   /deep/ iframe {
     width: 100%;
