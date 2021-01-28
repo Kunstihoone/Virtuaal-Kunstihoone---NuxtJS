@@ -8,8 +8,9 @@ $kh-yellow: #fff100;
 
 /* Base */
 $root-fonts-sizes: (
-  small: 16px,
-  xxlarge: 1.1vw
+  small: 14px,
+  large: 16px,
+  xxlarge: 1.1vw,
 );
 
 /* Breakpoints */
@@ -18,7 +19,7 @@ $breakpoints: (
   medium: 640px,
   large: 1000px,
   xlarge: 1200px,
-  xxlarge: 1400px
+  xxlarge: 1400px,
 );
 
 /* Typography */
@@ -29,7 +30,7 @@ $header-sizes: (
     'h3': 18,
     'h4': 14,
     'h5': 14,
-    'h6': 12
+    'h6': 12,
   ),
   medium: (
     'h1': 44,
@@ -37,8 +38,8 @@ $header-sizes: (
     'h3': 20,
     'h4': 16,
     'h5': 16,
-    'h6': 14
-  )
+    'h6': 14,
+  ),
 );
 
 /* Featured fonts */
@@ -49,7 +50,7 @@ $body-line-height: 1.4;
 /* Gutters */
 $gutters: (
   small: 1.4rem,
-  medium: 2rem
+  medium: 2rem,
 );
 
 $gutters-small: map-get($gutters, small);
@@ -58,7 +59,7 @@ $gutters-medium: map-get($gutters, medium);
 /* Spacings for content (texts, images, etc...) */
 $content-spacing: (
   small: 1.4rem,
-  medium: 1.4rem
+  medium: 1.4rem,
 );
 
 $content-spacing-small: map-get($content-spacing, small);
@@ -67,7 +68,7 @@ $content-spacing-medium: map-get($content-spacing, medium);
 /* Spacings for blocks */
 $block-spacing: (
   small: 1.4rem,
-  medium: 2rem
+  medium: 2rem,
 );
 
 $block-spacing-small: map-get($block-spacing, small);
@@ -78,7 +79,7 @@ $button-shadow: 0px 2px 10px rgba(84, 84, 84, 0.25);
 $menu-items-spacing-small: 0.3rem;
 $menu-items-spacing-medium: 0.5rem;
 
-$nav-button-small: 1.6rem;
+$nav-button-small: 1.8rem;
 $nav-button-medium: 2rem;
 $nav-button-svg-small: $nav-button-small * 0.6;
 $nav-button-svg-medium: $nav-button-medium * 0.6;

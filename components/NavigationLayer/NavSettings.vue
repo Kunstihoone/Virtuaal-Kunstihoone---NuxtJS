@@ -189,7 +189,7 @@ export default {
   position: absolute;
   top: 2.5rem;
   left: 0;
-  width: rem-calc(120);
+  width: rem-calc(128);
   pointer-events: none;
 
   @include breakpoint('large') {
