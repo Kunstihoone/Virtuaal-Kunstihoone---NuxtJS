@@ -45,6 +45,9 @@ export default {
       default: null,
     },
   },
+  mounted() {
+    console.log(this.currentRoom)
+  },
   computed: {
     ...mapState({
       audioGuideState: (state) => state.audioGuideState,
@@ -122,7 +125,7 @@ export default {
   position: absolute;
   bottom: 1rem;
   right: 1rem;
-  z-index: 15;
+  z-index: 25;
   display: flex;
 }
 

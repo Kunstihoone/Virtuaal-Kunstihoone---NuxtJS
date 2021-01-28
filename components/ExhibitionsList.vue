@@ -1,6 +1,7 @@
 <template>
   <client-only>
     <div class="exhibitions-list">
+      <pre></pre>
       <template v-for="(exhibition, index) in exhibitions">
         <exhibition-item :key="index" :data="exhibition" />
       </template>
