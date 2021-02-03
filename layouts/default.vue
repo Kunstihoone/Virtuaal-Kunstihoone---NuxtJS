@@ -259,11 +259,6 @@ h6 {
   @include font-size(h6);
 }
 
-.main {
-  // position: relative;
-  // height: calc(var(--vh, 1vh) * 100);
-}
-
 .button {
   display: inline-block;
   height: $nav-button-small;
