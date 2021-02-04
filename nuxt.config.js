@@ -122,20 +122,19 @@ export default {
     scss: ['./assets/styles/main.scss'],
   },
   router: {
-    // prefetchLinks: false,
+    prefetchLinks: false,
     trailingSlash: true,
   },
-  generate: {
-    interval: 100,
-    crawler: false,
-    routes() {
-      return fetch(`${process.env.BASE_URL}generate`).then((res) => {
-        console.log(res)
-        if (!res.ok) {
-          return null
-        }
-        return res.json().then((paths) => [...paths])
-      })
-    },
-  },
+  // generate: {
+  //   interval: 100,
+  //   crawler: false,
+  //   routes() {
+  //     return fetch(`${process.env.BASE_URL}generate`).then((res) => {
+  //       if (!res.ok) {
+  //         return null
+  //       }
+  //       return res.json().then((paths) => [...paths])
+  //     })
+  //   },
+  // },
 }
