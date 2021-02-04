@@ -47,18 +47,14 @@ export default {
       this.$store.commit('SetPlaceholderVisible', true)
     },
     preloadPlaceholder() {
-      const room = this.$store.getters.getSingleRoom(
-        this.buttonData.related_item.post_name,
-      )
-
       if (
         !this.$store.state.placeholderVisible &&
-        room.featured_image &&
-        room.featured_image.sizes.large
+        this.buttonData.featured_image &&
+        this.buttonData.featured_image.sizes.large
       ) {
         this.$store.commit(
           'SetPlaceholderImage',
-          room.featured_image.sizes.large,
+          this.buttonData.featured_image.sizes.large,
         )
       }
     },
