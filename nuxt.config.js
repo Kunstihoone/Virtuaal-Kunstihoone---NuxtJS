@@ -122,8 +122,8 @@ export default {
     scss: ['./assets/styles/main.scss'],
   },
   router: {
-    prefetchLinks: false,
-    // trailingSlash: true,
+    // prefetchLinks: false,
+    trailingSlash: true,
   },
   generate: {
     interval: 100,

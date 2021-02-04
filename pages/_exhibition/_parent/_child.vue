@@ -10,7 +10,7 @@ export default {
   components: {
     RoomWrapper,
   },
-  async asyncData({ params, store, isStatic, app }) {
+  async asyncData({ params, store, app }) {
     if (!process.browser && process.env.NODE_ENV !== 'development') {
       const data = await fetchApi({
         path: `post-types/${params.exhibition}/${params.child}`,
