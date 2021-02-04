@@ -130,6 +130,7 @@ export default {
     crawler: false,
     routes() {
       return fetch(`${process.env.BASE_URL}generate`).then((res) => {
+        console.log(res)
         if (!res.ok) {
           return null
         }
