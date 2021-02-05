@@ -16,6 +16,10 @@ export default {
         name: 'description',
         content: process.env.npm_package_description || '',
       },
+      {
+        name: 'robots',
+        content: process.env.TARGET === 'server' ? 'noindex' : 'index',
+      },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicons/favicon.ico' },
