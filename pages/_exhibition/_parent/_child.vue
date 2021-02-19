@@ -21,6 +21,7 @@ export default {
       })
       store.commit('SetSiteData', siteData)
     }
+
     if (!store.state.exhibitions) {
       const queryParams = {
         acf: true,
