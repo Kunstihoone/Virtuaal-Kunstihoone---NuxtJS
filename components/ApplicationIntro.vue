@@ -82,7 +82,7 @@ export default {
     @include grid(10/12);
   }
 
-  /deep/:last-child {
+  ::v-deep:last-child {
     margin-bottom: 0;
   }
 }

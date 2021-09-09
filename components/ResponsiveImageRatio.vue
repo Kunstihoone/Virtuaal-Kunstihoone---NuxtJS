@@ -28,7 +28,7 @@ export default {
 .responsive-image-ratio {
   position: relative;
 
-  /deep/ img {
+  ::v-deep img {
     position: absolute;
     left: 0;
     top: 0;

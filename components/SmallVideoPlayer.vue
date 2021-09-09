@@ -48,7 +48,7 @@ export default {
     height: rem-calc(320 * (9 / 16));
   }
 
-  /deep/ iframe {
+  ::v-deep iframe {
     width: 100%;
     height: 100%;
   }

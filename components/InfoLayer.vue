@@ -112,7 +112,7 @@ export default {
     margin-bottom: $menu-items-spacing-medium;
   }
 
-  /deep/ p {
+  ::v-deep p {
     line-height: $body-line-height;
   }
 }

@@ -43,6 +43,8 @@ export default {
       },
     })
 
+    console.log(data)
+
     store.commit('SetCurrentExhibition', params.exhibition)
     store.commit('SetRoomsData', [data])
 

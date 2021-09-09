@@ -44,7 +44,7 @@
     height: 1.2rem;
   }
 
-  /deep/ path {
+  ::v-deep path {
     fill: $white;
   }
 

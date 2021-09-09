@@ -110,14 +110,14 @@ export default {
   }
 
   &:hover {
-    /deep/ .tooltip {
+    ::v-deep .tooltip {
       transform: translateY(-0.4rem);
       opacity: 1;
     }
   }
 }
 
-/deep/ .tooltip {
+::v-deep .tooltip {
   left: 0%;
   bottom: 100%;
 }

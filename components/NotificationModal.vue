@@ -57,12 +57,12 @@ export default {
 .notification-modal__content {
   padding-right: 1.2rem;
 
-  /deep/ a {
+  ::v-deep a {
     color: $black;
     text-decoration: underline;
   }
 
-  /deep/:last-child {
+  ::v-deep:last-child {
     margin-bottom: 0;
   }
 }

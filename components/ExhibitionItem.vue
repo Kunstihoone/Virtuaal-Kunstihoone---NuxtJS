@@ -84,7 +84,7 @@ export default {
   margin-bottom: 0.6rem;
   background-color: $kh-yellow;
 
-  /deep/ img {
+  ::v-deep img {
     object-fit: cover;
   }
 }

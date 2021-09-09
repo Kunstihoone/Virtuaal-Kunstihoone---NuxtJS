@@ -101,7 +101,7 @@ export default {
   object-fit: contain;
   z-index: 1;
 
-  /deep/ iframe {
+  ::v-deep iframe {
     width: 100%;
     height: 100%;
   }

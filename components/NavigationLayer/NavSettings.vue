@@ -201,14 +201,14 @@ export default {
   position: relative;
   z-index: 12;
 
-  /deep/ .tooltip {
+  ::v-deep .tooltip {
     top: 100%;
     left: 50%;
     transform: translateX(-50%) translateY(0.2rem);
   }
 
   &:hover {
-    /deep/ .tooltip {
+    ::v-deep .tooltip {
       transform: translateX(-50%) translateY(0.4rem);
       opacity: 1;
     }
@@ -216,14 +216,14 @@ export default {
 }
 
 .nav-settings__toggle {
-  /deep/ .tooltip {
+  ::v-deep .tooltip {
     top: 100%;
     left: 0;
     transform: translateY(0.2rem);
   }
 
   &:hover {
-    /deep/ .tooltip {
+    ::v-deep .tooltip {
       transform: translateY(0.4rem);
       opacity: 1;
     }

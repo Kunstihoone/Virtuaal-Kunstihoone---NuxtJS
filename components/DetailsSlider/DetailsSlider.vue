@@ -190,7 +190,7 @@ export default {
   }
 }
 
-/deep/ .detail-slide {
+::v-deep .detail-slide {
   position: relative;
   width: 100%;
   height: 100%;
