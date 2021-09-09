@@ -88,9 +88,6 @@ async function initializeSite({ commit, lang }) {
     },
   })
 
-  console.log(siteData)
-  console.log(exhibitions)
-
   commit('SetExhibitions', exhibitions)
 }
 
