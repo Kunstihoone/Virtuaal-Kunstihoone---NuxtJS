@@ -57,6 +57,9 @@ export default {
       src: '~/plugins/lazysizes.js',
       ssr: false,
     },
+    {
+      src: '~plugins/i18n.js',
+    },
   ],
   buildModules: [
     '@nuxtjs/eslint-module',
