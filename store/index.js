@@ -104,11 +104,6 @@ export const actions = {
 }
 
 export const getters = {
-  getSingleRoom: (state) => (slug) => {
-    return state.roomsData.find(
-      (event) => decodeURIComponent(event.slug) === slug,
-    )
-  },
   getExhibitions: (state) => {
     return state.exhibitions
   },

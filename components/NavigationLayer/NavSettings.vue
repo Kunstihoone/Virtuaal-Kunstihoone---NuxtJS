@@ -269,7 +269,7 @@ export default {
 }
 
 .nav-settings__mute {
-  .mobile-device & {
+  .m-mobile-device & {
     display: none;
   }
 }

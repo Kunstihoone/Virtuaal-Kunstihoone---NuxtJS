@@ -50,7 +50,9 @@ export default {
       })
     },
   },
-  async asyncData({ app }) {
+  async asyncData({ store, app }) {
+    store.commit('SetRoomsData', null)
+
     let frontPagePath = ''
 
     switch (app.i18n.locale) {

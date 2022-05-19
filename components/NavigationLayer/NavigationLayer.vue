@@ -68,7 +68,7 @@ export default {
   opacity: 1;
   transition: opacity $transition-ease-in-out;
 
-  .modal-active & {
+  .m-modal-active & {
     opacity: 0;
   }
 }

@@ -44,7 +44,7 @@ export default {
     })
 
     store.commit('SetCurrentExhibition', params.exhibition)
-    store.commit('SetRoomsData', [data])
+    store.commit('SetRoomsData', data)
 
     return { data }
   },

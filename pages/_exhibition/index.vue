@@ -23,6 +23,8 @@ import fetchApi from '~/utils/fetchApi'
 
 export default {
   async asyncData({ store, params }) {
+    store.commit('SetRoomsData', null)
+
     if (store.state.exhibitions) {
       const data = await store.getters.getSingleExhibition(params.exhibition)
 

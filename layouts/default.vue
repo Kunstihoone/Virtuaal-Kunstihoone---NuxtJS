@@ -1,12 +1,11 @@
 <template>
-  <main
-    :class="{ 'modal-active': detailsLayer, 'mobile-device': isMobileDevide }"
-    class="main"
-  >
+  <main class="main">
     <ratio-container
       :style="{ width: containerWidth }"
       :class="[
         containerOrientation === 'landscape' ? 'm-landscape' : 'm-portrait',
+        detailsLayer ? 'm-modal-active' : '',
+        isMobileDevide ? 'm-mobile-device' : '',
       ]"
     >
       <transition name="fade">
@@ -37,14 +36,9 @@
     <feedback-button />
 
     <background-audio
-      v-if="
-        !splashState &&
-        getRouteBaseName() !== 'index' &&
-        currentRoom &&
-        currentRoom.acf.audio_track
-      "
-      :key="currentRoom.acf.audio_track.url"
-      :audio-data="currentRoom.acf.audio_track"
+      v-if="!splashState && backgroundAudio"
+      :key="backgroundAudio.url"
+      :audio-data="backgroundAudio"
     />
 
     <portrait-notification v-if="isWindowPortrait" />
@@ -100,17 +94,12 @@ export default {
       placeholderVisible: (state) => state.placeholderVisible,
       detailsLayer: (state) => state.detailsLayer,
       navigationButtons: (state) => state.navigationButtons,
+      currentRoom: (state) => state.roomsData,
     }),
-    currentRoom() {
-      if (this.$route.params.child || this.$route.params.parent) {
-        return this.$store.getters.getSingleRoom(
-          this.$route.params.child
-            ? this.$route.params.child
-            : this.$route.params.parent,
-        )
-      } else {
-        return null
-      }
+    backgroundAudio() {
+      return this.currentRoom && this.currentRoom.acf.audio_track
+        ? this.currentRoom.acf.audio_track
+        : null
     },
   },
   watch: {

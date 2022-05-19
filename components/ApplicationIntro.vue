@@ -10,7 +10,11 @@
       <img src="~assets/kh-logo.svg" name="kh-logo" />
     </a>
 
-    <div class="application-intro__text" v-html="data.content" />
+    <div
+      v-if="data.content"
+      class="application-intro__text"
+      v-html="data.content"
+    />
   </div>
 </template>
 
