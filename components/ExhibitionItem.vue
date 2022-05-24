@@ -1,12 +1,12 @@
 <template>
   <nuxt-link
-    v-if="data.acf.entry_room.post_name"
+    v-if="data.entry_room.post_name"
     :to="
       localePath({
         name: 'exhibition-parent',
         params: {
-          exhibition: data.acf.entry_room.post_type,
-          parent: data.acf.entry_room.post_name,
+          exhibition: data.entry_room.post_type,
+          parent: data.entry_room.post_name,
         },
       })
     "
