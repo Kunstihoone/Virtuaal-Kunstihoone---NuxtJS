@@ -1,5 +1,6 @@
 <template>
   <nuxt-link
+    v-if="data.acf.entry_room.post_name"
     :to="
       localePath({
         name: 'exhibition-parent',
