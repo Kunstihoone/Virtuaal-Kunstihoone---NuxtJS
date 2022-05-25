@@ -7,6 +7,9 @@
     >
       {{ imageData.acf[`image_title_${currentLocaleIso}`] }}
     </p>
+    <p v-else-if="imageData.caption" class="detail-slide__title">
+      {{ imageData.caption }}
+    </p>
   </div>
 </template>
 
