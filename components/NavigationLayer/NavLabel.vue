@@ -50,6 +50,20 @@
         >
           {{ $t('digital_guide') }}
         </a>
+        <a
+          v-else-if="
+            currentRoom.acf &&
+            currentRoom.acf[$i18n.locale === 'evk' ? 'evk' : currentLocaleIso]
+          "
+          :href="
+            currentRoom.acf[$i18n.locale === 'evk' ? 'evk' : currentLocaleIso]
+          "
+          target="_blank"
+          class="nav-label__guide-link button"
+          @click="$store.commit('SetAudioPlayerState', false)"
+        >
+          {{ $t('digital_guide') }}
+        </a>
       </transition>
     </div>
 
