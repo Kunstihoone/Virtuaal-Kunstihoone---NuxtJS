@@ -26,7 +26,7 @@
 
 <script>
 import anime from 'animejs'
-import { fetchStrapiApi } from '~/utils/fetchApi'
+import { fetchStrapiApi } from '~/utils'
 import ApplicationIntro from '~/components/ApplicationIntro'
 import ExhibitionsList from '~/components/ExhibitionsList'
 import NotificationModal from '~/components/NotificationModal'
