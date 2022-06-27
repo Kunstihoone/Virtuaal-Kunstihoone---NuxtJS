@@ -129,6 +129,13 @@ export default {
   styleResources: {
     scss: ['./assets/styles/main.scss'],
   },
+  build: {
+    loaders: {
+      vue: {
+        compiler: require('vue-template-babel-compiler'),
+      },
+    },
+  },
   // router: {
   //   prefetchLinks: false,
   //   trailingSlash: true,
