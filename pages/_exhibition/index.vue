@@ -1,14 +1,14 @@
 <template>
   <article class="single-exhibition">
-    <h1>{{ data.title }}</h1>
+    <h1>{{ data.attributes.title }}</h1>
 
     <nuxt-link
       :to="
         localePath({
           name: 'exhibition-parent',
           params: {
-            exhibition: data.acf.post_type_slug,
-            parent: 'fuajee',
+            exhibition: data.attributes.slug,
+            parent: data.attributes.homeView.data.attributes.slug,
           },
         })
       "
@@ -19,10 +19,12 @@
 </template>
 
 <script>
-import fetchApi from '~/utils/fetchApi'
+import { fetchStrapiApi } from '~/utils'
 
 export default {
-  async asyncData({ store, params }) {
+  async asyncData({ app, store, params }) {
+    const locale = app.i18n.locale === 'evk' ? 'et' : app.i18n.locale
+
     store.commit('SetRoomsData', null)
 
     if (store.state.exhibitions) {
@@ -32,15 +34,32 @@ export default {
         data,
       }
     } else {
-      const data = await fetchApi({
-        path: `post-types/exhibitions/${params.exhibition}`,
+      const data = await fetchStrapiApi(`api/exhibitions/`, {
         params: {
-          acf: true,
+          locale,
+          filters: {
+            slug: {
+              $eq: params.exhibition,
+            },
+            organisation: {
+              id: {
+                $eq: process.env.organisationId,
+              },
+            },
+          },
+          populate: {
+            homeView: {
+              fields: ['slug'],
+            },
+            featuredImage: {
+              populate: 'file',
+            },
+          },
         },
       })
 
       return {
-        data,
+        data: data.data[0],
       }
     }
   },

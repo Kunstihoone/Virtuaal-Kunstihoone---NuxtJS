@@ -94,8 +94,7 @@ export const getters = {
   },
   getSingleExhibition: (state) => (slug) => {
     return state.exhibitions.find(
-      (exhibition) =>
-        decodeURIComponent(exhibition.acf.entry_room.post_type) === slug,
+      (exhibition) => decodeURIComponent(exhibition.attributes.slug) === slug,
     )
   },
 }

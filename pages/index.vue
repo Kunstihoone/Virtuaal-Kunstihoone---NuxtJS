@@ -24,7 +24,6 @@
 
 <script>
 import anime from 'animejs'
-import { fetchStrapiApi } from '~/utils'
 import ApplicationIntro from '~/components/ApplicationIntro'
 import ExhibitionsList from '~/components/ExhibitionsList'
 import NotificationModal from '~/components/NotificationModal'
@@ -48,16 +47,8 @@ export default {
       })
     },
   },
-  async asyncData({ store, app }) {
+  asyncData({ store, app }) {
     store.commit('SetRoomsData', null)
-
-    const data = await fetchStrapiApi(
-      'api/organisation-info/' + process.env.organisationId,
-    )
-
-    return {
-      data: data.data,
-    }
   },
   data() {
     return {
