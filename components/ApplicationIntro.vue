@@ -1,19 +1,21 @@
 <template>
   <div class="application-intro">
     <a
-      :href="`https://kunstihoone.ee/${
-        $i18n.locale === 'evk' ? 'et' : $i18n.locale
-      }`"
+      :href="data.attributes.link"
       class="application-intro__logo"
       target="_blank"
     >
-      <img src="~assets/kh-logo.svg" name="kh-logo" />
+      <img
+        v-if="data?.attributes.logo.data?.attributes.file.data.attributes.url"
+        :src="data.attributes.logo.data.attributes.file.data.attributes.url"
+        name="kh-logo"
+      />
     </a>
 
     <div
-      v-if="data.content"
+      v-if="data.attributes.description"
       class="application-intro__text"
-      v-html="data.content"
+      v-html="data.attributes.description"
     />
   </div>
 </template>

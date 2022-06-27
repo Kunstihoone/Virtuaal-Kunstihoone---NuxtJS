@@ -4,6 +4,8 @@ export default {
   target: process.env.TARGET ? process.env.TARGET : 'static',
   env: {
     baseUrl: process.env.BASE_URL || 'http://localhost:3000',
+    strapiUrl: process.env.STRAPI_URL || 'http://localhost:1337',
+    organisationId: process.env.ORGANISATION_ID,
   },
   head: {
     title: process.env.npm_package_name || '',

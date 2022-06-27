@@ -26,7 +26,7 @@
 
 <script>
 import anime from 'animejs'
-import fetchApi from '~/utils/fetchApi'
+import { fetchStrapiApi } from '~/utils/fetchApi'
 import ApplicationIntro from '~/components/ApplicationIntro'
 import ExhibitionsList from '~/components/ExhibitionsList'
 import NotificationModal from '~/components/NotificationModal'
@@ -53,31 +53,17 @@ export default {
   async asyncData({ store, app }) {
     store.commit('SetRoomsData', null)
 
-    let frontPagePath = ''
-
-    switch (app.i18n.locale) {
-      case 'en':
-        frontPagePath = 'front-page'
-        break
-      case 'ru':
-        frontPagePath = 'esileht-rus'
-        break
-
-      default:
-        frontPagePath = 'esileht'
-        break
-    }
-
-    const data = await fetchApi({
-      path: `pages/${frontPagePath}`,
-      params: {
-        lang: app.i18n.locale === 'evk' ? 'et' : app.i18n.locale,
-        acf: true,
-      },
-    })
+    const data = await fetchStrapiApi(
+      'api/organisation-info/' + process.env.organisationId,
+      // {
+      //   params: {
+      //     locale: app.i18n.locale === 'evk' ? 'et' : app.i18n.locale,
+      //   },
+      // },
+    )
 
     return {
-      data,
+      data: data.data,
     }
   },
   data() {
