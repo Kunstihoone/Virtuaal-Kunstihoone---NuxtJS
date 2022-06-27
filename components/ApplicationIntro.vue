@@ -1,21 +1,16 @@
 <template>
   <div class="application-intro">
-    <a
-      :href="data.attributes.link"
-      class="application-intro__logo"
-      target="_blank"
-    >
+    <a :href="data.link" class="application-intro__logo" target="_blank">
       <img
-        v-if="data?.attributes.logo.data?.attributes.file.data.attributes.url"
-        :src="data.attributes.logo.data.attributes.file.data.attributes.url"
-        name="kh-logo"
+        v-if="data?.logo.data?.attributes.file.data.attributes.url"
+        :src="data.logo.data.attributes.file.data.attributes.url"
       />
     </a>
 
     <div
-      v-if="data.attributes.description"
+      v-if="data.localizations[$i18n.locale].description"
       class="application-intro__text"
-      v-html="data.attributes.description"
+      v-html="$md.render(data.localizations[$i18n.locale].description)"
     />
   </div>
 </template>

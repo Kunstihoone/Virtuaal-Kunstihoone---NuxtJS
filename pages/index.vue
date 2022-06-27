@@ -1,22 +1,17 @@
 <template>
   <div class="index-page">
-    <application-intro :data="data" />
+    <application-intro :data="$store.state.siteData" />
 
-    <exhibitions-list
-      v-if="$store.getters.getExhibitions"
-      :exhibitions="$store.getters.getExhibitions"
-    />
+    <exhibitions-list v-if="exhibitions" :exhibitions="exhibitions" />
 
     <transition name="fade">
       <notification-modal
         v-if="
           displayNotification &&
-          $store.state.siteData.options &&
-          $store.state.siteData.options.notifications &&
-          $store.state.siteData.options.notifications[$i18n.locale]
+          $store.state.siteData.localizations[$i18n.locale].notification
         "
         :notification="
-          $store.state.siteData.options.notifications[$i18n.locale]
+          $store.state.siteData.localizations[$i18n.locale].notification
         "
         @closeNotification="displayNotification = false"
       />
@@ -55,11 +50,6 @@ export default {
 
     const data = await fetchStrapiApi(
       'api/organisation-info/' + process.env.organisationId,
-      // {
-      //   params: {
-      //     locale: app.i18n.locale === 'evk' ? 'et' : app.i18n.locale,
-      //   },
-      // },
     )
 
     return {
@@ -72,7 +62,7 @@ export default {
     }
   },
   head() {
-    return this.metaData(this.data)
+    return this.metaData()
   },
 }
 </script>

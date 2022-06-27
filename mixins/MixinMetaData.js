@@ -5,7 +5,7 @@ Vue.mixin({
     metaData(data) {
       const siteTitle = this.$store.state.siteData.title
       const siteDescription = this.$store.state.siteData.description
-      const siteUrl = this.$store.state.siteData.site_url
+      const siteUrl = process.env.siteUrl
 
       let metaTitle = ''
       let metaDescription = null

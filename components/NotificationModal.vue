@@ -8,7 +8,10 @@
       <svg-icon name="icon-close" />
     </button>
 
-    <div class="notification-modal__content" v-html="notification" />
+    <div
+      class="notification-modal__content"
+      v-html="$md.render(notification)"
+    />
   </div>
 </template>
 

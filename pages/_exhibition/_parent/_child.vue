@@ -4,6 +4,7 @@
 
 <script>
 import RoomWrapper from '~/components/RoomWrapper'
+import { fetchSiteData } from '~/utils'
 import fetchApi from '~/utils/fetchApi'
 
 export default {
@@ -13,12 +14,7 @@ export default {
   async asyncData({ params, store, app }) {
     const lang = app.i18n.locale === 'evk' ? 'et' : app.i18n.locale
     if (!store.state.siteData) {
-      const siteData = await fetchApi({
-        path: 'site-data',
-        params: {
-          lang,
-        },
-      })
+      const siteData = await fetchSiteData()
       store.commit('SetSiteData', siteData)
     }
 

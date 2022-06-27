@@ -1,3 +1,5 @@
+import { flattenLocalization } from './localizations'
+
 export const fetchStrapiApi = async (path, { params } = {}) => {
   const baseUrl = process.env.strapiUrl
   const queryParams = params ? new URLSearchParams(params) : ''
@@ -10,4 +12,16 @@ export const fetchStrapiApi = async (path, { params } = {}) => {
   })
 
   return data
+}
+
+export const fetchSiteData = async () => {
+  const getSiteData = await fetchStrapiApi(
+    'api/organisation-info/' + process.env.organisationId,
+  )
+
+  const siteData = {
+    ...getSiteData.data.attributes,
+    localizations: flattenLocalization(getSiteData.data),
+  }
+  return siteData
 }

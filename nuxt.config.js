@@ -6,6 +6,7 @@ export default {
     baseUrl: process.env.BASE_URL || 'http://localhost:3000',
     strapiUrl: process.env.STRAPI_URL || 'http://localhost:1337',
     organisationId: process.env.ORGANISATION_ID,
+    siteUrl: process.env.SITE_URL,
   },
   head: {
     title: process.env.npm_package_name || '',
@@ -123,9 +124,16 @@ export default {
         },
       },
     ],
+    '@nuxtjs/markdownit',
     '@nuxtjs/style-resources',
     '@nuxtjs/svg-sprite',
   ],
+  markdownit: {
+    // preset: 'default',
+    // linkify: true,
+    // breaks: true,
+    runtime: true,
+  },
   styleResources: {
     scss: ['./assets/styles/main.scss'],
   },

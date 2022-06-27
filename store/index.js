@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import { fetchSiteData } from '~/utils'
 import fetchApi from '~/utils/fetchApi'
 
 export const state = () => ({
@@ -69,13 +70,7 @@ export const mutations = {
 }
 
 async function initializeSite({ commit, lang }) {
-  const siteData = await fetchApi({
-    path: 'site-data',
-    params: {
-      lang,
-    },
-  })
-
+  const siteData = await fetchSiteData()
   commit('SetSiteData', siteData)
 
   const exhibitions = await fetchApi({
