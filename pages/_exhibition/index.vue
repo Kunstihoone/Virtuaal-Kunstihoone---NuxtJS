@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { fetchStrapiApi } from '~/utils'
+import { fetchSingleExhibition } from '~/utils'
 
 export default {
   async asyncData({ app, store, params }) {
@@ -34,32 +34,10 @@ export default {
         data,
       }
     } else {
-      const data = await fetchStrapiApi(`api/exhibitions/`, {
-        params: {
-          locale,
-          filters: {
-            slug: {
-              $eq: params.exhibition,
-            },
-            organisation: {
-              id: {
-                $eq: process.env.organisationId,
-              },
-            },
-          },
-          populate: {
-            homeView: {
-              fields: ['slug'],
-            },
-            featuredImage: {
-              populate: 'file',
-            },
-          },
-        },
-      })
+      const data = fetchSingleExhibition({ params, locale })
 
       return {
-        data: data.data[0],
+        data,
       }
     }
   },

@@ -52,3 +52,36 @@ export const fetchExhibitions = async ({ locale = defaultLocale } = {}) => {
 
   return exhibitions.data
 }
+
+export const fetchSingleExhibition = async ({
+  params,
+  locale = defaultLocale,
+} = {}) => {
+  const data = await fetchStrapiApi(`api/exhibitions/`, {
+    params: {
+      locale,
+      filters: {
+        slug: {
+          $eq: params.exhibition,
+        },
+        organisation: {
+          id: {
+            $eq: process.env.organisationId,
+          },
+        },
+      },
+      populate: {
+        homeView: {
+          fields: ['slug'],
+        },
+        featuredImage: {
+          populate: 'file',
+        },
+      },
+    },
+  })
+
+  return {
+    data: data.data[0],
+  }
+}
