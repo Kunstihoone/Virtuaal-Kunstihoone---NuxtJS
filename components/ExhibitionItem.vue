@@ -1,36 +1,36 @@
 <template>
   <nuxt-link
-    v-if="data.entry_room.post_name"
+    v-if="data.attributes.slug"
     :to="
       localePath({
         name: 'exhibition-parent',
         params: {
-          exhibition: data.entry_room.post_type,
-          parent: data.entry_room.post_name,
+          exhibition: data.attributes.slug,
+          parent: data.attributes.homeView.data.attributes.slug,
         },
       })
     "
     :class="{
-      'm-disabled': $i18n.locale === 'evk' && !data.acf.in_sign_language,
+      'm-disabled': $i18n.locale === 'evk' && !data.attributes.inSignLanguage,
     }"
     class="exhibition-item"
     @click.native="enterExhibition"
   >
     <responsive-image-ratio
-      v-if="data.featured_image"
-      :image-data="data.featured_image"
+      v-if="data.attributes.featuredImage.data?.attributes.file.data.attributes"
+      :image-data="
+        data.attributes.featuredImage.data.attributes.file.data.attributes
+      "
       class="exhibition-item__thumbnail"
     />
 
     <div class="exhibition-item__content">
       <exhibition-item-dates
-        :starting-date-time="data.acf.duration.starting_time"
-        :ending-date-time="data.acf.duration.ending_time"
+        :starting-date-time="data.attributes.startsAt"
+        :ending-date-time="data.attributes.endsAt"
       />
 
-      <h2>{{ data.title }}</h2>
-
-      <p v-if="data.acf.subtitle">{{ data.acf.subtitle }}</p>
+      <h2>{{ data.attributes.title }}</h2>
     </div>
   </nuxt-link>
 </template>

@@ -1,6 +1,5 @@
 import Vue from 'vue'
-import { fetchSiteData } from '~/utils'
-import fetchApi from '~/utils/fetchApi'
+import { fetchExhibitions, fetchSiteData } from '~/utils'
 
 export const state = () => ({
   audioGuideState: false,
@@ -73,16 +72,7 @@ async function initializeSite({ commit, lang }) {
   const siteData = await fetchSiteData()
   commit('SetSiteData', siteData)
 
-  const exhibitions = await fetchApi({
-    path: 'post-types/exhibitions',
-    params: {
-      acf: true,
-      sort_order: 'ASC',
-      sort_column: 'menu_order',
-      lang,
-    },
-  })
-
+  const exhibitions = await fetchExhibitions({ locale: lang })
   commit('SetExhibitions', exhibitions)
 }
 

@@ -2,7 +2,10 @@
   <div class="index-page">
     <application-intro :data="$store.state.siteData" />
 
-    <exhibitions-list v-if="exhibitions" :exhibitions="exhibitions" />
+    <exhibitions-list
+      v-if="$store.getters.getExhibitions"
+      :exhibitions="$store.getters.getExhibitions"
+    />
 
     <transition name="fade">
       <notification-modal
@@ -62,7 +65,7 @@ export default {
     }
   },
   head() {
-    return this.metaData()
+    return this.metaData(this.data)
   },
 }
 </script>

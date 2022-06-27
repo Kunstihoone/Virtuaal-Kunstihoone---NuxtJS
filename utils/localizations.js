@@ -1,4 +1,4 @@
-const defaultLocale = 'et'
+export const defaultLocale = 'et'
 
 export const flattenLocalization = (data) => {
   const processLocalizations = data?.attributes?.localizations.data?.reduce(

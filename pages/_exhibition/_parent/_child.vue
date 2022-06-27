@@ -4,7 +4,7 @@
 
 <script>
 import RoomWrapper from '~/components/RoomWrapper'
-import { fetchSiteData } from '~/utils'
+import { fetchExhibitions, fetchSiteData } from '~/utils'
 import fetchApi from '~/utils/fetchApi'
 
 export default {
@@ -19,16 +19,7 @@ export default {
     }
 
     if (!store.state.exhibitions) {
-      const queryParams = {
-        acf: true,
-        sort_order: 'DESC',
-        sort_column: 'post_date',
-        lang,
-      }
-      const exhibitions = await fetchApi({
-        path: 'post-types/exhibitions',
-        params: queryParams,
-      })
+      const exhibitions = await fetchExhibitions({ locale: lang })
       store.commit('SetExhibitions', exhibitions)
     }
 

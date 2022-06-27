@@ -1,10 +1,11 @@
 <template>
   <client-only>
     <div class="exhibitions-list">
-      <pre></pre>
-      <template v-for="(exhibition, index) in exhibitions">
-        <exhibition-item :key="index" :data="exhibition" />
-      </template>
+      <exhibition-item
+        v-for="(exhibition, index) in exhibitions"
+        :key="index"
+        :data="exhibition"
+      />
     </div>
   </client-only>
 </template>

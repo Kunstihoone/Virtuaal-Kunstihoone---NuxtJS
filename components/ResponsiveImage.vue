@@ -1,17 +1,21 @@
 <template>
   <img
-    v-if="imageData"
-    :key="imageData.ID"
-    :src="
-      imageData.sizes && imageData.sizes.thumbnail_lqip
-        ? imageData.sizes.thumbnail_lqip
-        : ''
-    "
-    :data-src="defaultImage"
-    :data-srcset="imageData.srcset"
-    :alt="imageData.alt"
+    v-if="imageData.mime === 'image/gif'"
+    :key="`gif-${imageData.ID}`"
+    ref="imageData"
+    :src="`${imageData.url}`"
+    :alt="imageData.alternativeText"
     class="responsive-image lazyload"
-    data-sizes="auto"
+  />
+  <img
+    v-else
+    :key="imageData.ID"
+    ref="imageData"
+    :src="`${imageData.formats.thumbnail.url}`"
+    :data-srcset="srcSet"
+    :alt="imageData.alternativeText"
+    :sizes="`${throttleSizes && '(min-width: 1000px) 793px, 100vw'}`"
+    class="responsive-image lazyload"
   />
 </template>
 
@@ -22,14 +26,26 @@ export default {
       type: Object,
       default: null,
     },
+    throttleSizes: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
-    defaultImage() {
-      if (this.imageData.sizes && this.imageData.sizes.large) {
-        return this.imageData.sizes.large
-      } else {
-        return this.imageData.url
+    srcSet() {
+      const formats = this.imageData.formats
+      let srcSet = ''
+
+      for (const key in formats) {
+        const format = formats[key]
+        srcSet += `${format.url} ${format.width}w, `
       }
+
+      if (this.imageData.width > 1920) {
+        srcSet += `${this.imageData.url} 2560w, `
+      }
+
+      return srcSet
     },
   },
 }
