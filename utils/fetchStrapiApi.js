@@ -5,12 +5,12 @@ export const fetchStrapiApi = async (path, { params } = {}) => {
   const baseUrl = process.env.strapiUrl
   const queryParams = qs.stringify(params, { encode: true })
 
-  console.log(`${baseUrl}${path}?${queryParams}`)
   try {
     const response = await fetch(`${baseUrl}${path}?${queryParams}`)
     const data = await response.json()
     return data
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(error.response.data.error)
     throw error.response.data.error
   }
@@ -83,5 +83,87 @@ export const fetchSingleExhibition = async ({
 
   return {
     data: data.data[0],
+  }
+}
+
+export const fetchSingleView = async ({ slug } = {}) => {
+  const data = await fetchStrapiApi('api/views', {
+    params: {
+      locale: defaultLocale,
+      filters: {
+        slug: {
+          $eq: slug,
+        },
+        organisation: {
+          id: {
+            $eq: process.env.organisationId,
+          },
+        },
+      },
+      populate: {
+        // exhibition: {
+        //   populate: 'homeView',
+        // },
+        buttons: {
+          populate: {
+            fields: ['slug', 'title'],
+            view: {
+              populate: {
+                parent: {
+                  fields: ['slug'],
+                },
+                featuredImage: {
+                  populate: 'file',
+                },
+              },
+            },
+          },
+        },
+        label: {
+          populate: 'file',
+        },
+        featuredImage: {
+          populate: 'file',
+        },
+        backgroundAudio: {
+          populate: 'file',
+        },
+        audioGuide: {
+          populate: 'file',
+        },
+        overlaySlides: {
+          populate: ['media.file', 'media.localizations'],
+        },
+        localizations: {
+          fields: [
+            'audioGuideTitle',
+            'externalLink',
+            'externalLinkLabel',
+            'locale',
+          ],
+          populate: {
+            label: {
+              populate: {
+                file: '*',
+              },
+            },
+            audioGuide: {
+              populate: {
+                file: '*',
+              },
+            },
+          },
+        },
+      },
+    },
+  })
+
+  const currentView = {
+    ...data.data[0].attributes,
+    localizations: flattenLocalization(data.data[0]),
+  }
+
+  return {
+    data: currentView,
   }
 }

@@ -2,7 +2,7 @@
   <div class="room-wrapper">
     <video-player
       v-if="userReady"
-      :video-src="data.acf.video"
+      :video-src="data.video"
       @playerLoaded="onPlayerLoaded"
     />
   </div>
@@ -36,10 +36,14 @@ export default {
     }),
   },
   mounted() {
-    if (this.data.featured_image && this.data.featured_image.sizes.medium) {
+    if (
+      this.data.featuredImage.data?.attributes.file.data?.attributes.formats
+        .large
+    ) {
       this.$store.commit(
         'SetPlaceholderImage',
-        this.data.featured_image.sizes.large,
+        this.data.featuredImage.data.attributes.file.data.attributes.formats
+          .large.url,
       )
       this.$store.commit('SetPlaceholderVisible', true)
     }
@@ -48,8 +52,8 @@ export default {
     onPlayerLoaded() {
       this.playerLoaded = true
 
-      if (this.data.acf.buttons) {
-        this.$store.commit('SetNavigationButtons', this.data.acf.buttons)
+      if (this.data.buttons) {
+        this.$store.commit('SetNavigationButtons', this.data.buttons)
       }
     },
   },

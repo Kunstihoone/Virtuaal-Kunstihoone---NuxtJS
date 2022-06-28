@@ -3,7 +3,7 @@
     <div class="nav-label__buttons">
       <transition name="fade">
         <menu-button
-          v-if="currentRoom.acf.label"
+          v-if="currentRoom.localizations[$i18n.locale].label.data"
           :icon="detailsState ? 'icon-close' : 'icon-info'"
           button-event="Toggle label"
           class="nav-label__toggle"
@@ -18,57 +18,27 @@
       <transition name="fade">
         <a
           v-if="
-            currentRoom.acf.curators_essay_links &&
-            currentRoom.acf.curators_essay_links[currentLocaleIso]
+            currentRoom.localizations[$i18n.locale].externalLink &&
+            currentRoom.localizations[$i18n.locale].externalLinkLabel
           "
-          :href="currentRoom.acf.curators_essay_links[currentLocaleIso].url"
+          :href="currentRoom.localizations[$i18n.locale].externalLink"
           target="_blank"
           class="nav-label__guide-link button"
           @click="$store.commit('SetAudioPlayerState', false)"
         >
-          {{
-            currentRoom.acf.curators_essay_links[currentLocaleIso].title
-              ? currentRoom.acf.curators_essay_links[currentLocaleIso].title
-              : $t('curators_essay')
-          }}
-        </a>
-        <a
-          v-else-if="
-            currentRoom.acf.digital_guide_links &&
-            currentRoom.acf.digital_guide_links[
-              $i18n.locale === 'evk' ? 'evk' : currentLocaleIso
-            ]
-          "
-          :href="
-            currentRoom.acf.digital_guide_links[
-              $i18n.locale === 'evk' ? 'evk' : currentLocaleIso
-            ]
-          "
-          target="_blank"
-          class="nav-label__guide-link button"
-          @click="$store.commit('SetAudioPlayerState', false)"
-        >
-          {{ $t('digital_guide') }}
-        </a>
-        <a
-          v-else-if="
-            currentRoom.acf &&
-            currentRoom.acf[$i18n.locale === 'evk' ? 'evk' : currentLocaleIso]
-          "
-          :href="
-            currentRoom.acf[$i18n.locale === 'evk' ? 'evk' : currentLocaleIso]
-          "
-          target="_blank"
-          class="nav-label__guide-link button"
-          @click="$store.commit('SetAudioPlayerState', false)"
-        >
-          {{ $t('digital_guide') }}
+          {{ currentRoom.localizations[$i18n.locale].externalLinkLabel }}
         </a>
       </transition>
     </div>
 
     <transition name="fade">
-      <label-layer v-if="detailsState" :label-image="currentRoom.acf.label" />
+      <label-layer
+        v-if="detailsState"
+        :label-image="
+          currentRoom.localizations[$i18n.locale].label.data.attributes.file
+            .data?.attributes
+        "
+      />
     </transition>
   </div>
 </template>

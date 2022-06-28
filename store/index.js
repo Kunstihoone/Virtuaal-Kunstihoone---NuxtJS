@@ -62,7 +62,6 @@ export const mutations = {
   SetSplashState(state, value) {
     Vue.set(state, 'splashState', value)
   },
-
   SetUserReady(state, value) {
     Vue.set(state, 'userReady', value)
   },

@@ -97,8 +97,10 @@ export default {
       currentRoom: (state) => state.roomsData,
     }),
     backgroundAudio() {
-      return this.currentRoom && this.currentRoom.acf.audio_track
-        ? this.currentRoom.acf.audio_track
+      return this.currentRoom?.backgroundAudio.data?.attributes.file.data
+        ?.attributes.url
+        ? this.currentRoom.backgroundAudio.data.attributes.file.data.attributes
+            .url
         : null
     },
   },

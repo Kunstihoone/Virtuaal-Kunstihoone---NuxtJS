@@ -3,9 +3,8 @@
 </template>
 
 <script>
-import fetchApi from '~/utils/fetchApi'
 import RoomWrapper from '~/components/RoomWrapper'
-import { fetchExhibitions, fetchSiteData } from '~/utils'
+import { fetchExhibitions, fetchSingleView, fetchSiteData } from '~/utils'
 
 export default {
   components: {
@@ -23,18 +22,13 @@ export default {
       store.commit('SetExhibitions', exhibitions)
     }
 
-    const data = await fetchApi({
-      path: `post-types/${params.exhibition}/${params.parent}`,
-
-      params: {
-        acf: true,
-      },
+    const currentView = await fetchSingleView({
+      slug: params.parent,
     })
 
     store.commit('SetCurrentExhibition', params.exhibition)
-    store.commit('SetRoomsData', data)
-
-    return { data }
+    store.commit('SetRoomsData', currentView.data)
+    return { data: currentView.data }
   },
   head() {
     return this.metaData(this.data)

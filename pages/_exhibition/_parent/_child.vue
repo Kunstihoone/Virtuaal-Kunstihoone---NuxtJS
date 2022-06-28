@@ -4,8 +4,7 @@
 
 <script>
 import RoomWrapper from '~/components/RoomWrapper'
-import { fetchExhibitions, fetchSiteData } from '~/utils'
-import fetchApi from '~/utils/fetchApi'
+import { fetchExhibitions, fetchSingleView, fetchSiteData } from '~/utils'
 
 export default {
   components: {
@@ -23,17 +22,13 @@ export default {
       store.commit('SetExhibitions', exhibitions)
     }
 
-    const data = await fetchApi({
-      path: `post-types/${params.exhibition}/${params.child}`,
-      params: {
-        acf: true,
-      },
+    const currentView = await fetchSingleView({
+      slug: params.child,
     })
 
     store.commit('SetCurrentExhibition', params.exhibition)
-    store.commit('SetRoomsData', data)
-
-    return { data }
+    store.commit('SetRoomsData', currentView.data)
+    return { data: currentView.data }
   },
   head() {
     return this.metaData(this.data)

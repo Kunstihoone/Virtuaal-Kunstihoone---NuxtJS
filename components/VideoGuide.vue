@@ -5,10 +5,10 @@
         v-if="
           !placeholderVisible &&
           audioGuideState &&
-          currentRoom.acf.hand_sign_translation
+          currentRoom.handSignTranslation
         "
-        :key="currentRoom.acf.hand_sign_translation"
-        :video-src="currentRoom.acf.hand_sign_translation"
+        :key="currentRoom.handSignTranslation"
+        :video-src="currentRoom.handSignTranslation"
       />
     </transition>
 
@@ -50,20 +50,6 @@ export default {
       audioGuideState: (state) => state.audioGuideState,
       placeholderVisible: (state) => state.placeholderVisible,
     }),
-    audioGuideTitle() {
-      if (this.currentRoom.acf.audio_guide_title_est) {
-        const locale = this.$i18n.locale
-        if (locale === 'en') {
-          return this.currentRoom.acf.audio_guide_title_eng
-        } else if (locale === 'ru') {
-          return this.currentRoom.acf.audio_guide_title_rus
-        } else {
-          return this.currentRoom.acf.audio_guide_title_est
-        }
-      } else {
-        return null
-      }
-    },
   },
   methods: {
     playerEnter(el, done) {

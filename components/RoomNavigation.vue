@@ -1,55 +1,54 @@
 <template>
   <nav class="room-navigation">
-    <template v-for="(button, index) in currentRoom.acf.buttons">
+    <template v-for="(button, index) in currentRoom.buttons">
       <button
-        v-if="button.related_item.is_detail"
-        :key="`nav-button-${index}`"
+        v-if="button.view.data?.attributes.isOverlay"
+        :key="`nav-button-overlay-${index}`"
         :style="{
-          top: `${button.position.top}%`,
-          left: `${button.position.left}%`,
+          top: `${button.top}%`,
+          left: `${button.left}%`,
         }"
-        :aria-label="button.related_item.post_title"
+        :aria-label="button.view.data.attributes.title"
         class="room-navigation__link"
         @click="
-          $store.commit('SetDetailsLayer', button.related_item.post_name) &
-            analyticsEvent('Details layer', button.related_item.post_name)
+          $store.commit('SetDetailsLayer', button.view.data.attributes.slug) &
+            analyticsEvent('Details layer', button.view.data.attributes.title)
         "
       >
-        <svg-icon :name="button.icon" />
+        <svg-icon :name="`icon-${button.icon}`" />
       </button>
 
       <navigation-button
-        v-else-if="button.related_item"
-        :key="`nav-button-${button.related_item.post_name}`"
+        v-else-if="button.view.data"
+        :key="`nav-button-${index}`"
         :style="{
-          top: `${button.position.top}%`,
-          left: `${button.position.left}%`,
+          top: `${button.top}%`,
+          left: `${button.left}%`,
         }"
         :button-data="button"
-        :aria-label="button.related_item.post_title"
+        :aria-label="button.view.data.attributes.slug"
         class="room-navigation__link"
         @click.native="
           analyticsEvent(
             'Room navigation button',
-            button.related_item.post_name,
+            button.view.data.attributes.title,
           )
         "
       >
-        <svg-icon :name="button.icon" />
+        <svg-icon :name="`icon-${button.icon}`" />
       </navigation-button>
 
       <a
-        v-else-if="button.external_link"
-        :key="`nav-button-${index}`"
+        v-else-if="button.externalLink"
+        :key="`nav-button-external-${index}`"
         :style="{
-          top: `${button.position.top}%`,
-          left: `${button.position.left}%`,
+          top: `${button.top}%`,
+          left: `${button.left}%`,
         }"
-        :href="button.external_link.url"
-        :aria-label="button.external_link.title"
+        :href="button.externalLink"
         target="_blank"
         class="room-navigation__link"
-        @click="analyticsEvent('External link', button.external_link.url)"
+        @click="analyticsEvent('External link', button.externalLink)"
       >
         <svg-icon name="icon-external-link" />
       </a>

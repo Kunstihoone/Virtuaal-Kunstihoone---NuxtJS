@@ -3,8 +3,7 @@
     <div class="audio-guide-player__inner">
       <audio
         ref="player"
-        :src="activeTrack.url"
-        crossorigin="anonymous"
+        :src="activeTrack.attributes.url"
         class="audio-guide-player__player"
         autoplay
         controls

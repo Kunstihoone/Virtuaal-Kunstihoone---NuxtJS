@@ -1,9 +1,9 @@
 <template>
-  <div class="audio-guide">
+  <div v-if="activeTrack" class="audio-guide">
     <transition :css="false" @enter="playerEnter" @leave="playerLeave">
       <audio-guide-player
         v-if="audioGuideState && activeTrack"
-        :key="activeTrack.ID"
+        :key="activeTrack.id"
         :active-track="activeTrack"
         :audio-guide-title="audioGuideTitle"
       />
@@ -48,32 +48,15 @@ export default {
       placeholderVisible: (state) => state.placeholderVisible,
     }),
     audioGuideTitle() {
-      if (this.currentRoom.acf.audio_guide_title_est) {
-        const locale = this.$i18n.locale
-        if (locale === 'en') {
-          return this.currentRoom.acf.audio_guide_title_eng
-        } else if (locale === 'ru') {
-          return this.currentRoom.acf.audio_guide_title_rus
-        } else {
-          return this.currentRoom.acf.audio_guide_title_est
-        }
+      if (this.currentRoom.localizations[this.$i18n.locale].audioGuideTitle) {
+        return this.currentRoom.localizations[this.$i18n.locale].audioGuideTitle
       } else {
         return null
       }
     },
     activeTrack() {
-      if (this.currentRoom.acf.audio_guide_est) {
-        const locale = this.$i18n.locale
-        if (locale === 'en') {
-          return this.currentRoom.acf.audio_guide_eng
-        } else if (locale === 'ru') {
-          return this.currentRoom.acf.audio_guide_rus
-        } else {
-          return this.currentRoom.acf.audio_guide_est
-        }
-      } else {
-        return null
-      }
+      return this.currentRoom.localizations[this.$i18n.locale].audioGuide.data
+        ?.attributes.file.data
     },
   },
   methods: {
