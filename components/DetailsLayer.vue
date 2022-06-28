@@ -30,24 +30,6 @@ export default {
       slides: null,
     }
   },
-  // computed: {
-  //   slides() {
-  //     if (this.modalData && this.modalData.acf) {
-  //       if (this.$i18n.locale === 'en' && this.modalData.acf.details_eng) {
-  //         return this.modalData.acf.details_eng
-  //       } else if (
-  //         this.$i18n.locale === 'ru' &&
-  //         this.modalData.acf.details_rus
-  //       ) {
-  //         return this.modalData.acf.details_rus
-  //       } else {
-  //         return this.modalData.acf.details_est
-  //       }
-  //     } else {
-  //       return null
-  //     }
-  //   },
-  // },
   mounted() {
     this.fetchDetails()
   },
