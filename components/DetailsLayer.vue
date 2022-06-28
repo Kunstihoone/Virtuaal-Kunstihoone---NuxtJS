@@ -1,5 +1,5 @@
 <template>
-  <div v-if="modalData" class="details-layer">
+  <div v-if="slides" class="details-layer">
     <details-slider :slides="slides" />
 
     <button
@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import fetchApi from '~/utils/fetchApi'
 import DetailsSlider from '~/components/DetailsSlider/DetailsSlider'
+import { fetchOverlayData } from '~/utils'
 
 export default {
   components: {
@@ -27,27 +27,27 @@ export default {
   },
   data() {
     return {
-      modalData: null,
+      slides: null,
     }
   },
-  computed: {
-    slides() {
-      if (this.modalData && this.modalData.acf) {
-        if (this.$i18n.locale === 'en' && this.modalData.acf.details_eng) {
-          return this.modalData.acf.details_eng
-        } else if (
-          this.$i18n.locale === 'ru' &&
-          this.modalData.acf.details_rus
-        ) {
-          return this.modalData.acf.details_rus
-        } else {
-          return this.modalData.acf.details_est
-        }
-      } else {
-        return null
-      }
-    },
-  },
+  // computed: {
+  //   slides() {
+  //     if (this.modalData && this.modalData.acf) {
+  //       if (this.$i18n.locale === 'en' && this.modalData.acf.details_eng) {
+  //         return this.modalData.acf.details_eng
+  //       } else if (
+  //         this.$i18n.locale === 'ru' &&
+  //         this.modalData.acf.details_rus
+  //       ) {
+  //         return this.modalData.acf.details_rus
+  //       } else {
+  //         return this.modalData.acf.details_est
+  //       }
+  //     } else {
+  //       return null
+  //     }
+  //   },
+  // },
   mounted() {
     this.fetchDetails()
   },
@@ -56,12 +56,12 @@ export default {
   },
   methods: {
     async fetchDetails() {
-      const data = await fetchApi({
-        path: `post-types/${this.$route.params.exhibition}/${this.detailsLayer}`,
+      const data = await fetchOverlayData({
+        slug: this.detailsLayer,
       })
 
-      this.$store.commit('SetDetailsData', data)
-      this.modalData = data
+      this.$store.commit('SetDetailsData', data.data)
+      this.slides = data.data.overlaySlides
     },
   },
 }

@@ -11,7 +11,7 @@
       <notification-modal
         v-if="
           displayNotification &&
-          $store.state.siteData.localizations[$i18n.locale].notification
+          $store.state.siteData.localizations[$i18n.locale]?.notification
         "
         :notification="
           $store.state.siteData.localizations[$i18n.locale].notification

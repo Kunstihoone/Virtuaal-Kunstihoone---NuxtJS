@@ -8,7 +8,7 @@
     </a>
 
     <div
-      v-if="data.localizations[$i18n.locale].description"
+      v-if="data.localizations[$i18n.locale]?.description"
       class="application-intro__text"
       v-html="$md.render(data.localizations[$i18n.locale].description)"
     />

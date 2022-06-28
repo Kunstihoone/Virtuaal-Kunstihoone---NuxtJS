@@ -57,7 +57,7 @@ export const fetchSingleExhibition = async ({
   params,
   locale = defaultLocale,
 } = {}) => {
-  const data = await fetchStrapiApi(`api/exhibitions/`, {
+  const response = await fetchStrapiApi(`api/exhibitions/`, {
     params: {
       locale,
       filters: {
@@ -82,12 +82,12 @@ export const fetchSingleExhibition = async ({
   })
 
   return {
-    data: data.data[0],
+    data: response.data[0],
   }
 }
 
 export const fetchSingleView = async ({ slug } = {}) => {
-  const data = await fetchStrapiApi('api/views', {
+  const response = await fetchStrapiApi('api/views', {
     params: {
       locale: defaultLocale,
       filters: {
@@ -158,12 +158,68 @@ export const fetchSingleView = async ({ slug } = {}) => {
     },
   })
 
-  const currentView = {
-    ...data.data[0].attributes,
-    localizations: flattenLocalization(data.data[0]),
+  const data = {
+    ...response.data[0].attributes,
+    localizations: flattenLocalization(response.data[0]),
   }
 
   return {
-    data: currentView,
+    data,
+  }
+}
+export const fetchOverlayData = async ({ slug } = {}) => {
+  const response = await fetchStrapiApi('api/views', {
+    params: {
+      locale: defaultLocale,
+      filters: {
+        slug: {
+          $eq: slug,
+        },
+        organisation: {
+          id: {
+            $eq: process.env.organisationId,
+          },
+        },
+      },
+      populate: {
+        label: {
+          populate: 'file',
+        },
+        audioGuide: {
+          populate: 'file',
+        },
+        overlaySlides: {
+          populate: ['media.file', 'media.localizations'],
+        },
+        localizations: {
+          fields: [
+            'audioGuideTitle',
+            'externalLink',
+            'externalLinkLabel',
+            'locale',
+          ],
+          populate: {
+            label: {
+              populate: {
+                file: '*',
+              },
+            },
+            audioGuide: {
+              populate: {
+                file: '*',
+              },
+            },
+          },
+        },
+      },
+    },
+  })
+
+  const data = {
+    ...response.data[0].attributes,
+    localizations: flattenLocalization(response.data[0]),
+  }
+  return {
+    data,
   }
 }

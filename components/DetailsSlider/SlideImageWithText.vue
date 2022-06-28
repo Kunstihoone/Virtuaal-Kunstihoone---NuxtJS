@@ -1,7 +1,10 @@
 <template>
   <div class="detail-slide">
     <div class="detail-slide__image-wrapper">
-      <responsive-image :image-data="imageData" />
+      <responsive-image
+        v-if="imageData?.data?.attributes.file.data"
+        :image-data="imageData.data.attributes.file.data.attributes"
+      />
     </div>
 
     <div class="detail-slide__text-wrapper">
@@ -20,12 +23,6 @@ export default {
     text: {
       type: String,
       default: null,
-    },
-  },
-  computed: {
-    currentLocaleIso() {
-      return this.$i18n.locales.find((lang) => lang.code === this.$i18n.locale)
-        .iso
     },
   },
 }

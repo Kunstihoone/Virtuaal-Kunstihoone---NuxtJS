@@ -1,5 +1,6 @@
 <template>
   <div class="detail-slide">
+    {{ embedUrl }}
     <div ref="vimeoSlide" class="detail-slide__embed" />
   </div>
 </template>

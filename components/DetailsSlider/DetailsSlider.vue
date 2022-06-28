@@ -1,7 +1,7 @@
 <template>
   <div class="details-slider">
     <button
-      v-if="flattenedSlides.length > 1 && currentSlide > 0"
+      v-if="slides.length > 1 && currentSlide > 0"
       class="details-slider__button m-left"
       @click="navLeft"
     >
@@ -9,40 +9,33 @@
     </button>
 
     <button
-      v-if="
-        flattenedSlides.length > 1 && flattenedSlides.length - 1 > currentSlide
-      "
+      v-if="slides.length > 1 && slides.length - 1 > currentSlide"
       class="details-slider__button m-right"
       @click="navRight"
     >
       <svg-icon name="icon-arrow-right" />
     </button>
-
     <div
       :style="{ transform: `translateX(${-100 * currentSlide}%)` }"
       class="details-slider__slides-wrapper"
     >
       <div
-        v-for="(slide, index) in flattenedSlides"
+        v-for="(slide, index) in slides"
         :key="index"
         class="details-slider__slide"
       >
-        <slide-image
-          v-if="slide.acf_fc_layout === 'image'"
-          :image-data="slide.image"
-        />
-        <slide-video
-          v-if="slide.acf_fc_layout === 'video'"
-          :video-data="slide.video"
+        <slide-media
+          v-if="slide.__component === 'slides.media-slide'"
+          :media-data="slide.media"
         />
         <slide-image-with-text
-          v-if="slide.acf_fc_layout === 'image-with-text'"
-          :image-data="slide.image"
+          v-if="slide.__component === 'slides.image-with-text'"
+          :image-data="slide.media"
           :text="slide.text"
         />
         <slide-embed
-          v-if="slide.acf_fc_layout === 'embed_video'"
-          :embed-url="slide.embed_video_url"
+          v-else-if="slide.__component === 'slides.embed-video'"
+          :embed-url="slide.videoUrl"
         />
       </div>
     </div>
@@ -51,15 +44,13 @@
 
 <script>
 import SlideEmbed from '~/components/DetailsSlider/SlideEmbed'
-import SlideImage from '~/components/DetailsSlider/SlideImage'
-import SlideVideo from '~/components/DetailsSlider/SlideVideo'
+import SlideMedia from '~/components/DetailsSlider/SlideMedia'
 import SlideImageWithText from '~/components/DetailsSlider/SlideImageWithText'
 
 export default {
   components: {
     SlideEmbed,
-    SlideImage,
-    SlideVideo,
+    SlideMedia,
     SlideImageWithText,
   },
   props: {
@@ -72,34 +63,6 @@ export default {
     return {
       currentSlide: 0,
     }
-  },
-  computed: {
-    flattenedSlides() {
-      const flattenedSlides = []
-
-      this.slides.forEach((slide) => {
-        if (slide.acf_fc_layout === 'gallery_block') {
-          slide.gallery.forEach((imageObject) => {
-            flattenedSlides.push({
-              acf_fc_layout: 'image',
-              image: imageObject,
-            })
-          })
-        } else if (slide.acf_fc_layout === 'images_with_text_gallery_block') {
-          slide.gallery.forEach((item) => {
-            flattenedSlides.push({
-              acf_fc_layout: 'image-with-text',
-              image: item.image,
-              text: item.text,
-            })
-          })
-        } else {
-          flattenedSlides.push(slide)
-        }
-      })
-
-      return flattenedSlides
-    },
   },
   mounted() {
     window.addEventListener('keydown', (e) => this.keyDownListener(e))
@@ -115,7 +78,7 @@ export default {
     },
 
     navRight() {
-      if (this.flattenedSlides.length - 1 > this.currentSlide) {
+      if (this.slides.length - 1 > this.currentSlide) {
         this.currentSlide++
       }
     },

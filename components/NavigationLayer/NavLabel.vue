@@ -3,7 +3,7 @@
     <div class="nav-label__buttons">
       <transition name="fade">
         <menu-button
-          v-if="currentRoom.localizations[$i18n.locale].label.data"
+          v-if="currentRoom.localizations[$i18n.locale]?.label.data"
           :icon="detailsState ? 'icon-close' : 'icon-info'"
           button-event="Toggle label"
           class="nav-label__toggle"
@@ -18,8 +18,8 @@
       <transition name="fade">
         <a
           v-if="
-            currentRoom.localizations[$i18n.locale].externalLink &&
-            currentRoom.localizations[$i18n.locale].externalLinkLabel
+            currentRoom.localizations[$i18n.locale]?.externalLink &&
+            currentRoom.localizations[$i18n.locale]?.externalLinkLabel
           "
           :href="currentRoom.localizations[$i18n.locale].externalLink"
           target="_blank"
@@ -33,10 +33,14 @@
 
     <transition name="fade">
       <label-layer
-        v-if="detailsState"
+        v-if="
+          detailsState &&
+          currentRoom.localizations[$i18n.locale]?.label.data.attributes.file
+            .data?.attributes
+        "
         :label-image="
           currentRoom.localizations[$i18n.locale].label.data.attributes.file
-            .data?.attributes
+            .data.attributes
         "
       />
     </transition>
