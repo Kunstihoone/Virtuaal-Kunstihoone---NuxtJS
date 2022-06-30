@@ -48,14 +48,14 @@ export default {
       placeholderVisible: (state) => state.placeholderVisible,
     }),
     audioGuideTitle() {
-      if (this.currentRoom.localizations[this.$i18n.locale].audioGuideTitle) {
+      if (this.currentRoom.localizations[this.$i18n.locale]?.audioGuideTitle) {
         return this.currentRoom.localizations[this.$i18n.locale].audioGuideTitle
       } else {
         return null
       }
     },
     activeTrack() {
-      return this.currentRoom.localizations[this.$i18n.locale].audioGuide.data
+      return this.currentRoom.localizations[this.$i18n.locale]?.audioGuide.data
         ?.attributes.file.data
     },
   },

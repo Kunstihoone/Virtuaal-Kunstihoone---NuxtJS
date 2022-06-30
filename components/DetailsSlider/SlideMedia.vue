@@ -43,7 +43,6 @@ export default {
         ...this.mediaData.data.attributes,
         localizations: flattenLocalization(this.mediaData.data),
       }
-      console.log(data)
       return data
     },
   },

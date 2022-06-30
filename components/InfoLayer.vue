@@ -3,53 +3,22 @@
     <div>
       <header class="exhibition-impressum__header">
         <exhibition-item-dates
-          :starting-date-time="exhibitionData.acf.duration.starting_time"
-          :ending-date-time="exhibitionData.acf.duration.ending_time"
+          :starting-date-time="exhibitionData.startsAt"
+          :ending-date-time="exhibitionData.endsAt"
         />
 
-        <h2>{{ exhibitionData.title }}</h2>
-
-        <p v-if="exhibitionData.acf.sub_title">
-          {{ exhibitionData.acf.sub_title }}
-        </p>
+        <h2 v-if="exhibitionData.localizations[$i18n.locale]?.title">
+          {{ exhibitionData.localizations[$i18n.locale].title }}
+        </h2>
       </header>
-
-      <template v-if="exhibitionData.acf">
-        <div
-          v-if="exhibitionData.acf.artists"
-          class="exhibition-impressum__artists"
-          v-html="exhibitionData.acf.artists"
-        />
-
-        <div
-          v-if="exhibitionData.acf.curators"
-          class="exhibition-impressum__curators"
-        >
-          <p>
-            {{
-              exhibitionData.acf.curators.length > 1
-                ? $t('curators')
-                : $t('curator')
-            }}:&nbsp;
-          </p>
-
-          <p
-            v-for="(curator, index) in exhibitionData.acf.curators"
-            :key="index"
-          >
-            {{ curator.curator_name }}
-          </p>
-        </div>
-
-        <div
-          v-if="exhibitionData.acf.team"
-          class="exhibition-impressum__team"
-          v-html="exhibitionData.acf.team"
-        />
-      </template>
     </div>
 
-    <footer
+    <div
+      v-if="exhibitionData.localizations[$i18n.locale]?.impressum"
+      v-html="$md.render(exhibitionData.localizations[$i18n.locale].impressum)"
+    />
+
+    <!-- <footer
       v-if="exhibitionData.acf && exhibitionData.acf.supporters"
       class="exhibition-impressum__supporters"
     >
@@ -72,7 +41,7 @@
           </template>
         </figure>
       </div>
-    </footer>
+    </footer> -->
   </div>
 </template>
 
@@ -87,6 +56,7 @@ export default {
     this.exhibitionData = this.$store.getters.getSingleExhibition(
       this.$route.params.exhibition,
     )
+    console.log(this.exhibitionData.localizations)
   },
 }
 </script>

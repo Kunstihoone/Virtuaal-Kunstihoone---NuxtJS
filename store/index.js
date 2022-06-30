@@ -67,23 +67,21 @@ export const mutations = {
   },
 }
 
-async function initializeSite({ commit, lang }) {
+async function initializeSite({ commit }) {
   const siteData = await fetchSiteData()
   commit('SetSiteData', siteData)
 
-  const exhibitions = await fetchExhibitions({ locale: lang })
+  const exhibitions = await fetchExhibitions()
   commit('SetExhibitions', exhibitions)
 }
 
 export const actions = {
-  async nuxtServerInit({ commit }, { app }) {
-    const lang = app.i18n.locale === 'evk' ? 'et' : app.i18n.locale
-
-    await initializeSite({ commit, lang })
+  async nuxtServerInit({ commit }) {
+    await initializeSite({ commit })
   },
 
-  async getSiteData({ commit }, lang) {
-    await initializeSite({ commit, lang })
+  async getSiteData({ commit }) {
+    await initializeSite({ commit })
   },
 }
 
@@ -93,7 +91,7 @@ export const getters = {
   },
   getSingleExhibition: (state) => (slug) => {
     return state.exhibitions.find(
-      (exhibition) => decodeURIComponent(exhibition.attributes.slug) === slug,
+      (exhibition) => decodeURIComponent(exhibition.slug) === slug,
     )
   },
 }

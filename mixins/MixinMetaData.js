@@ -11,35 +11,32 @@ Vue.mixin({
       let metaDescription = null
       let ogImage = null
 
-      if (data && data.acf && data.acf.meta_title) {
-        metaTitle = data.acf.meta_title
-      } else if (
-        data &&
-        data.title &&
-        !this.$route.name.startsWith('index__')
-      ) {
+      if (data && data.title && !this.$route.name.startsWith('index__')) {
         metaTitle = data.title + ' | ' + siteTitle
       } else {
         metaTitle = siteTitle
       }
 
-      if (data && data.acf && data.acf.meta_description) {
-        metaDescription = data.acf.meta_description
-      } else if (data && data.excerpt) {
-        metaDescription = data.excerpt
-      } else {
-        metaDescription = siteDescription
-      }
+      // @TODO: Consider adding metaDescription for views
+      // if (data && data.acf && data.acf.meta_description) {
+      //   metaDescription = data.acf.meta_description
+      // } else if (data && data.excerpt) {
+      //   metaDescription = data.excerpt
+      // } else {
+      //   metaDescription = siteDescription
+      // }
+
+      metaDescription = siteDescription
 
       if (
-        data &&
-        data.featured_image &&
+        data?.featuredImage.data?.attributes.file.data.attributes &&
         !this.$route.name.startsWith('index__')
       ) {
         ogImage = {
-          url: data.featured_image.url,
-          width: data.featured_image.width,
-          height: data.featured_image.height,
+          url: data.featuredImage.data.attributes.file.data.attributes.url,
+          width: data.featuredImage.data.attributes.file.data.attributes.width,
+          height:
+            data.featuredImage.data.attributes.file.data.attributes.height,
         }
       } else {
         ogImage = {

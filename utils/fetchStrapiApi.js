@@ -4,7 +4,6 @@ import { defaultLocale, flattenLocalization } from './localizations'
 export const fetchStrapiApi = async (path, { params } = {}) => {
   const baseUrl = process.env.strapiUrl
   const queryParams = qs.stringify(params, { encode: true })
-
   try {
     const response = await fetch(`${baseUrl}${path}?${queryParams}`)
     const data = await response.json()
@@ -18,7 +17,7 @@ export const fetchStrapiApi = async (path, { params } = {}) => {
 
 export const fetchSiteData = async () => {
   const getSiteData = await fetchStrapiApi(
-    'api/organisation-info/' + process.env.organisationId,
+    'api/public-organisation-info/' + process.env.organisationId,
   )
 
   const siteData = {
@@ -28,10 +27,10 @@ export const fetchSiteData = async () => {
   return siteData
 }
 
-export const fetchExhibitions = async ({ locale = defaultLocale } = {}) => {
+export const fetchExhibitions = async () => {
   const exhibitions = await fetchStrapiApi('api/exhibitions', {
     params: {
-      locale,
+      locale: defaultLocale,
       filters: {
         organisation: {
           id: {
@@ -46,11 +45,17 @@ export const fetchExhibitions = async ({ locale = defaultLocale } = {}) => {
         featuredImage: {
           populate: 'file',
         },
+        localizations: {
+          fields: ['title', 'impressum', 'locale'],
+        },
       },
     },
   })
 
-  return exhibitions.data
+  return exhibitions.data.map((exhibition) => ({
+    ...exhibition.attributes,
+    localizations: flattenLocalization(exhibition),
+  }))
 }
 
 export const fetchSingleExhibition = async ({

@@ -11,14 +11,13 @@ export default {
     RoomWrapper,
   },
   async asyncData({ params, store, app }) {
-    const lang = app.i18n.locale === 'evk' ? 'et' : app.i18n.locale
     if (!store.state.siteData) {
       const siteData = await fetchSiteData()
       store.commit('SetSiteData', siteData)
     }
 
     if (!store.state.exhibitions) {
-      const exhibitions = await fetchExhibitions({ locale: lang })
+      const exhibitions = await fetchExhibitions()
       store.commit('SetExhibitions', exhibitions)
     }
 

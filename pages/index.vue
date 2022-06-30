@@ -1,5 +1,6 @@
 <template>
   <div class="index-page">
+    {{ data }}
     <application-intro :data="$store.state.siteData" />
 
     <exhibitions-list

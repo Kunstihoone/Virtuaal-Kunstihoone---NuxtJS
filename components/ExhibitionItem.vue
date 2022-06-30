@@ -1,36 +1,36 @@
 <template>
   <nuxt-link
-    v-if="data.attributes.slug"
+    v-if="data.slug"
     :to="
       localePath({
         name: 'exhibition-parent',
         params: {
-          exhibition: data.attributes.slug,
-          parent: data.attributes.homeView.data.attributes.slug,
+          exhibition: data.slug,
+          parent: data.homeView.data.attributes.slug,
         },
       })
     "
     :class="{
-      'm-disabled': $i18n.locale === 'evk' && !data.attributes.inSignLanguage,
+      'm-disabled': $i18n.locale === 'evk' && !data.inSignLanguage,
     }"
     class="exhibition-item"
     @click.native="enterExhibition"
   >
     <responsive-image-ratio
-      v-if="data.attributes.featuredImage.data?.attributes.file.data.attributes"
-      :image-data="
-        data.attributes.featuredImage.data.attributes.file.data.attributes
-      "
+      v-if="data.featuredImage.data?.attributes.file.data.attributes"
+      :image-data="data.featuredImage.data.attributes.file.data.attributes"
       class="exhibition-item__thumbnail"
     />
 
     <div class="exhibition-item__content">
       <exhibition-item-dates
-        :starting-date-time="data.attributes.startsAt"
-        :ending-date-time="data.attributes.endsAt"
+        :starting-date-time="data.startsAt"
+        :ending-date-time="data.endsAt"
       />
 
-      <h2>{{ data.attributes.title }}</h2>
+      <h2 v-if="data.localizations[$i18n.locale]?.title">
+        {{ data.localizations[$i18n.locale].title }}
+      </h2>
     </div>
   </nuxt-link>
 </template>

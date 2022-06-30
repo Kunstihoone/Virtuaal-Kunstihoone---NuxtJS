@@ -10,7 +10,6 @@ export const flattenLocalization = (data) => {
     },
     {},
   )
-
   if (processLocalizations) {
     processLocalizations[defaultLocale] = {
       id: data?.id,
